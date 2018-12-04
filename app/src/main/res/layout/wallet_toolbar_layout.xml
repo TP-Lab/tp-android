@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_toolbar_heigth"
+    android:orientation="horizontal"
+    android:paddingRight="18dp">
+
+    <TextView
+        android:id="@+id/tv_wallet_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:drawableLeft="@drawable/ic_wallet"
+        android:drawablePadding="7dp"
+        android:drawableRight="@drawable/ic_arrow_down"
+        android:text=""
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_15"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/wallet_menu_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/wallet_action_transfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_receive" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:gravity="center"
+                android:text="转账"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_15" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/wallet_action_receive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_transfer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:gravity="center"
+                android:text="收款"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_15" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/wallet_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:scaleType="center"
+        android:src="@drawable/ic_menu" />
+
+</RelativeLayout>

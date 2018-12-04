@@ -1,0 +1,162 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowNoTitle">true</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/common_blue</item>
+        <item name="android:listDivider">@drawable/shape_divider</item>
+        <!-- 更换右侧actionbar图标-->
+        <!--<item name="android:actionOverflowButtonStyle">@style/OverflowStyle</item>-->
+    </style>
+
+    <style name="DialogStyle" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+
+    <style name="OverflowStyle">
+        <item name="android:src">@drawable/ic_images_asset_menu</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <!--隐藏ActionBar-->
+        <item name="windowActionBar">false</item>
+        <!--不显示标题-->
+        <!--<item name="android:layout_marginTop">25dp</item>-->
+        <!--<item name="android:layout_marginRight">25dp</item>-->
+    </style>
+
+    <style name="term_checkbox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/term_checkbox_bg</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Style_Pop_Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/dimen_drawable_padding</item>
+        <item name="android:paddingBottom">11dp</item>
+        <item name="android:paddingLeft">@dimen/dimen_content_padding</item>
+        <item name="android:paddingTop">11dp</item>
+        <item name="android:textColor">@color/color_text_3</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
+    </style>
+
+    <style name="Style.Line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen_line</item>
+        <item name="android:background">@color/color_line</item>
+    </style>
+
+    <style name="Pop_up_anim">
+        <item name="android:windowEnterAnimation">@anim/pop_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_out</item>
+    </style>
+
+    <style name="Style" />
+
+    <style name="Style.Btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">47dp</item>
+    </style>
+
+    <style name="Style.Btn.Theme">
+        <item name="android:background">@drawable/selector_btn_theme</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_17</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Style.Btn.White">
+        <item name="android:background">@drawable/selector_btn_white</item>
+        <item name="android:textColor">@color/color_theme</item>
+        <item name="android:textSize">@dimen/text_size_17</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Style.ItemLayout" />
+
+    <style name="Style.ItemLayout.WalletCreateLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="Style.WalletCreateTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_text_3</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
+        <item name="android:layout_marginRight">18dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="Style.Edit">
+        <item name="android:singleLine">true</item>
+        <item name="android:textCursorDrawable">@drawable/shape_cursor</item>
+    </style>
+
+    <style name="Style.Edit.WalletCreate">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/color_text_3</item>
+        <item name="android:textColorHint">@color/color_text_80</item>
+        <item name="android:textSize">@dimen/text_size_15</item>
+    </style>
+
+    <style name="Style.Edit.WalletCreate.Pwd">
+        <item name="android:inputType">textPassword</item>
+    </style>
+    <style name="TokenBankTranslucentTheme" parent="android:Theme.Translucent.NoTitleBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/common_blue</item>
+        <!--<item name="android:windowBackground">@null</item>-->
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <!--<item name="android:windowAnimationStyle">@null</item>-->
+        <!--<item name="android:windowDisablePreview">true</item>-->
+        <!--<item name="android:windowNoDisplay">true</item>-->
+        <!--<item name="android:windowFullscreen">true</item>-->
+    </style>
+
+    <style name="TranActivity" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/color_transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/common_blue</item>
+        <item name="android:listDivider">@drawable/shape_divider</item>
+        <!-- 更换右侧actionbar图标-->
+        <!--<item name="android:actionOverflowButtonStyle">@style/OverflowStyle</item>-->
+    </style>
+
+    <style name="AppTheme.NoDisplay" parent="Theme.AppCompat.Light">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+
+</resources>

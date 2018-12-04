@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/color_theme</color>
+    <color name="colorPrimaryDark">@color/color_theme</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="backgroud_gray">#f9f9f9</color>
+    <color name="tab_bg_color">#f8f8f8</color>
+    <color name="tab_text_color_unselected">#c7c7c7</color>
+    <color name="tab_text_color_selected">#2890fe</color>
+    <color name="token_text_color">#515b64</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="receiveaddress_copybtn_bgcolor">#eff1f2</color>
+    <color name="copybtn_text_color">#5e6c7b</color>
+    <color name="modify_wallet_bottom_textcolor">#929da6</color>
+    <color name="split_color">#f0f0f0</color>
+    <color name="modify_wallet_topaddress_textcolor">#c3c8ce</color>
+    <color name="modify_wallet_topasset_textcolor">#697685</color>
+    <color name="cursor_color">#36bac9</color>
+
+    <!--复制privatekey 对话框-->
+    <color name="privatekey_bg">#eff3f6</color>
+    <color name="warning_bg">#fbf0ee</color>
+    <color name="warning_stroke_color">#e1a09a</color>
+    <color name="warning_text_color">#c54828</color>
+    <color name="privatekey_copy_bg">#36bac9</color>
+
+    <!--创建钱包-->
+    <color name="tip_bg_color">#076bb7</color>
+
+    <!-- zxing-->
+    <color name="bg_color">#EDEDED</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="help_button_view">#ffcccccc</color>
+    <color name="help_view">#ff404040</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_image_border">#ffffffff</color>
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c000ff00</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="sbc_header_text">#ff808080</color>
+    <color name="sbc_header_view">#ffffffff</color>
+    <color name="sbc_list_item">#fffff0e0</color>
+    <color name="sbc_layout_view">#ffffffff</color>
+    <color name="sbc_page_number_text">#ff000000</color>
+    <color name="sbc_snippet_text">#ff4b4b4b</color>
+    <color name="share_text">#ff000000</color>
+    <color name="share_view">#ffffffff</color>
+    <color name="status_view">#50000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="header">#58567D</color>
+    <color name="grgray">#686868</color>
+
+    <!--common-->
+    <color name="common_blue">#2890FE</color>
+    <color name="common_red">#f3474d</color>
+    <color name="common_black_fontcolor">#333333</color>
+
+    <color name="color_transparent">#00000000</color>
+    <color name="color_tr">#FFFFFF</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_line">#E8E8E8</color>
+    <color name="color_text_3">#333333</color>
+    <color name="color_text_6">#666666</color>
+    <color name="color_text_80">#808080</color>
+    <color name="color_text_d">#DDDDDD</color>
+    <color name="color_theme">#2890FE</color>
+    <color name="color_normal">#F5F5F9</color>
+    
+</resources>

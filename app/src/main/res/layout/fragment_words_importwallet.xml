@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edt_wallet_words"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/shape_importwallet_privatkey"
+            android:hint="助记词，用空格分隔"
+            android:padding="5dp"
+            android:textColor="@color/common_black_fontcolor"
+            android:textSize="14sp"
+            android:text=""/>
+
+        <RelativeLayout
+            android:id="@+id/layout_block_chain"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/tv_blockchain_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="钱包体系"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_block_chain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="16sp"
+                android:layout_toRightOf="@id/tv_blockchain_title"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                />
+            <!--android:src="@drawable/ic_arrow_right"-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/split_color" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择格式"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_standard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18sp"
+                android:text="m/44/60/0/0/0"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/split_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="钱包名字"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edt_wallet_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="钱包名"
+                android:inputType="text"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="14sp"
+                android:layout_marginLeft="18dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/split_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="钱包密码"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edt_wallet_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="密码"
+                android:inputType="textPassword"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="16sp"
+                android:layout_marginLeft="18dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/split_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="重复密码"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edt_wallet_pwd_repeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="重复密码"
+                android:inputType="textPassword"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="16sp"
+                android:layout_marginLeft="18dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/split_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="提示信息"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edt_pwd_tips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="密码提示信息(可不填)"
+                android:textColor="@color/common_black_fontcolor"
+                android:textSize="16sp"
+                android:layout_marginLeft="18dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/split_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/img_service_terms"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/selector_service_terms" />
+
+            <TextView
+                android:id="@+id/tv_service_terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_import_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_createwallet_btnbg"
+            android:gravity="center"
+            android:text="开始导入"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp"/>
+    </LinearLayout>
+</ScrollView>

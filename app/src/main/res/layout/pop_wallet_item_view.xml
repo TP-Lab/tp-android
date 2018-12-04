@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_item_height"
+    android:background="@color/color_transparent"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/wallet_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_content_padding"
+        android:textColor="@color/color_text_3"
+        android:textSize="@dimen/text_size_15"
+        tools:text="全部钱包" />
+</LinearLayout>

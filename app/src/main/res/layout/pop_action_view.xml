@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dimen_wallet_action_width"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/shape_dialog_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/pop_item_scan"
+            style="@style/Style_Pop_Item"
+            android:drawableLeft="@drawable/ic_pop_item_scan"
+            android:text="扫一扫"
+            android:visibility="visible"/>
+
+        <View
+            style="@style/Style.Line"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"/>
+
+        <!--<TextView-->
+            <!--android:id="@+id/pop_item_add"-->
+            <!--style="@style/Style_Pop_Item"-->
+            <!--android:drawableLeft="@drawable/ic_pop_item_add"-->
+            <!--android:text="添加资产" />-->
+
+        <View
+            style="@style/Style.Line"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:id="@+id/create_wallet"
+            style="@style/Style_Pop_Item"
+            android:drawableLeft="@drawable/ic_pop_item_create"
+            android:text="创建钱包" />
+    </LinearLayout>
+</LinearLayout>

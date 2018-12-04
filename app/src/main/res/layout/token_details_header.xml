@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/token_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="23dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/color_text_3"
+        android:textSize="43sp"
+        tools:text="0.2608" />
+
+    <TextView
+        android:id="@+id/token_asset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_text_80"
+        android:textSize="@dimen/text_size_16"
+        tools:text="≈ ¥ 2051.43" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="160dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#F9F9F9" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="6dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:text="最近交易记录"
+        android:textColor="@color/color_text_80"
+        android:textSize="@dimen/text_size_13" />
+</LinearLayout>

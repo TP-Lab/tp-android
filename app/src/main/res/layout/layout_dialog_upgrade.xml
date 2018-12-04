@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/shape_dialog_bg">
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="升级提示"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="检测到新版本"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
+
+        />
+    <TextView
+        android:id="@+id/tv_upgrade"
+        android:layout_width="110dp"
+        android:layout_height="36dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:text="立即升级"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/shape_splash_createwallet_bg"
+        />
+
+</LinearLayout>

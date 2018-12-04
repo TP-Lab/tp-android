@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <com.tokenbank.view.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tab_text_color_selected"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/tab_text_color_selected"
+        />
+    <ImageView
+        android:id="@+id/img_wallet_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="-20dp"
+        android:layout_gravity="center_horizontal"
+        />
+    <TextView
+        android:id="@+id/tv_wallet_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:maxLines="2"
+        android:textSize="12sp"
+        android:textColor="@color/tab_text_color_unselected"
+        android:text="lkjsdlfjlksdjfljslfjsdlfjasldfjlsdfjlsjdflsjdflsjfljljsdlfj"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        />
+    <EditText
+        android:id="@+id/edt_receiveasset_count"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:maxLines="1"
+        android:inputType="numberDecimal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textSize="13sp"
+        android:background="@null"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/split_color"
+        android:layout_marginTop="5dp"
+        />
+
+    <ImageView
+        android:id="@+id/img_receive_address_qrcode"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"/>
+    <TextView
+        android:id="@+id/tv_copy_receive_address"
+        android:layout_width="180dp"
+        android:layout_height="35dp"
+        android:textColor="@color/copybtn_text_color"
+        android:text="复制收款地址"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@color/receiveaddress_copybtn_bgcolor"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>

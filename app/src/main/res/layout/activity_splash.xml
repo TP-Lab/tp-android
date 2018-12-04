@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/img_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_splash" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="让财富更自由"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
+        android:textSize="15sp"
+        android:textColor="#808080"
+        android:layout_below="@id/img_icon"
+        />
+
+    <LinearLayout
+        android:id="@+id/layout_splash_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_create_wallet"
+            android:layout_width="245dp"
+            android:layout_height="47dp"
+            android:background="@drawable/shape_splash_createwallet_bg"
+            android:gravity="center"
+            android:text="创建钱包"
+            android:textColor="@color/white"
+            android:textSize="17dp" />
+
+        <TextView
+            android:id="@+id/tv_import_wallet"
+            android:layout_width="245dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_splash_importwallet_bg"
+            android:gravity="center"
+            android:text="导入钱包"
+            android:textColor="@color/common_blue"
+            android:textSize="17dp"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

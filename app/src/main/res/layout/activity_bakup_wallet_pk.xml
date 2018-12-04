@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    >
+
+    <com.tokenbank.view.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:text="抄下你的钱包私钥"
+        android:textColor="@color/common_black_fontcolor"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:text="私钥用于恢复钱包和重置钱包密码，将它准确的抄写在纸上，并存放在只有你知道的安全的地方。"
+        android:textColor="#808080"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/edt_wallet_pk"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="22dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_next"
+        android:layout_width="120dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shape_splash_createwallet_bg"
+        android:gravity="center"
+        android:text="下一步"
+        android:textColor="@color/white"
+        android:textSize="17sp" />
+
+
+</LinearLayout>

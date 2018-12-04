@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tokenbank">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.GET_TOP_ACTIVITY_INFO" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- 附近功能要求gps -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 保持屏幕高亮权限组(二维码扫描页需要) -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".TApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.FragmentContainerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zxing.activity.CaptureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.WebBrowserActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CreateWalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ChooseWalletBlockActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ImportWalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TransactionRecordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ManageWalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ModifyWalletActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".activity.ChangeWalletActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TransactionDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.BWDInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TokenDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.StartBakupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ModifyPwdActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TokenTransferActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TokenReceiveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ConfirmWalletBakupInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ChooseTokenTransferActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

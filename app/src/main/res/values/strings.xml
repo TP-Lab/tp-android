@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TokenPocket</string>
+    <string name="title_activity_token_transaction">TokenTransactionActivity</string>
+
+    <string name="str_create_wallet">创建钱包</string>
+    <string name="str_tips">提示信息</string>
+    <string name="str_back">返回</string>
+    <string name="str_block">钱包体系</string>
+    <string name="str_choose_block">请选择钱包体系</string>
+    <string name="str_wallet_name">钱包名称</string>
+    <string name="str_input_wallet_name">请输入钱包名称</string>
+    <string name="str_pwd">设置密码</string>
+    <string name="str_input_pwd">请输入密码,至少8位</string>
+    <string name="str_repeat_pwd">确认密码</string>
+    <string name="str_input_repeat_pwd">确认密码</string>
+    <string name="str_tip_cannull">可不填</string>
+    <string name="title_activity_choose_token_transfer">ChooseTokenTransferActivity</string>
+
+</resources>

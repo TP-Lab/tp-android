@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pop_wallet_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.tokenbank.view.WrapContentListView
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white"
+                android:divider="@color/color_line"
+                android:dividerHeight="@dimen/dimen_line"
+                android:listSelector="@color/color_transparent" />
+
+            <View style="@style/Style.Line" />
+
+            <LinearLayout
+                android:id="@+id/create_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_item_height"
+                android:background="@color/color_white"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/color_transparent"
+                    android:drawableLeft="@drawable/ic_pop_item_create_"
+                    android:drawablePadding="6dp"
+                    android:gravity="center"
+                    android:text="创建钱包"
+                    android:textColor="@color/color_text_3"
+                    android:textSize="@dimen/text_size_15" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

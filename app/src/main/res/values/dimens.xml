@@ -1,0 +1,26 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="dimen_toolbar_heigth">45dp</dimen>
+    <dimen name="dimen_content_padding">15dp</dimen>
+    <dimen name="dimen_drawable_padding">15dp</dimen>
+    <dimen name="dimen_item_height">56dp</dimen>
+    <dimen name="dimen_icon_size">37dp</dimen>
+    <dimen name="dimen_line">0.5dp</dimen>
+    <dimen name="dimen_qr_width">200dp</dimen>
+    <dimen name="dimen_wallet_action_width">141dp</dimen>
+    <dimen name="indicator_height">2dp</dimen>
+
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_11">11sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_13">13sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_17">17sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_19">19sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_21">21sp</dimen>
+</resources>

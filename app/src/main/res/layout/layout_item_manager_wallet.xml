@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6">
+
+                <TextView
+                    android:id="@+id/tv_wallet_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:maxWidth="200dp"
+                    android:text="十万个为什么的钱包"
+                    android:textColor="#333333"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_bak_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未备份"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:layout_toRightOf="@id/tv_wallet_name"
+                    android:background="@color/common_blue"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:layout_marginLeft="5dp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_wallet_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_wallet_name"
+                    android:layout_marginTop="2dp"
+                    android:ellipsize="middle"
+                    android:maxWidth="200dp"
+                    android:singleLine="true"
+                    android:text="0xjasldfjlajdflasjdflasfjlasdfjlasjdflasjdf"
+                    android:textColor="#808080"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/split_color" />
+
+        <TextView
+            android:id="@+id/tv_total_asset"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center_vertical|right"
+            android:paddingRight="15dp"
+            android:text="0ether"
+            android:textSize="10sp"
+            android:textColor="#333333"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/split_color" />
+
+
+</LinearLayout>

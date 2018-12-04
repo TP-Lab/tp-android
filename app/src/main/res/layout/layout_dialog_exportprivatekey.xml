@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/shape_dialog_bg">
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提示信息"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/tv_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="安全警告，私钥导出后请妥善保管，不要泄露，一旦泄露，可能导致资产损失"
+        android:textColor="@color/warning_text_color"
+        android:background="@drawable/shape_privatekey_copy_warning_bg"
+        android:padding="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+    <TextView
+        android:id="@+id/tv_privatekey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:background="@drawable/shape_privatekey_copy_content"
+        android:padding="5dp"
+        android:textSize="13sp"
+        android:text="lajsdlfjldfjlasdfjlkasjdflkasjdflkjsajsjslkdfjaslkdfjlksdfjlsadfjlasjdfl"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+    <TextView
+        android:id="@+id/tv_copy_privatekey"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_export_privatekey_btnbg"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="复制私钥"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/white"
+        />
+
+
+</LinearLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e7e7ec"
+    android:orientation="vertical">
+
+    <com.tokenbank.view.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="47dp"
+            android:layout_marginTop="47dp">
+            <ImageView
+                android:id="@+id/receive_qr"
+                android:layout_width="190dp"
+                android:layout_height="190dp" />
+            <ImageView
+                android:id="@+id/img_qrcode_shadow"
+                android:layout_width="190dp"
+                android:layout_height="190dp"
+                android:background="#56000000"/>
+        </FrameLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_line"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="66dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收款金额"
+                android:textColor="@color/color_text_3"
+                android:textSize="@dimen/text_size_16" />
+
+            <EditText
+                android:id="@+id/receive_amount"
+                style="@style/Style.Edit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_weight="1.0"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:digits="0123456789."
+                android:hint="请设置收款金额"
+                android:singleLine="true"
+                android:inputType="numberDecimal"
+                android:text=""/>
+
+            <TextView
+                android:id="@+id/tv_token_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/color_text_3"
+                android:textSize="@dimen/text_size_16" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/receive_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_text_3"
+            android:textSize="@dimen/text_size_12"
+            tools:text="" />
+
+        <TextView
+            android:id="@+id/tv_copy_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2890FE"
+            android:layout_marginTop="6dp"
+            android:textSize="@dimen/text_size_16"
+            android:text="复制收款地址" />
+    </LinearLayout>
+</LinearLayout>
