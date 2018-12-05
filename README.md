@@ -4,7 +4,7 @@
 
 This is a wallet tool based on [TokenPocket](https://www.mytokenpocket.vip) early version for android, we could use it to manage multiple wallets, view balance & transaction history and transfer token. Only supports [SWTC Blockchain](http://state.jingtum.com/#!/) for now, we will support Ethereum Blockchain and so on in the future.
 
-## Donate
+## Donation
 
 If you wanna donate token of SWTC Blockchain, we'll appreciate it.
 
