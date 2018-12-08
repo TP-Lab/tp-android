@@ -23,7 +23,7 @@
             android:drawableLeft="@drawable/ic_wallet_manage"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="管理钱包"
+            android:text="@string/str_management_wallet"
             android:textColor="#333333" />
 
         <ImageView
@@ -59,7 +59,7 @@
             android:drawableLeft="@drawable/ic_record"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="交易记录"
+            android:text="@string/str_transactions"
             android:textColor="#333333" />
 
         <ImageView
@@ -89,7 +89,7 @@
             android:drawableLeft="@drawable/ic_notification"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="消息中心"
+            android:text="@string/str_message_center"
             android:textColor="#333333" />
 
         <ImageView
@@ -139,7 +139,7 @@
             android:drawableLeft="@drawable/ic_contact"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="联系人"
+            android:text="@string/str_contacts"
             android:textColor="#333333" />
 
         <ImageView
@@ -168,7 +168,7 @@
             android:drawableLeft="@drawable/ic_help"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="帮助中心"
+            android:text="@string/str_help_support"
             android:textColor="#333333" />
 
         <ImageView
@@ -204,7 +204,7 @@
             android:drawableLeft="@drawable/ic_about_us"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="关于我们"
+            android:text="@string/str_about_us"
             android:textColor="#333333" />
 
         <ImageView
@@ -240,7 +240,7 @@
             android:drawableLeft="@drawable/ic_setting"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="系统设置"
+            android:text="@string/str_sys_setting"
             android:textColor="#333333" />
 
         <ImageView

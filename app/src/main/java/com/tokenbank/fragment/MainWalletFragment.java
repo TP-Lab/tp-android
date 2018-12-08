@@ -151,7 +151,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (!NetUtil.isNetworkAvailable(getActivity())) {
-            ToastUtil.toast(getContext(), "网络未连接，请检查网络");
+            ToastUtil.toast(getContext(), getString(R.string.str_no_network));
             return;
         }
         switch (view.getId()) {
@@ -183,16 +183,16 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
                 //扫描到地址
                 String scanResult = data.getStringExtra("result");
                 if (TextUtils.isEmpty(scanResult)) {
-                    ToastUtil.toast(getContext(), "扫描错误");
+                    ToastUtil.toast(getContext(), getString(R.string.str_scan_error));
                 } else {
                     if (scanResult.startsWith("iban")) {
                         //eth
-                        ToastUtil.toast(getContext(), "当前不支持以太钱包");
+                        ToastUtil.toast(getContext(), getString(R.string.str_not_support_eth_wallet));
                     } else if (scanResult.startsWith("jingtum")) {
                         //swt
                         handleSwtScanResult(scanResult);
                     } else {
-                        ToastUtil.toast(getContext(), "扫描错误");
+                        ToastUtil.toast(getContext(), getString(R.string.str_scan_error));
                     }
                 }
             }
@@ -202,7 +202,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
 
     private void handleSwtScanResult(final String scanResult) {
         if (!WalletInfoManager.getInstance().hasWallet(TBController.SWT_INDEX)) {
-            ToastUtil.toast(getContext(), "当前没有井通，请创建钱包，再扫描");
+            ToastUtil.toast(getContext(), getString(R.string.str_no_jintum_wallet_tips));
             return;
         }
         if (WalletInfoManager.getInstance().getWalletType() == TBController.SWT_INDEX) {
@@ -214,13 +214,13 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
             TokenTransferActivity.startTokenTransferActivity(getContext(), ibanAddress,
                     "", num, token, 0, 0);
         } else {
-            ViewUtil.showSysAlertDialog(getContext(), "提示", "扫描到的地址为井通地址，但是当前钱包为非井通钱包，是否切换成井通钱包？",
-                    "不切换", new DialogInterface.OnClickListener() {
+            ViewUtil.showSysAlertDialog(getContext(), getString(R.string.str_prompt), getString(R.string.str_switch_jintum_wallet_tips),
+                    getString(R.string.str_dont_switch), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
-                    }, "立即切换", new DialogInterface.OnClickListener() {
+                    }, getString(R.string.str_switch), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             if (WalletInfoManager.getInstance().setCurrentWallet(TBController.SWT_INDEX)) {
@@ -313,7 +313,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
     }
 
     private void update() {
-        mTvWalletUnit.setText(String.format("我的资产"));
+        mTvWalletUnit.setText(String.format(getString(R.string.str_my_assets)));
         setWalletName();
     }
 

@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@null"
-        android:hint="收款人钱包地址" />
+        android:hint="@string/str_hint_payee_wallet_address" />
 
     <View
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@null"
-        android:hint="转账金额" />
+        android:hint="@string/str_hint_transfer_amount" />
 
     <View
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@null"
-        android:hint="备注" />
+        android:hint="@string/str_hint_note" />
 
     <View
         android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="矿工费用" />
+                android:text="@string/str_gas_price" />
 
             <ImageView
                 android:id="@+id/img_about_gas"
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="慢" />
+                android:text="@string/str_slow" />
 
             <TextView
                 android:id="@+id/tv_gas_count_basic"
@@ -111,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="快" />
+                android:text="@string/str_fast" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@null"
-                android:hint="自定义Gas Price"
+                android:hint="@string/str_custom_gas_price"
                 android:paddingRight="20dp" />
 
             <View
@@ -158,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@null"
-            android:hint="自定义Gas Price" />
+            android:hint="@string/str_hint_custom_gas_price" />
 
         <View
             android:layout_width="match_parent"
@@ -172,7 +172,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:background="@null"
-            android:hint="16进制数据" />
+            android:hint="@string/str_hexadecimal_data" />
 
     </LinearLayout>
 
@@ -188,21 +188,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="如何设置参数" />
+            android:text="@string/str_set_parameters" />
 
         <Switch
             android:id="@+id/switch_advance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="高级选项" />
+            android:text="@string/str_advanced_options" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="20dp"
-            android:text="下一步"
+            android:text="@string/str_next"
             android:gravity="center"/>
     </RelativeLayout>
 

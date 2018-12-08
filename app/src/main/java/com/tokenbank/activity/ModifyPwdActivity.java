@@ -56,37 +56,37 @@ public class ModifyPwdActivity extends BaseActivity implements TitleBar.TitleBar
     @Override
     public void onRightClick(View view) {
         if (TextUtils.isEmpty(mEdtOldPwd.getText().toString())) {
-            showTipAlertDialog("旧密码不能为空");
+            showTipAlertDialog(getString(R.string.str_no_old_pwd));
             return;
         }
         if (TextUtils.isEmpty(mEdtNewPwd.getText().toString())) {
-            showTipAlertDialog("新密码不能为空");
+            showTipAlertDialog(getString(R.string.str_no_new_pwd));
             return;
         }
 
         if (TextUtils.isEmpty(mEdtReaptNewPwd.getText().toString())) {
-            showTipAlertDialog("新密码确认不能为空");
+            showTipAlertDialog(getString(R.string.str_no_verify_new_pwd));
             return;
         }
         if (!TextUtils.equals(mEdtReaptNewPwd.getText().toString(), mEdtNewPwd.getText().toString())) {
-            showTipAlertDialog("两次输入的新密码不同，请确认");
+            showTipAlertDialog(getString(R.string.str_verify_new_pwd_error));
             return;
         }
         if (mEdtNewPwd.getText().toString().length() < 8) {
-            showTipAlertDialog("密码长度不能少于8位");
+            showTipAlertDialog(getString(R.string.str_short_pwd));
             return;
         }
         if (TextUtils.equals(mEdtNewPwd.getText().toString(), mEdtOldPwd.getText().toString())) {
-            showTipAlertDialog("新旧密码不能一样，请重新填写");
+            showTipAlertDialog(getString(R.string.str_reset_pwd));
             return;
         }
         String oldHash = FileUtil.getStringContent(mEdtOldPwd.getText().toString());
         if (!TextUtils.equals(oldHash, mWalletData.whash)) {
-            showTipAlertDialog("旧密码错误，请重新输入旧密码");
+            showTipAlertDialog(getString(R.string.str_old_pwd_error));
             mEdtOldPwd.setText("");
             return;
         }
-        ToastUtil.toast(ModifyPwdActivity.this, "修改密码成功");
+        ToastUtil.toast(ModifyPwdActivity.this, getString(R.string.str_pwd_changed));
         WalletInfoManager.getInstance().updateWalletHash(mWalletData.waddress, FileUtil.getStringContent(mEdtNewPwd.getText().toString()));
         this.finish();
     }
@@ -115,17 +115,17 @@ public class ModifyPwdActivity extends BaseActivity implements TitleBar.TitleBar
         mTitleBar = (TitleBar) findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
 
-        mTitleBar.setTitle("更改密码");
+        mTitleBar.setTitle(getString(R.string.title_change_pwd));
 
-        mTitleBar.setRightText("完成");
+        mTitleBar.setRightText(getString(R.string.str_completed));
         mTitleBar.setRightTextColor(R.color.white);
         mTitleBar.setTitleBarClickListener(this);
 
-        mEdtOldPwd =  findViewById(R.id.edt_old_pwd);
-        mEdtNewPwd =  findViewById(R.id.edt_new_pwd);
-        mEdtReaptNewPwd =  findViewById(R.id.edt_new_repeat_pwd);
-        mTvForgetPwdTips =  findViewById(R.id.tv_forgetpwd_tip);
-        mTvForgetPwdTips.setText(Html.fromHtml("<font color='#929da6'>忘记密码? 导入助记词或私钥可重置密码。</font><font color='#2890fe'>立即导入?</font>"));
+        mEdtOldPwd = findViewById(R.id.edt_old_pwd);
+        mEdtNewPwd = findViewById(R.id.edt_new_pwd);
+        mEdtReaptNewPwd = findViewById(R.id.edt_new_repeat_pwd);
+        mTvForgetPwdTips = findViewById(R.id.tv_forgetpwd_tip);
+        mTvForgetPwdTips.setText(Html.fromHtml(getString(R.string.str_forget_pwd_tips)));
         mTvForgetPwdTips.setOnClickListener(this);
     }
 

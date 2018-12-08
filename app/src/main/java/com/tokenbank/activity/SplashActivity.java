@@ -42,7 +42,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         mTvImportWallet = (TextView) findViewById(R.id.tv_import_wallet);
         mTvImportWallet.setOnClickListener(this);
         if (!NetUtil.isNetworkAvailable(this)) {
-            ToastUtil.toast(this, "网络未连接，请检查");
+            ToastUtil.toast(this, getString(R.string.str_no_network));
         }
 //        checkUpgrade();
         checkPermission();

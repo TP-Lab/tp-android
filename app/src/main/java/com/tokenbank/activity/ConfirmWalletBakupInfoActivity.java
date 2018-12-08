@@ -88,7 +88,7 @@ public class ConfirmWalletBakupInfoActivity extends BaseActivity implements View
                     WalletInfoManager.getInstance().updateWalletBaked(mWalletData.waddress, true);
                     gotoMainActivity();
                 } else {
-                    ToastUtil.toast(ConfirmWalletBakupInfoActivity.this, "私钥输入错误,请确认");
+                    ToastUtil.toast(ConfirmWalletBakupInfoActivity.this, getString(R.string.str_private_key_error));
                 }
             } else if (mType == WORDS_TYPE) {
                 if (verifyWords()) {
@@ -96,7 +96,8 @@ public class ConfirmWalletBakupInfoActivity extends BaseActivity implements View
                     WalletInfoManager.getInstance().updateWalletBaked(mWalletData.waddress, true);
                     gotoMainActivity();
                 } else {
-                    ToastUtil.toast(ConfirmWalletBakupInfoActivity.this, "助记词顺错误,请确认");
+                    ToastUtil.toast(ConfirmWalletBakupInfoActivity.this, getString(R.string.str_mnemonic_error))
+                    ;
                 }
             }
         }
@@ -117,7 +118,7 @@ public class ConfirmWalletBakupInfoActivity extends BaseActivity implements View
 
     private void initView() {
         mTitleBar = findViewById(R.id.title_bar);
-        mTitleBar.setTitle("确认备份信息");
+        mTitleBar.setTitle(getString(R.string.title_confirm_backup_info));
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
             public void onLeftClick(View view) {
@@ -207,13 +208,13 @@ public class ConfirmWalletBakupInfoActivity extends BaseActivity implements View
         if (mType == PK_TYPE) {
             mLayoutWords.setVisibility(View.GONE);
             mEdtPk.setVisibility(View.VISIBLE);
-            mTvBakupTitle.setText("确认你的钱包私钥");
-            mTvBakupContent.setText("请按抄写的私钥填入输入框，确认你备份的私钥正确");
+            mTvBakupTitle.setText(getString(R.string.title_confirm_private_key));
+            mTvBakupContent.setText(getString(R.string.str_confirm_private_key_tips));
         } else if (mType == WORDS_TYPE) {
             mLayoutWords.setVisibility(View.VISIBLE);
             mEdtPk.setVisibility(View.GONE);
-            mTvBakupTitle.setText("确认你的钱包助记词");
-            mTvBakupContent.setText("请按抄写的顺序点击助记词，确认你的备份助记词正确");
+            mTvBakupTitle.setText(getString(R.string.title_confirm_mnemonic));
+            mTvBakupContent.setText(getString(R.string.str_confirm_mnemonic_tips));
         }
     }
 

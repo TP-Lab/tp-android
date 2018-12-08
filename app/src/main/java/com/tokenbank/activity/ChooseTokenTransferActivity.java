@@ -22,7 +22,7 @@ import com.tokenbank.utils.TokenImageLoader;
 import com.tokenbank.utils.ViewUtil;
 import com.tokenbank.view.TitleBar;
 
-public class ChooseTokenTransferActivity extends BaseActivity implements BaseRecycleAdapter.OnDataLodingFinish{
+public class ChooseTokenTransferActivity extends BaseActivity implements BaseRecycleAdapter.OnDataLodingFinish {
 
     private final static String TAG = "ChooseTokenTransferActivity";
 
@@ -61,10 +61,10 @@ public class ChooseTokenTransferActivity extends BaseActivity implements BaseRec
 
         mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle("选择代币");
+        mTitleBar.setTitle(getString(R.string.title_select_token));
 
         mTitleBar.setBackgroundColor(getResources().getColor(R.color.common_blue));
-        mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener(){
+        mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
             public void onLeftClick(View view) {
                 onBackPressed();
@@ -113,6 +113,7 @@ public class ChooseTokenTransferActivity extends BaseActivity implements BaseRec
 
         return false;
     }
+
     class ChooseTokenAdapter extends BaseRecycleAdapter<String, RecyclerView.ViewHolder> {
 
         private boolean mHasMore = true;

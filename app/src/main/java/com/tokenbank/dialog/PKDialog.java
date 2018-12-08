@@ -13,7 +13,7 @@ import com.tokenbank.utils.ToastUtil;
 import com.tokenbank.utils.Util;
 
 
-public class PKDialog extends BaseDialog implements View.OnClickListener{
+public class PKDialog extends BaseDialog implements View.OnClickListener {
 
     private final static String TAG = "PKDialog";
 
@@ -43,7 +43,7 @@ public class PKDialog extends BaseDialog implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        if(view == mTvCopyPrivateKey) {
+        if (view == mTvCopyPrivateKey) {
             copyPrivateKey();
             dismiss();
         }
@@ -59,7 +59,7 @@ public class PKDialog extends BaseDialog implements View.OnClickListener{
     }
 
     private void copyPrivateKey() {
-        Util.clipboard(getContext(),"", mTvPrivateKey.getText().toString());
-        ToastUtil.toast(getContext(), "私钥已经复制到剪贴板");
+        Util.clipboard(getContext(), "", mTvPrivateKey.getText().toString());
+        ToastUtil.toast(getContext(), getContext().getString(R.string.str_private_key_copy));
     }
 }

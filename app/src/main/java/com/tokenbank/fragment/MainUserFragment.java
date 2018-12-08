@@ -52,7 +52,7 @@ public class MainUserFragment extends BaseFragment implements View.OnClickListen
         } else if (view == mLayoutNotifcation) {
             TransactionRecordActivity.startTransactionRecordActivity(getActivity(), 1);
         } else if (view == mLayoutHelp) {
-            WebBrowserActivity.startWebBrowserActivity(getActivity(), "帮助中心", Constant.help_url);
+            WebBrowserActivity.startWebBrowserActivity(getActivity(), getString(R.string.title_help_center), Constant.help_url);
         } else if (view == mLayoutAbout) {
             AboutActivity.startAboutActivity(getActivity());
         }

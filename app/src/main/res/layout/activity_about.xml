@@ -40,7 +40,7 @@
             android:layout_marginTop="10dp"
             android:textSize="13sp"
             android:textColor="#333333"
-            android:text="TokenPocket是一款移动端轻钱包APP，它旨在为普通用户提供一款安全放心，简单好用，功能强大的数字资产钱包应用" />
+            android:text="@string/str_about_token_pocket" />
 
         <View
             android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="使用协议"
+                android:text="@string/str_agreement"
                 android:textSize="15sp"
                 android:textColor="#333333"/>
 
@@ -84,7 +84,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="隐私条款"
+                android:text="@string/str_privacy_policies"
                 android:textSize="15sp"
                 android:textColor="#333333"/>
 
@@ -111,7 +111,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="检测新版本"
+                android:text="@string/str_detect_new_version"
                 android:textSize="15sp"
                 android:textColor="#333333"/>
 

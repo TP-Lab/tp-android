@@ -15,7 +15,7 @@
             android:id="@+id/pop_item_scan"
             style="@style/Style_Pop_Item"
             android:drawableLeft="@drawable/ic_pop_item_scan"
-            android:text="扫一扫"
+            android:text="@string/str_scan_it"
             android:visibility="visible"/>
 
         <View
@@ -39,6 +39,6 @@
             android:id="@+id/create_wallet"
             style="@style/Style_Pop_Item"
             android:drawableLeft="@drawable/ic_pop_item_create"
-            android:text="创建钱包" />
+            android:text="@string/str_create_wallet" />
     </LinearLayout>
 </LinearLayout>

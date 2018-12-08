@@ -70,7 +70,7 @@
         android:layout_width="180dp"
         android:layout_height="35dp"
         android:textColor="@color/copybtn_text_color"
-        android:text="复制收款地址"
+        android:text="@string/str_copy_payment_address"
         android:textSize="13sp"
         android:gravity="center"
         android:layout_marginTop="15dp"

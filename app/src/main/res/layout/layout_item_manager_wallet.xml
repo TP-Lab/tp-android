@@ -40,7 +40,7 @@
                     android:id="@+id/tv_bak_tips"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="未备份"
+                    android:text="@string/str_no_backup"
                     android:textColor="@color/white"
                     android:textSize="10sp"
                     android:layout_toRightOf="@id/tv_wallet_name"

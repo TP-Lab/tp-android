@@ -3,6 +3,7 @@ package com.tokenbank.base;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.tokenbank.R;
 import com.tokenbank.activity.SplashActivity;
 import com.tokenbank.config.AppConfig;
 import com.tokenbank.config.Constant;
@@ -401,7 +402,7 @@ public class WalletInfoManager {
                 TextUtils.isEmpty(wallet.wpk) ||
                 wallet.wid <= 0 ||
                 wallet.type <= 0) {
-            ToastUtil.toast(AppConfig.getContext(), "更新默认钱包失败");
+            ToastUtil.toast(AppConfig.getContext(), AppConfig.getContext().getString(R.string.str_update_default_wallet_failed));
             return;
         }
         FileUtil.putIntToSp(AppConfig.getContext(), Constant.wallet_def_file, Constant.wtype, wallet.type);

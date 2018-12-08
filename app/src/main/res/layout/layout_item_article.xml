@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:text="标题"
+                android:text="@string/str_title"
                 android:textColor="#333333"
                 android:textSize="17sp" />
 

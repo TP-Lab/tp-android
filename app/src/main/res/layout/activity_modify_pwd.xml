@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="当前密码"
+            android:text="@string/str_old_pwd"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="16sp" />
 
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="当前密码"
+            android:hint="@string/str_hint_old_pwd"
             android:inputType="textPassword"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="16dp" />
@@ -55,7 +55,7 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="新密码"
+            android:text="@string/str_new_pwd"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="16sp" />
 
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="新密码"
+            android:hint="@string/str_hint_new_pwd"
             android:inputType="textPassword"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="16sp" />
@@ -89,7 +89,7 @@
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="重复新密码"
+            android:text="@string/str_verify_new_pwd"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="16sp" />
 
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:hint="重复新密码"
+            android:hint="@string/str_hint_verify_new_pwd"
             android:inputType="textPassword"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="16dp" />
@@ -119,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-        android:text="忘记密码? 导入助记词或私钥可重置密码"
+        android:text="@string/str_about_forget_pwd"
         android:textSize="14sp"
         android:visibility="invisible" />
 </LinearLayout>

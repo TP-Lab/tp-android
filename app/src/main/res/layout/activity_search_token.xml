@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
-            android:text="取消" />
+            android:text="@string/str_cancel" />
     </LinearLayout>
 
     <View
@@ -73,7 +73,7 @@
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:gravity="center"
-            android:text="向我们提交新token" />
+            android:text="@string/str_commit_new_token" />
 
         <include layout="@layout/layout_empty_view" />
     </RelativeLayout>

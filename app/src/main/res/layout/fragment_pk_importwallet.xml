@@ -16,7 +16,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/shape_importwallet_privatkey"
-            android:hint="明文私钥"
+            android:hint="@string/str_plaintext_private_key"
             android:padding="5dp"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="14sp"
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="钱包体系"
+                android:text="@string/str_wallet_system"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -69,7 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="钱包名字"
+                android:text="@string/str_wallet_name"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18sp"
                 android:background="@null"
-                android:hint="钱包名"
+                android:hint="@string/str_hint_wallet_name"
                 android:inputType="text"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
@@ -103,7 +103,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="钱包密码"
+                android:text="@string/str_wallet_pwd"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18sp"
                 android:background="@null"
-                android:hint="密码"
+                android:hint="@string/str_hint_pwd"
                 android:inputType="textPassword"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
@@ -137,7 +137,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="重复密码"
+                android:text="@string/str_verify_password"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18sp"
                 android:background="@null"
-                android:hint="重复密码"
+                android:hint="@string/str_hint_repeat_password"
                 android:inputType="textPassword"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
@@ -171,7 +171,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密码提示"
+                android:text="@string/str_pwd_prompt"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -180,7 +180,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="密码提示信息(可不填)"
+                android:hint="@string/str_hint_password"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp"
                 android:layout_marginLeft="18dp"/>
@@ -226,7 +226,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/selector_createwallet_btnbg"
             android:gravity="center"
-            android:text="开始导入"
+            android:text="@string/str_import"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
@@ -237,7 +237,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
             android:gravity="center"
-            android:text="什么是私钥"
+            android:text="@string/str_what_private_key"
             android:textColor="@color/tab_text_color_selected"
             android:textSize="14sp"
             android:layout_marginBottom="20dp"/>

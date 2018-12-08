@@ -35,7 +35,7 @@
                 android:layout_weight="1.0"
                 android:background="@color/transparent"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                android:hint="请输入资产名称"
+                android:hint="@string/str_asset_name"
                 android:inputType="text"
                 android:maxLength="10"
                 android:textColor="@color/color_text_80"
@@ -59,7 +59,7 @@
             android:gravity="center"
             android:paddingLeft="14.5dp"
             android:paddingRight="14.5dp"
-            android:text="取消"
+            android:text="@string/str_cancel"
             android:textColor="@color/color_text_3"
             android:textSize="@dimen/text_size_16" />
     </LinearLayout>
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="热门代币" />
+                android:text="@string/str_popular_tokens" />
 
             <com.tokenbank.view.HotView
                 android:id="@+id/hotview"

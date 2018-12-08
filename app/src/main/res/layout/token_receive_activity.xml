@@ -53,7 +53,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="收款金额"
+                android:text="@string/str_collection_amount"
                 android:textColor="@color/color_text_3"
                 android:textSize="@dimen/text_size_16" />
 
@@ -68,7 +68,7 @@
                 android:background="@color/transparent"
                 android:gravity="center_vertical"
                 android:digits="0123456789."
-                android:hint="请设置收款金额"
+                android:hint="@string/str_set_payment_amount"
                 android:singleLine="true"
                 android:inputType="numberDecimal"
                 android:text=""/>
@@ -109,6 +109,6 @@
             android:textColor="#2890FE"
             android:layout_marginTop="6dp"
             android:textSize="@dimen/text_size_16"
-            android:text="复制收款地址" />
+            android:text="@string/str_copy_payment_address" />
     </LinearLayout>
 </LinearLayout>

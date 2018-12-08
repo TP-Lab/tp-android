@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="你的数字资产一站式管家"
+            android:text="@string/str_about_token_master"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_15" />
     </LinearLayout>
@@ -39,14 +39,14 @@
             android:id="@+id/create_wallet"
             style="@style/Style.Btn.Theme"
             android:layout_width="150dp"
-            android:text="创建钱包" />
+            android:text="@string/str_create_wallet" />
 
         <Button
             android:id="@+id/import_wallet"
             style="@style/Style.Btn.White"
             android:layout_width="150dp"
             android:layout_marginTop="20dp"
-            android:text="导入钱包" />
+            android:text="@string/str_import_wallet" />
 
     </LinearLayout>
 

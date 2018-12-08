@@ -119,7 +119,7 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
         mImgboxTerms.setOnClickListener(this);
 
         mTvTerms = view.findViewById(R.id.tv_service_terms);
-        mTvTerms.setText(Html.fromHtml("<font color='#565d67'>我已经仔细阅读并同意</font><font color='#2890FE'>服务及隐私条款</font>"));
+        mTvTerms.setText(Html.fromHtml(getString(R.string.str_has_read_services)));
         mTvTerms.setOnClickListener(this);
 
         mTvImportWallet = view.findViewById(R.id.tv_import_wallet);
@@ -137,7 +137,7 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void gotoServiceTermPage() {
-        WebBrowserActivity.startWebBrowserActivity(getActivity(), "用户使用协议", Constant.service_term_url);
+        WebBrowserActivity.startWebBrowserActivity(getActivity(), getString(R.string.title_user_agreement), Constant.service_term_url);
     }
 
     private boolean paramCheck() {
@@ -147,38 +147,38 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
         String walletName = mEdtWalletName.getText().toString();
         boolean readedTerms = mImgboxTerms.isSelected();
         if (TextUtils.isEmpty(walletName)) {
-            ViewUtil.showSysAlertDialog(getActivity(), "请输入钱包名字", "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_input_wallet_name), "OK");
             return false;
         }
         if (TextUtils.isEmpty(walletPrivateKey)) {
-            ViewUtil.showSysAlertDialog(getActivity(), "私钥不能为空", "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_no_private_key), "OK");
             return false;
         }
 
         if (!walletblockchain.checkWalletPk(walletPrivateKey)) {
-            ViewUtil.showSysAlertDialog(getActivity(), "私钥格式错误", "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_private_key_format_error), "OK");
             return false;
         }
         if (TextUtils.isEmpty(walletPwd)) {
-            ViewUtil.showSysAlertDialog(getActivity(), "密码不能为空", "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_no_pwd), "OK");
             return false;
         }
 
         if (TextUtils.isEmpty(walletPwdRepeat)) {
-            ViewUtil.showSysAlertDialog(getActivity(), "密码重复不能为空", "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_no_verify_pwd), "OK");
             return false;
         }
 
         if (!TextUtils.equals(walletPwdRepeat, walletPwd)) {
-            ViewUtil.showSysAlertDialog(getActivity(), "两次密码不同，请重新输入", "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_verify_pwd_error), "OK");
             return false;
         }
         if (walletPwd.length() < 8) {
-            ViewUtil.showSysAlertDialog(getActivity(), "密码长度不能小于8位", "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_short_pwd), "OK");
             return false;
         }
         if (!readedTerms) {
-            ViewUtil.showSysAlertDialog(getActivity(), "您尚未阅读并同意服务和隐私条款", "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_no_read_service), "OK");
             return false;
         }
         return true;
@@ -195,7 +195,7 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
                     if (isWalletExsit(address)) {
                         if (flag == 1) {
                             //导入钱包
-                            ToastUtil.toast(getActivity(), "钱包已经存在,不需要导入");
+                            ToastUtil.toast(getActivity(), getString(R.string.str_wallet_exists));
                             return;
                         } else if (flag == 2) {
                             //重置密码
@@ -207,7 +207,7 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
                     uploadWallet(mEdtWalletName.getText().toString(), extra.getInt("blockType", -1), FileUtil.getStringContent(password),
                             privateKey, address);
                 } else {
-                    ToastUtil.toast(getActivity(), "导入钱包失败");
+                    ToastUtil.toast(getActivity(), getString(R.string.str_import_wallet_failed));
                 }
             }
         });
@@ -241,7 +241,7 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void gotoPrivateKeyIntroPage() {
-        WebBrowserActivity.startWebBrowserActivity(getActivity(), "私钥", Constant.privatekey_intro_url);
+        WebBrowserActivity.startWebBrowserActivity(getActivity(), getString(R.string.title_private_key), Constant.privatekey_intro_url);
     }
 
     private boolean isWalletExsit(String address) {

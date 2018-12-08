@@ -14,6 +14,9 @@ import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
 
+import com.tokenbank.R;
+import com.tokenbank.config.AppConfig;
+
 import java.util.ArrayList;
 
 public class PermissionUtil {
@@ -220,7 +223,7 @@ public class PermissionUtil {
 
     public static void showPermSetDialog(final Activity activity, final boolean needFinish, String... permissions) {
         StringBuilder tips = new StringBuilder();
-        tips.append("需要以下权限：");
+        tips.append(activity.getString(R.string.str_require_permissions));
 
         for (int i = 0; i < permissions.length; ++i) {
             tips.append(getPermissionTip(activity, permissions[i]));
@@ -229,13 +232,13 @@ public class PermissionUtil {
             }
         }
 
-        ViewUtil.showSysAlertDialog(activity, "提示", tips.toString(), "取消", new DialogInterface.OnClickListener() {
+        ViewUtil.showSysAlertDialog(activity, activity.getString(R.string.str_prompt), tips.toString(), activity.getString(R.string.str_cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 activity.finish();
             }
-        }, "去设置", new DialogInterface.OnClickListener() {
+        }, activity.getString(R.string.str_setting), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -251,15 +254,15 @@ public class PermissionUtil {
             return var2;
         } else {
             if ("android.permission.CAMERA".equals(permission)) {
-                var2 = "照相机";
+                var2 = context.getString(R.string.str_camera);
             }
 
             if ("android.permission.WRITE_EXTERNAL_STORAGE".equals(permission)) {
-                var2 = "SD卡";
+                var2 = context.getString(R.string.str_sd_card);
             }
 
             if (Manifest.permission.READ_PHONE_STATE.equals(permission)) {
-                var2 = "手机状态";
+                var2 = context.getString(R.string.str_phone_status);
             }
 
             return var2;

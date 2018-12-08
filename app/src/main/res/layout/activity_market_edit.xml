@@ -32,7 +32,7 @@
                 android:layout_height="50dp"
                 android:background="#ff3b30"
                 android:gravity="center"
-                android:text="删除"
+                android:text="@string/str_delete"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 

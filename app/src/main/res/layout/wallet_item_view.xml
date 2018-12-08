@@ -13,7 +13,7 @@
         android:layout_marginLeft="@dimen/dimen_content_padding"
         android:textColor="@color/color_text_80"
         android:textSize="@dimen/text_size_13"
-        tools:text="钱包1(比特币体系)" />
+        tools:text="@string/str_btc_wallet" />
 
     <TextView
         android:id="@+id/wallet_asset"

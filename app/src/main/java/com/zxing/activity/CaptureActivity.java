@@ -76,7 +76,7 @@ public class CaptureActivity extends BaseActivity implements Callback {
 
         TitleBar mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle("扫描");
+        mTitleBar.setTitle(getString(R.string.str_scan));
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
             public void onLeftClick(View view) {
@@ -119,7 +119,7 @@ public class CaptureActivity extends BaseActivity implements Callback {
                     cursor.close();
 
                     mProgress = new ProgressDialog(CaptureActivity.this);
-                    mProgress.setMessage("正在扫描...");
+                    mProgress.setMessage(getString(R.string.str_scanning));
                     mProgress.setCancelable(false);
                     mProgress.show();
 

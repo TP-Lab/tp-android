@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_transfer"
                 android:drawablePadding="12dp"
-                android:text="转账"
+                android:text="@string/str_transfer"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_18" />
         </LinearLayout>
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_receive"
                 android:drawablePadding="12dp"
-                android:text="收款"
+                android:text="@string/str_receipt"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_18" />
         </LinearLayout>

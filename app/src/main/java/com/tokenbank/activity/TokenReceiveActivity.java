@@ -27,7 +27,6 @@ import com.tokenbank.utils.Util;
 import com.tokenbank.view.TitleBar;
 
 
-
 public class TokenReceiveActivity extends BaseActivity {
 
     public final static String TAG = "TokenTransferActivity";
@@ -67,7 +66,7 @@ public class TokenReceiveActivity extends BaseActivity {
     private void initView() {
         mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle("收款");
+        mTitleBar.setTitle(getString(R.string.title_receivables));
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
             public void onLeftClick(View view) {
@@ -87,7 +86,7 @@ public class TokenReceiveActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Util.clipboard(TokenReceiveActivity.this, "", mTvAddress.getText().toString());
-                ToastUtil.toast(TokenReceiveActivity.this, "钱包地址已经复制到剪贴板");
+                ToastUtil.toast(TokenReceiveActivity.this, getString(R.string.str_wallet_address_copy));
             }
         });
     }
@@ -111,7 +110,7 @@ public class TokenReceiveActivity extends BaseActivity {
                 double amount = Util.parseDouble(mEdtAmount.getText().toString());
                 double tokenAmount = 0.0f;
                 if (amount < 0) {
-                    ToastUtil.toast(TokenReceiveActivity.this, "请输入正确数目");
+                    ToastUtil.toast(TokenReceiveActivity.this, getString(R.string.str_enter_correct_number));
                 } else {
                     tokenAmount = amount;
                 }
@@ -126,7 +125,7 @@ public class TokenReceiveActivity extends BaseActivity {
 
     private void generateAddress(String walletAddress, double amount, String token) {
         if (TextUtils.isEmpty(walletAddress) || amount < 0.0f || TextUtils.isEmpty(token)) {
-            ToastUtil.toast(TokenReceiveActivity.this, "生成收款码错误, 请检查参数");
+            ToastUtil.toast(TokenReceiveActivity.this, getString(R.string.str_payment_code_error));
             mImgQrShadow.setVisibility(View.VISIBLE);
             return;
         }
@@ -140,7 +139,7 @@ public class TokenReceiveActivity extends BaseActivity {
                         createQRCode(receiveAddress);
                     }
                 } else {
-                    ToastUtil.toast(TokenReceiveActivity.this, "生成收款码错误");
+                    ToastUtil.toast(TokenReceiveActivity.this, getString(R.string.str_payment_code_error));
                     mImgQrShadow.setVisibility(View.VISIBLE);
                 }
             }

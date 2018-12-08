@@ -53,7 +53,7 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
         }
         mHash = transactionData.getString("hash", "");
         if (TextUtils.isEmpty(mHash)) {
-            ToastUtil.toast(TransactionDetailsActivity.this, "参数非法");
+            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.str_illegal_parameters));
             this.finish();
             return;
         }
@@ -71,7 +71,7 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
 
         mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle("交易详情");
+        mTitleBar.setTitle(getString(R.string.title_transaction_details));
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
             public void onLeftClick(View view) {
@@ -117,15 +117,15 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
         int status = transactionInfo.getInt("txreceipt_status", 5);
         if (status == 1) {
             //success
-            mTvTransactionStatus.setText("交易成功");
+            mTvTransactionStatus.setText(getString(R.string.str_trading_success));
         } else if (status == 2) {
             //pending
-            mTvTransactionStatus.setText("交易打包中");
+            mTvTransactionStatus.setText(getString(R.string.str_trading_packing));
         } else if (status == 0) {
             //fail
-            mTvTransactionStatus.setText("交易失败");
+            mTvTransactionStatus.setText(getString(R.string.str_transaction_failed));
         } else {
-            mTvTransactionStatus.setText("状态未知，请点击交易号查询");
+            mTvTransactionStatus.setText(getString(R.string.str_unknown_status_tips));
         }
         mTvCount.setText(value + "");
         mTvSymbol.setText(transactionInfo.getString("tokenSymbol", ""));
@@ -139,7 +139,8 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
                 if (ret == 0) {
                     updateData(extra.getObject("data", "{}"));
                 } else {
-                    ToastUtil.toast(TransactionDetailsActivity.this, "获取交易信息失败，请稍后重试");
+                    ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.str_get_transaction_info_failed))
+                    ;
                     TransactionDetailsActivity.this.finish();
                 }
             }
@@ -167,15 +168,17 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
         if (v == mTvCopyUrl) {
             Util.clipboard(TransactionDetailsActivity.this, "",
                     mWalletUtil.getTransactionSearchUrl(mTvTransactionId.getText().toString()));
-            ToastUtil.toast(TransactionDetailsActivity.this, "查询url已经复制到剪贴板");
+            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.str_url_copy));
         } else if (v == mTvSender) {
             Util.clipboard(TransactionDetailsActivity.this, "", mTvSender.getText().toString());
-            ToastUtil.toast(TransactionDetailsActivity.this, "发送方地址已经复制到剪贴板");
+            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.str_send_address_copy))
+            ;
         } else if (v == mTvReceiver) {
             Util.clipboard(TransactionDetailsActivity.this, "", mTvReceiver.getText().toString());
-            ToastUtil.toast(TransactionDetailsActivity.this, "收款地址已经复制到剪贴板");
+            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.str_payment_address_copy))
+            ;
         } else if (v == mTvTransactionId) {
-            WebBrowserActivity.startWebBrowserActivity(TransactionDetailsActivity.this, "交易查询",
+            WebBrowserActivity.startWebBrowserActivity(TransactionDetailsActivity.this, getString(R.string.title_transaction_inquiry),
                     mWalletUtil.getTransactionSearchUrl(mTvTransactionId.getText().toString()));
         }
     }

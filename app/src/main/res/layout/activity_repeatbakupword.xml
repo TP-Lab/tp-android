@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="重复输入你的助记词"
+        android:text="@string/str_repeat_mnemonic"
         android:textColor="#333333"
         android:textSize="18sp" />
 
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="重复输入你的助记词"
+        android:text="@string/str_hint_repeat_mnemonic"
         android:textColor="#808080"
         android:textSize="14sp" />
 
@@ -45,7 +45,7 @@
         android:layout_height="45dp"
         android:background="@color/common_blue"
         android:gravity="center"
-        android:text="完成"
+        android:text="@string/str_completed"
         android:textColor="@color/white"
         android:textSize="17sp" />
 

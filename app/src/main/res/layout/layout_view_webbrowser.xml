@@ -28,6 +28,6 @@
         android:layout_height="match_parent"
         android:background="#f0f0f0"
         android:gravity="center"
-        android:text="哎呀，页面跑丢了~" />
+        android:text="@string/str_no_page" />
 
 </FrameLayout>

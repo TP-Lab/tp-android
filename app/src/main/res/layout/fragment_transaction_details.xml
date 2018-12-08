@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
-                android:text="发款方"
+                android:text="@string/str_payer"
                 android:textSize="15sp" />
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:text="收款方"
+                android:text="@string/str_payee"
                 android:textSize="15sp" />
 
             <TextView
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:text="矿工费用"
+                android:text="@string/str_gas_price"
                 android:textSize="15sp" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:text="备注"
+                android:text="@string/str_remarks"
                 android:textSize="15sp" />
 
             <TextView
@@ -144,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="20dp"
-                        android:text="交易号"
+                        android:text="@string/str_transaction_No"
                         android:textSize="15sp" />
 
                     <TextView
@@ -162,7 +162,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
-                        android:text="区块号"
+                        android:text="@string/str_block_No"
                         android:textSize="15sp" />
 
                     <TextView
@@ -180,7 +180,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
-                        android:text="交易时间"
+                        android:text="@string/str_exchange_hour"
                         android:textSize="15sp" />
 
                     <TextView
@@ -210,7 +210,7 @@
                         android:id="@+id/tv_copy_transaction_url"
                         android:layout_width="100dp"
                         android:layout_height="30dp"
-                        android:text="复制URL"
+                        android:text="@string/str_copy_url"
                         android:layout_marginTop="10dp"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"/>

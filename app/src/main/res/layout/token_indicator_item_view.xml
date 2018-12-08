@@ -7,4 +7,4 @@
     android:paddingLeft="18dp"
     android:paddingRight="@dimen/text_size_18"
     android:textSize="@dimen/text_size_15"
-    tools:text="全部" />
+    tools:text="@string/str_all" />

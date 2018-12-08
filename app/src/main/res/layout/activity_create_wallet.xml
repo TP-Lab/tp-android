@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="密码用于保护私钥和交易授权，强度非常重要"
+            android:text="@string/str_about_pwd"
             android:textColor="@color/white"
             android:textSize="12sp" />
 
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="wtoken 不存储密码，也无法帮您找回，请务必牢记密码"
+            android:text="@string/str_dont_store_pwd"
             android:textColor="@color/white"
             android:textSize="12sp" />
     </LinearLayout>
@@ -51,7 +51,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginTop="15dp"
         android:background="@null"
-        android:hint="钱包名称"
+        android:hint="@string/str_wallet_name"
         android:textColor="@color/tab_text_color_unselected"
         android:textSize="14sp" />
 
@@ -71,7 +71,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginTop="15dp"
         android:background="@null"
-        android:hint="密码"
+        android:hint="@string/str_password"
         android:inputType="textPassword"
         android:textColor="@color/tab_text_color_unselected"
         android:textSize="14sp" />
@@ -92,7 +92,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginTop="15dp"
         android:background="@null"
-        android:hint="重复密码"
+        android:hint="@string/str_verify_password"
         android:inputType="textPassword"
         android:textColor="@color/tab_text_color_unselected"
         android:textSize="14sp" />
@@ -113,7 +113,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginTop="15dp"
         android:background="@null"
-        android:hint="密码提示信息(可不填)"
+        android:hint="@string/str_hint_password"
         android:textColor="@color/tab_text_color_unselected"
         android:textSize="14sp" />
 
@@ -160,7 +160,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/selector_createwallet_btnbg"
         android:gravity="center"
-        android:text="创建钱包"
+        android:text="@string/str_create_wallet"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:enabled="false"/>
@@ -172,7 +172,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="45dp"
         android:gravity="center"
-        android:text="导入钱包"
+        android:text="@string/str_import_wallet"
         android:textColor="@color/tab_text_color_selected"
         android:textSize="14sp" />
 </LinearLayout>

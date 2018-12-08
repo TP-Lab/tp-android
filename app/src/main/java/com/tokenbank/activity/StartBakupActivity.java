@@ -87,7 +87,7 @@ public class StartBakupActivity extends BaseActivity implements View.OnClickList
 
     private void initView() {
         mTitleBar = findViewById(R.id.title_bar);
-        mTitleBar.setTitle("备份钱包");
+        mTitleBar.setTitle(getString(R.string.title_backup_wallet));
 
         mTvBakupTitle = findViewById(R.id.tv_bakup_title);
         mTvBakupContent = findViewById(R.id.tv_bakup_content);
@@ -99,11 +99,11 @@ public class StartBakupActivity extends BaseActivity implements View.OnClickList
 
     private void updateUIContent() {
         if (mType == PK_TYPE) {
-            mTvBakupTitle.setText("立即备份你的私钥");
-            mTvBakupContent.setText("备份钱包:抄写私钥，并保存在安全的地方。千万不要保存在网络上。然后尝试转入转出小额资产开始使用。");
+            mTvBakupTitle.setText(getString(R.string.title_backup_private_key));
+            mTvBakupContent.setText(getString(R.string.str_backup_content));
         } else if (mType == WORDS_TYPE) {
-            mTvBakupTitle.setText("立即备份你的助记词");
-            mTvBakupContent.setText("备份钱包:抄写助记词，并保存在安全的地方。千万不要保存在网络上。然后尝试转入转出小额资产开始使用。");
+            mTvBakupTitle.setText(getString(R.string.title_backup_mnemonic));
+            mTvBakupContent.setText(getString(R.string.str_backup_mnemonic_content));
         }
     }
 }
