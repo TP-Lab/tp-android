@@ -73,14 +73,20 @@ public class JSUtil {
         String jsonParams = json.toString();
 
         try {
-            mWebView.loadUrl("javascript:void(function(){"
+            mWebView.loadUrl("javascript:void(function(){try{"
                     + optCallback + "('" + jsonParams + "');"
-                    + "}"+"())");
+                    + "}catch(e){console.error('callJS error, function:' + " + optCallback + " + ', msg:' + e.toString());" + generateCatchCallback(mCallID, "opt error code 1001") + "}}())");
         } catch (Throwable e) {
             TLog.e(TAG, "操作失败");
         }
     }
 
+    private String generateCatchCallback(int callId, String errorMsg) {
+
+        String callbackStr = "var result = new Object();result.ret = -1;result.callid = " + callId +
+                ";result.extra='" + errorMsg + "';client.notifyWeb3Result(JSON.stringify(result));";
+        return callbackStr;
+    }
 
     public boolean checkInit(WCallback callback) {
         if (!isInit) {
@@ -96,7 +102,7 @@ public class JSUtil {
     }
 
     @JavascriptInterface
-    public void notify(final String result) {
+    public void notifyWeb3Result(final String result) {
         AppConfig.postOnUiThread(new Runnable() {
             @Override
             public void run() {
