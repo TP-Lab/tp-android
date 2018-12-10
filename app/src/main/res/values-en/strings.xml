@@ -45,12 +45,12 @@
     <string name="titleBar_service_terms">Terms &#038; Privacy</string>
     <string name="titleBar_import_wallet">Import Wallet</string>
     <string name="titleBar_manage_wallet">Manage Wallet</string>
-    <string name="dialog_content_no_old_password">Enter the old password</string>
+    <string name="dialog_content_no_old_password">Enter the original password</string>
     <string name="dialog_content_no_new_password">Enter the new password</string>
     <string name="dialog_content_no_verify_new_password">Enter the verify new password</string>
     <string name="dialog_new_passwords_unmatch">The new passwords  unmatch, please re-enter.</string>
-    <string name="dialog_content_old_new_same">The old and new passwords cannot be the same, please re-enter.</string>
-    <string name="dialog_content_old_password_incorrect">The old password is incorrect, please re-enter.</string>
+    <string name="dialog_content_old_new_same">The original and new passwords cannot be the same, please re-enter.</string>
+    <string name="dialog_content_old_password_incorrect">The original password is incorrect, please re-enter.</string>
     <string name="toast_password_changed">The password is changed</string>
     <string name="titleBar_change_pwd">Change Password</string>
     <string name="titleBar_completed">Done</string>
@@ -138,8 +138,8 @@
     <string name="str_service_privacy_policy">\ the Terms and Privacy Policy.</string>
     <string name="btn_mnemonic">Mnemonic</string>
     <string name="btn_private_key">Private Key</string>
-    <string name="enter_title_old_password">Old</string>
-    <string name="enter_hint_old_password">Enter Old Password</string>
+    <string name="enter_title_old_password">Original</string>
+    <string name="enter_hint_old_password">Enter Original Password</string>
     <string name="enter_title_new_password">New</string>
     <string name="enter_hint_new_password">Enter New Password</string>
     <string name="enter_title_verify_new_password">Verify</string>
