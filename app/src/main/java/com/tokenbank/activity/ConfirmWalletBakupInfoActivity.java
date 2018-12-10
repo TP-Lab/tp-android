@@ -88,7 +88,7 @@ public class ConfirmWalletBakupInfoActivity extends BaseActivity implements View
                     WalletInfoManager.getInstance().updateWalletBaked(mWalletData.waddress, true);
                     gotoMainActivity();
                 } else {
-                    ToastUtil.toast(ConfirmWalletBakupInfoActivity.this, getString(R.string.str_private_key_error));
+                    ToastUtil.toast(ConfirmWalletBakupInfoActivity.this, getString(R.string.toast_private_key_incorrect));
                 }
             } else if (mType == WORDS_TYPE) {
                 if (verifyWords()) {
@@ -96,7 +96,7 @@ public class ConfirmWalletBakupInfoActivity extends BaseActivity implements View
                     WalletInfoManager.getInstance().updateWalletBaked(mWalletData.waddress, true);
                     gotoMainActivity();
                 } else {
-                    ToastUtil.toast(ConfirmWalletBakupInfoActivity.this, getString(R.string.str_mnemonic_error))
+                    ToastUtil.toast(ConfirmWalletBakupInfoActivity.this, getString(R.string.toast_mnemonic_incorrect))
                     ;
                 }
             }
@@ -118,7 +118,7 @@ public class ConfirmWalletBakupInfoActivity extends BaseActivity implements View
 
     private void initView() {
         mTitleBar = findViewById(R.id.title_bar);
-        mTitleBar.setTitle(getString(R.string.title_confirm_backup_info));
+        mTitleBar.setTitle(getString(R.string.titleBar_verify));
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
             public void onLeftClick(View view) {
@@ -208,13 +208,13 @@ public class ConfirmWalletBakupInfoActivity extends BaseActivity implements View
         if (mType == PK_TYPE) {
             mLayoutWords.setVisibility(View.GONE);
             mEdtPk.setVisibility(View.VISIBLE);
-            mTvBakupTitle.setText(getString(R.string.title_confirm_private_key));
-            mTvBakupContent.setText(getString(R.string.str_confirm_private_key_tips));
+            mTvBakupTitle.setText(getString(R.string.title_verify_private_key));
+            mTvBakupContent.setText(getString(R.string.content_verify_private_key));
         } else if (mType == WORDS_TYPE) {
             mLayoutWords.setVisibility(View.VISIBLE);
             mEdtPk.setVisibility(View.GONE);
-            mTvBakupTitle.setText(getString(R.string.title_confirm_mnemonic));
-            mTvBakupContent.setText(getString(R.string.str_confirm_mnemonic_tips));
+            mTvBakupTitle.setText(getString(R.string.title_verify_mnemonic));
+            mTvBakupContent.setText(getString(R.string.content_verify_mnemonic));
         }
     }
 

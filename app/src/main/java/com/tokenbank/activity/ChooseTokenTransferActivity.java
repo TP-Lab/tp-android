@@ -61,7 +61,7 @@ public class ChooseTokenTransferActivity extends BaseActivity implements BaseRec
 
         mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle(getString(R.string.title_select_token));
+        mTitleBar.setTitle(getString(R.string.titleBar_select_token));
 
         mTitleBar.setBackgroundColor(getResources().getColor(R.color.common_blue));
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {

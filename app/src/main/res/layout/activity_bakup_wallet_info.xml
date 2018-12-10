@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
-        android:text="@string/str_copy_wallet_mnemonic"
+        android:text="@string/title_copy_mnemonic"
         android:textColor="@color/common_black_fontcolor"
         android:textSize="18sp" />
 
@@ -28,7 +28,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:text="@string/str_about_mnemonic"
+        android:text="@string/content_copy_mnemonic"
         android:textColor="#808080"
         android:textSize="14sp" />
 
@@ -74,7 +74,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/shape_splash_createwallet_bg"
         android:gravity="center"
-        android:text="@string/str_next"
+        android:text="@string/btn_next"
         android:textColor="@color/white"
         android:textSize="17sp" />
 

@@ -56,37 +56,37 @@ public class ModifyPwdActivity extends BaseActivity implements TitleBar.TitleBar
     @Override
     public void onRightClick(View view) {
         if (TextUtils.isEmpty(mEdtOldPwd.getText().toString())) {
-            showTipAlertDialog(getString(R.string.str_no_old_pwd));
+            showTipAlertDialog(getString(R.string.dialog_content_no_old_password));
             return;
         }
         if (TextUtils.isEmpty(mEdtNewPwd.getText().toString())) {
-            showTipAlertDialog(getString(R.string.str_no_new_pwd));
+            showTipAlertDialog(getString(R.string.dialog_content_no_new_password));
             return;
         }
 
         if (TextUtils.isEmpty(mEdtReaptNewPwd.getText().toString())) {
-            showTipAlertDialog(getString(R.string.str_no_verify_new_pwd));
+            showTipAlertDialog(getString(R.string.dialog_content_no_verify_new_password));
             return;
         }
         if (!TextUtils.equals(mEdtReaptNewPwd.getText().toString(), mEdtNewPwd.getText().toString())) {
-            showTipAlertDialog(getString(R.string.str_verify_new_pwd_error));
+            showTipAlertDialog(getString(R.string.dialog_new_passwords_unmatch));
             return;
         }
         if (mEdtNewPwd.getText().toString().length() < 8) {
-            showTipAlertDialog(getString(R.string.str_short_pwd));
+            showTipAlertDialog(getString(R.string.dialog_content_short_password));
             return;
         }
         if (TextUtils.equals(mEdtNewPwd.getText().toString(), mEdtOldPwd.getText().toString())) {
-            showTipAlertDialog(getString(R.string.str_reset_pwd));
+            showTipAlertDialog(getString(R.string.dialog_content_old_new_same));
             return;
         }
         String oldHash = FileUtil.getStringContent(mEdtOldPwd.getText().toString());
         if (!TextUtils.equals(oldHash, mWalletData.whash)) {
-            showTipAlertDialog(getString(R.string.str_old_pwd_error));
+            showTipAlertDialog(getString(R.string.dialog_content_old_password_incorrect));
             mEdtOldPwd.setText("");
             return;
         }
-        ToastUtil.toast(ModifyPwdActivity.this, getString(R.string.str_pwd_changed));
+        ToastUtil.toast(ModifyPwdActivity.this, getString(R.string.toast_password_changed));
         WalletInfoManager.getInstance().updateWalletHash(mWalletData.waddress, FileUtil.getStringContent(mEdtNewPwd.getText().toString()));
         this.finish();
     }
@@ -115,9 +115,9 @@ public class ModifyPwdActivity extends BaseActivity implements TitleBar.TitleBar
         mTitleBar = (TitleBar) findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
 
-        mTitleBar.setTitle(getString(R.string.title_change_pwd));
+        mTitleBar.setTitle(getString(R.string.titleBar_change_pwd));
 
-        mTitleBar.setRightText(getString(R.string.str_completed));
+        mTitleBar.setRightText(getString(R.string.titleBar_completed));
         mTitleBar.setRightTextColor(R.color.white);
         mTitleBar.setTitleBarClickListener(this);
 
@@ -125,7 +125,7 @@ public class ModifyPwdActivity extends BaseActivity implements TitleBar.TitleBar
         mEdtNewPwd = findViewById(R.id.edt_new_pwd);
         mEdtReaptNewPwd = findViewById(R.id.edt_new_repeat_pwd);
         mTvForgetPwdTips = findViewById(R.id.tv_forgetpwd_tip);
-        mTvForgetPwdTips.setText(Html.fromHtml(getString(R.string.str_forget_pwd_tips)));
+        mTvForgetPwdTips.setText(Html.fromHtml(getString(R.string.content_forgot_password)));
         mTvForgetPwdTips.setOnClickListener(this);
     }
 

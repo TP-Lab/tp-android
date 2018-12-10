@@ -89,7 +89,7 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
 
         mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle(getString(R.string.title_import_wallet));
+        mTitleBar.setTitle(getString(R.string.titleBar_import_wallet));
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
             public void onLeftClick(View view) {

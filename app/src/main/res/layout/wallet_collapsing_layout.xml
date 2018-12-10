@@ -17,7 +17,7 @@
             android:id="@+id/wallet_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/str_my_coins"
+            android:text="@string/content_asset"
             android:textColor="#99FFFFFF"
             android:drawableRight="@drawable/ic_asset_visible"
             android:drawablePadding="4dp"/>
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_receive"
                 android:drawablePadding="12dp"
-                android:text="@string/str_transfer"
+                android:text="@string/content_transfer"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_18" />
         </LinearLayout>
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_transfer"
                 android:drawablePadding="12dp"
-                android:text="@string/str_receipt"
+                android:text="@string/btn_collect"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_18" />
         </LinearLayout>

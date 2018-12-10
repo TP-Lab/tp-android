@@ -151,7 +151,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (!NetUtil.isNetworkAvailable(getActivity())) {
-            ToastUtil.toast(getContext(), getString(R.string.str_no_network));
+            ToastUtil.toast(getContext(), getString(R.string.toast_no_network));
             return;
         }
         switch (view.getId()) {
@@ -183,16 +183,16 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
                 //扫描到地址
                 String scanResult = data.getStringExtra("result");
                 if (TextUtils.isEmpty(scanResult)) {
-                    ToastUtil.toast(getContext(), getString(R.string.str_scan_error));
+                    ToastUtil.toast(getContext(), getString(R.string.toast_scan_failure));
                 } else {
                     if (scanResult.startsWith("iban")) {
                         //eth
-                        ToastUtil.toast(getContext(), getString(R.string.str_not_support_eth_wallet));
+                        ToastUtil.toast(getContext(), getString(R.string.toast_not_support_eth_wallet));
                     } else if (scanResult.startsWith("jingtum")) {
                         //swt
                         handleSwtScanResult(scanResult);
                     } else {
-                        ToastUtil.toast(getContext(), getString(R.string.str_scan_error));
+                        ToastUtil.toast(getContext(), getString(R.string.toast_scan_failure));
                     }
                 }
             }
@@ -202,7 +202,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
 
     private void handleSwtScanResult(final String scanResult) {
         if (!WalletInfoManager.getInstance().hasWallet(TBController.SWT_INDEX)) {
-            ToastUtil.toast(getContext(), getString(R.string.str_no_jintum_wallet_tips));
+            ToastUtil.toast(getContext(), getString(R.string.toast_no_jintum_wallet));
             return;
         }
         if (WalletInfoManager.getInstance().getWalletType() == TBController.SWT_INDEX) {
@@ -214,13 +214,13 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
             TokenTransferActivity.startTokenTransferActivity(getContext(), ibanAddress,
                     "", num, token, 0, 0);
         } else {
-            ViewUtil.showSysAlertDialog(getContext(), getString(R.string.str_prompt), getString(R.string.str_switch_jintum_wallet_tips),
-                    getString(R.string.str_dont_switch), new DialogInterface.OnClickListener() {
+            ViewUtil.showSysAlertDialog(getContext(), getString(R.string.dialog_title_reminder), getString(R.string.dialog_content_switch_jintum_wallet),
+                    getString(R.string.dialog_btn_not_switch), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
-                    }, getString(R.string.str_switch), new DialogInterface.OnClickListener() {
+                    }, getString(R.string.dialog_btn_switch), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             if (WalletInfoManager.getInstance().setCurrentWallet(TBController.SWT_INDEX)) {
@@ -313,7 +313,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
     }
 
     private void update() {
-        mTvWalletUnit.setText(String.format(getString(R.string.str_my_assets)));
+        mTvWalletUnit.setText(String.format(getString(R.string.content_my_asset)));
         setWalletName();
     }
 

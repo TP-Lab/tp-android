@@ -86,7 +86,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
     private void initView() {
         mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle(getString(R.string.title_transfer));
+        mTitleBar.setTitle(getString(R.string.titleBar_transfer));
 //        mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener());
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
@@ -192,7 +192,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                     if (result) {
                         pwdRight();
                     } else {
-                        ToastUtil.toast(TokenTransferActivity.this, getString(R.string.str_order_pwd_error));
+                        ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_order_password_incorrect));
                     }
                 }
             }
@@ -215,7 +215,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                 if (ret == 0) {
                     long sequence = json.getLong("sequence", 0);
                     if (sequence <= 0) {
-                        ToastUtil.toast(TokenTransferActivity.this, getString(R.string.str_transfer_failed) + 1002);
+                        ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 1002);
                     } else {
                         GsonUtil dataList = json.getArray("balances", "[]");
                         int len = dataList.getLength();
@@ -227,7 +227,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                                 double value = item.getDouble("value", 0.0f);
                                 if (value < mAmount) {
                                     resetTranferBtn();
-                                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.str_insufficient_balance) + 1003);
+                                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_insufficient_balance) + 1003);
                                     return;
                                 }
                                 signedSwtTransaction(mGas, sequence, mWalletData.waddress,
@@ -239,7 +239,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
 
                 } else {
                     resetTranferBtn();
-                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.str_transfer_failed) + 1001);
+                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 1001);
                 }
             }
         });
@@ -265,7 +265,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                     sendSignedTransaction(rawTransaction);
                 } else {
                     resetTranferBtn();
-                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.str_transfer_failed) + 6);
+                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 6);
                 }
             }
         });
@@ -275,7 +275,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
     private void sendSignedTransaction(String rawTransaction) {
         if (TextUtils.isEmpty(rawTransaction)) {
             resetTranferBtn();
-            ToastUtil.toast(TokenTransferActivity.this, getString(R.string.str_transfer_failed) + 3);
+            ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 3);
             return;
         }
         mWalletUtil.sendSignedTransaction(rawTransaction, new WCallback() {
@@ -283,11 +283,11 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
             public void onGetWResult(int ret, GsonUtil extra) {
                 if (ret == 0) {
                     resetTranferBtn();
-                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.str_transfer_successful));
+                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_success));
                     TokenTransferActivity.this.finish();
                 } else {
                     resetTranferBtn();
-                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.str_transfer_failed) + 4);
+                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 4);
                 }
             }
         });
@@ -299,27 +299,27 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
         String num = mEdtTransferNum.getText().toString();
 
         if (TextUtils.isEmpty(mTvToken.getText().toString())) {
-            ViewUtil.showSysAlertDialog(this, getString(R.string.str_choose_token), "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_choose_token), "OK");
             return false;
         }
         if (TextUtils.isEmpty(address)) {
-            ViewUtil.showSysAlertDialog(this, getString(R.string.str_enter_wallet_address), "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_no_wallet_address), "OK");
             return false;
         }
 
         if (TextUtils.equals(address, mWalletData.waddress)) {
-            ViewUtil.showSysAlertDialog(this, getString(R.string.str_payment_address_error), "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_receive_address_incorrect), "OK");
             return false;
         }
 
         if (!mWalletUtil.checkWalletAddress(address)) {
-            ViewUtil.showSysAlertDialog(this, getString(R.string.str_wallet_address_format_error), "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_address_format_incorrect), "OK");
             return false;
         }
 
 
         if ((TextUtils.isEmpty(num) || Util.parseDouble(num) <= 0.0f)) {
-            ViewUtil.showSysAlertDialog(this, getString(R.string.str_transfer_number_error), "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_amount_incorrect), "OK");
             return false;
         }
         return true;
@@ -327,12 +327,12 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
 
     private void updateBtnToTranferingState() {
         mBtnNext.setEnabled(false);
-        mBtnNext.setText(getString(R.string.str_transferring));
+        mBtnNext.setText(getString(R.string.btn_transferring));
     }
 
     private void resetTranferBtn() {
         mBtnNext.setEnabled(true);
-        mBtnNext.setText(getString(R.string.str_next));
+        mBtnNext.setText(getString(R.string.btn_next));
     }
 
     /**

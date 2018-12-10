@@ -402,7 +402,7 @@ public class WalletInfoManager {
                 TextUtils.isEmpty(wallet.wpk) ||
                 wallet.wid <= 0 ||
                 wallet.type <= 0) {
-            ToastUtil.toast(AppConfig.getContext(), AppConfig.getContext().getString(R.string.str_update_default_wallet_failed));
+            ToastUtil.toast(AppConfig.getContext(), AppConfig.getContext().getString(R.string.toast_update_default_wallet_failed));
             return;
         }
         FileUtil.putIntToSp(AppConfig.getContext(), Constant.wallet_def_file, Constant.wtype, wallet.type);

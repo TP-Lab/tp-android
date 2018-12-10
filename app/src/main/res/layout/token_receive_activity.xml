@@ -53,7 +53,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_collection_amount"
+                android:text="@string/enter_title_collect_amount"
                 android:textColor="@color/color_text_3"
                 android:textSize="@dimen/text_size_16" />
 
@@ -68,7 +68,7 @@
                 android:background="@color/transparent"
                 android:gravity="center_vertical"
                 android:digits="0123456789."
-                android:hint="@string/str_set_payment_amount"
+                android:hint="@string/enter_hint_collect_amount"
                 android:singleLine="true"
                 android:inputType="numberDecimal"
                 android:text=""/>
@@ -109,6 +109,6 @@
             android:textColor="#2890FE"
             android:layout_marginTop="6dp"
             android:textSize="@dimen/text_size_16"
-            android:text="@string/str_copy_payment_address" />
+            android:text="@string/content_copy_payment_address" />
     </LinearLayout>
 </LinearLayout>

@@ -54,7 +54,7 @@ public class ManageWalletActivity extends BaseActivity implements View.OnClickLi
 
         mTitleBar = (TitleBar) findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle(getString(R.string.title_manage_wallet));
+        mTitleBar.setTitle(getString(R.string.titleBar_manage_wallet));
         mTitleBar.setTitleTextColor(R.color.white);
         mTitleBar.setBackgroundColor(getResources().getColor(R.color.common_blue));
         mTitleBar.setTitleBarClickListener(this);

@@ -40,7 +40,7 @@
                     android:drawableLeft="@drawable/ic_pop_item_create_"
                     android:drawablePadding="6dp"
                     android:gravity="center"
-                    android:text="@string/str_create_wallet"
+                    android:text="@string/btn_create_wallet"
                     android:textColor="@color/color_text_3"
                     android:textSize="@dimen/text_size_15" />
             </LinearLayout>

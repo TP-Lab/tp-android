@@ -51,7 +51,7 @@ public class ViewUtil {
     }
 
     public static void showBakupDialog(final Context context, final WalletInfoManager.WData walletData, boolean canCancel, final boolean needVerifyPwd, final String pwdHash) {
-        final WarnDialog warnDialog = new WarnDialog(context, context.getString(R.string.str_wallet_security_tips), context.getString(R.string.str_backup), canCancel,
+        final WarnDialog warnDialog = new WarnDialog(context, context.getString(R.string.dialog_content_wallet_security), context.getString(R.string.dialog_btn_backup), canCancel,
                 new WarnDialog.OnConfirmClickListener() {
                     @Override
                     public void onConfirmClick(final Dialog dialog, View view) {
@@ -70,7 +70,7 @@ public class ViewUtil {
                                         }
                                         dialog.dismiss();
                                     } else {
-                                        ToastUtil.toast(context, context.getString(R.string.str_pwd_error));
+                                        ToastUtil.toast(context, context.getString(R.string.toast_password_incorrect));
                                     }
                                 }
                             }, pwdHash, "");

@@ -53,7 +53,7 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
         }
         mHash = transactionData.getString("hash", "");
         if (TextUtils.isEmpty(mHash)) {
-            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.str_illegal_parameters));
+            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_illegal_parameters));
             this.finish();
             return;
         }
@@ -71,7 +71,7 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
 
         mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle(getString(R.string.title_transaction_details));
+        mTitleBar.setTitle(getString(R.string.titleBar_transaction_details));
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
             public void onLeftClick(View view) {
@@ -117,15 +117,15 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
         int status = transactionInfo.getInt("txreceipt_status", 5);
         if (status == 1) {
             //success
-            mTvTransactionStatus.setText(getString(R.string.str_trading_success));
+            mTvTransactionStatus.setText(getString(R.string.content_trading_success));
         } else if (status == 2) {
             //pending
-            mTvTransactionStatus.setText(getString(R.string.str_trading_packing));
+            mTvTransactionStatus.setText(getString(R.string.content_trading_pending));
         } else if (status == 0) {
             //fail
-            mTvTransactionStatus.setText(getString(R.string.str_transaction_failed));
+            mTvTransactionStatus.setText(getString(R.string.content_trading_failure));
         } else {
-            mTvTransactionStatus.setText(getString(R.string.str_unknown_status_tips));
+            mTvTransactionStatus.setText(getString(R.string.content_trading_unknown));
         }
         mTvCount.setText(value + "");
         mTvSymbol.setText(transactionInfo.getString("tokenSymbol", ""));
@@ -139,7 +139,7 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
                 if (ret == 0) {
                     updateData(extra.getObject("data", "{}"));
                 } else {
-                    ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.str_get_transaction_info_failed))
+                    ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_transaction_info_failure))
                     ;
                     TransactionDetailsActivity.this.finish();
                 }
@@ -168,17 +168,17 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
         if (v == mTvCopyUrl) {
             Util.clipboard(TransactionDetailsActivity.this, "",
                     mWalletUtil.getTransactionSearchUrl(mTvTransactionId.getText().toString()));
-            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.str_url_copy));
+            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_url_copied));
         } else if (v == mTvSender) {
             Util.clipboard(TransactionDetailsActivity.this, "", mTvSender.getText().toString());
-            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.str_send_address_copy))
+            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_send_address_copied))
             ;
         } else if (v == mTvReceiver) {
             Util.clipboard(TransactionDetailsActivity.this, "", mTvReceiver.getText().toString());
-            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.str_payment_address_copy))
+            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_receive_address_copied))
             ;
         } else if (v == mTvTransactionId) {
-            WebBrowserActivity.startWebBrowserActivity(TransactionDetailsActivity.this, getString(R.string.title_transaction_inquiry),
+            WebBrowserActivity.startWebBrowserActivity(TransactionDetailsActivity.this, getString(R.string.titleBar_transaction_query),
                     mWalletUtil.getTransactionSearchUrl(mTvTransactionId.getText().toString()));
         }
     }

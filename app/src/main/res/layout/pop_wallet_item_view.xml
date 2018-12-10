@@ -13,5 +13,5 @@
         android:layout_marginLeft="@dimen/dimen_content_padding"
         android:textColor="@color/color_text_3"
         android:textSize="@dimen/text_size_15"
-        tools:text="@string/str_all_wallets" />
+        tools:text="@string/content_all_wallet" />
 </LinearLayout>

@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/str_mnemonic"
+            android:text="@string/btn_mnemonic"
             android:textSize="15sp" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/str_private_key"
+            android:text="@string/btn_private_key"
             android:textSize="15sp" />
 
     </LinearLayout>

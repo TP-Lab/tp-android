@@ -48,7 +48,7 @@ public class ChangeWalletActivity extends BaseActivity {
     private void init() {
         mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle(getString(R.string.title_switch_account));
+        mTitleBar.setTitle(getString(R.string.titleBar_switch_account));
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
             public void onLeftClick(View view) {

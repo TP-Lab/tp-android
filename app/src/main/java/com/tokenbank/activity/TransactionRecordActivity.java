@@ -67,7 +67,7 @@ public class TransactionRecordActivity extends BaseActivity implements BaseRecyc
             mSwipeRefreshLayout.setRefreshing(true);
         }
         if (mFrom == 1) {
-            mTitleBar.setTitle(getString(R.string.title_message_center));
+            mTitleBar.setTitle(getString(R.string.titleBar_message_center));
 
         } else {
             mTitleBar.setTitle(WalletInfoManager.getInstance().getWname());

@@ -15,7 +15,6 @@ import android.text.TextUtils;
 
 
 import com.tokenbank.R;
-import com.tokenbank.config.AppConfig;
 
 import java.util.ArrayList;
 
@@ -223,7 +222,7 @@ public class PermissionUtil {
 
     public static void showPermSetDialog(final Activity activity, final boolean needFinish, String... permissions) {
         StringBuilder tips = new StringBuilder();
-        tips.append(activity.getString(R.string.str_require_permissions));
+        tips.append(activity.getString(R.string.dialog_content_require_permissions));
 
         for (int i = 0; i < permissions.length; ++i) {
             tips.append(getPermissionTip(activity, permissions[i]));
@@ -232,13 +231,13 @@ public class PermissionUtil {
             }
         }
 
-        ViewUtil.showSysAlertDialog(activity, activity.getString(R.string.str_prompt), tips.toString(), activity.getString(R.string.str_cancel), new DialogInterface.OnClickListener() {
+        ViewUtil.showSysAlertDialog(activity, activity.getString(R.string.dialog_title_reminder), tips.toString(), activity.getString(R.string.dialog_btn_cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 activity.finish();
             }
-        }, activity.getString(R.string.str_setting), new DialogInterface.OnClickListener() {
+        }, activity.getString(R.string.dialog_btn_setting), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -254,15 +253,15 @@ public class PermissionUtil {
             return var2;
         } else {
             if ("android.permission.CAMERA".equals(permission)) {
-                var2 = context.getString(R.string.str_camera);
+                var2 = context.getString(R.string.dialog_content_camera);
             }
 
             if ("android.permission.WRITE_EXTERNAL_STORAGE".equals(permission)) {
-                var2 = context.getString(R.string.str_sd_card);
+                var2 = context.getString(R.string.dialog_content_sd_card);
             }
 
             if (Manifest.permission.READ_PHONE_STATE.equals(permission)) {
-                var2 = context.getString(R.string.str_phone_status);
+                var2 = context.getString(R.string.dialog_content_phone_status);
             }
 
             return var2;

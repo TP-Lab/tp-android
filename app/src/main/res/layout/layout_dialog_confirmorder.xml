@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/str_order_details"
+            android:text="@string/title_order_details"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="17sp" />
 
@@ -42,7 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/str_transfer_address"
+            android:text="@string/content_to_address"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="15sp" />
 
@@ -76,7 +76,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/str_payment_wallet"
+            android:text="@string/content_payment_address"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="15sp" />
 
@@ -110,7 +110,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/str_gas"
+            android:text="@string/enter_title_transfer_gas"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="15sp" />
 
@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="@string/str_transfer"
+                android:text="@string/content_transfer"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="13sp" />
 
@@ -161,7 +161,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/str_amount"
+            android:text="@string/enter_title_amount"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="15sp" />
 
@@ -201,7 +201,7 @@
         android:layout_margin="20dp"
         android:background="@drawable/shape_splash_createwallet_bg"
         android:gravity="center"
-        android:text="@string/str_confirm_payment"
+        android:text="@string/btn_confirm_payment"
         android:textColor="@color/white"
         android:textSize="15sp" />
 

@@ -87,7 +87,7 @@ public class StartBakupActivity extends BaseActivity implements View.OnClickList
 
     private void initView() {
         mTitleBar = findViewById(R.id.title_bar);
-        mTitleBar.setTitle(getString(R.string.title_backup_wallet));
+        mTitleBar.setTitle(getString(R.string.titleBar_backup_wallet));
 
         mTvBakupTitle = findViewById(R.id.tv_bakup_title);
         mTvBakupContent = findViewById(R.id.tv_bakup_content);
@@ -100,10 +100,10 @@ public class StartBakupActivity extends BaseActivity implements View.OnClickList
     private void updateUIContent() {
         if (mType == PK_TYPE) {
             mTvBakupTitle.setText(getString(R.string.title_backup_private_key));
-            mTvBakupContent.setText(getString(R.string.str_backup_content));
+            mTvBakupContent.setText(getString(R.string.content_backup_private_kye));
         } else if (mType == WORDS_TYPE) {
             mTvBakupTitle.setText(getString(R.string.title_backup_mnemonic));
-            mTvBakupContent.setText(getString(R.string.str_backup_mnemonic_content));
+            mTvBakupContent.setText(getString(R.string.content_backup_mnemonic));
         }
     }
 }

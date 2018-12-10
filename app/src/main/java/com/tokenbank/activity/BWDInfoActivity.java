@@ -66,7 +66,7 @@ public class BWDInfoActivity extends BaseActivity implements View.OnClickListene
     private void initView() {
         mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setTitleTextColor(R.color.white);
-        mTitleBar.setTitle(getString(R.string.title_backup_wallet));
+        mTitleBar.setTitle(getString(R.string.titleBar_backup_wallet));
         mTvBakupTitle = findViewById(R.id.tv_bakup_title);
         mTvBakupContent = findViewById(R.id.tv_bakup_content);
 
@@ -117,13 +117,13 @@ public class BWDInfoActivity extends BaseActivity implements View.OnClickListene
             mScrollViewWords.setVisibility(View.GONE);
             mTvPk.setVisibility(View.VISIBLE);
             mTvBakupTitle.setText(getString(R.string.title_backup_private_key));
-            mTvBakupContent.setText(getString(R.string.str_backup_content));
+            mTvBakupContent.setText(getString(R.string.content_backup_private_kye));
             mTvPk.setText(mWalletData.wpk);
         } else if (mType == WORDS_TYPE) {
             mScrollViewWords.setVisibility(View.VISIBLE);
             mTvPk.setVisibility(View.GONE);
             mTvBakupTitle.setText(getString(R.string.title_backup_mnemonic));
-            mTvBakupContent.setText(getString(R.string.str_backup_mnemonic_content));
+            mTvBakupContent.setText(getString(R.string.content_backup_mnemonic));
         }
     }
 

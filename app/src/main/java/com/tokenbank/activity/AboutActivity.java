@@ -31,12 +31,12 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener,
 
         mTitleBar = (TitleBar) findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle(getString(R.string.title_about_us));
+        mTitleBar.setTitle(getString(R.string.titleBar_about));
         mTitleBar.setRightTextColor(R.color.white);
         mTitleBar.setTitleBarClickListener(this);
 
         mTvVersion = (TextView) findViewById(R.id.tv_version);
-        mTvVersion.setText(getString(R.string.str_current_version) + DeviceUtil.getVersionName());
+        mTvVersion.setText(getString(R.string.content_version) + DeviceUtil.getVersionName());
 
         mLayoutUserTerms = (RelativeLayout) findViewById(R.id.layout_use_terms);
         mLayoutUserTerms.setOnClickListener(this);
@@ -51,13 +51,13 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onClick(View view) {
         if (view == mLayoutUserTerms) {
-            WebBrowserActivity.startWebBrowserActivity(AboutActivity.this, getString(R.string.title_agreement), Constant.service_term_url);
+            WebBrowserActivity.startWebBrowserActivity(AboutActivity.this, getString(R.string.titleBar_agreement), Constant.service_term_url);
 
         } else if (view == mLayoutPrivliTerms) {
-            WebBrowserActivity.startWebBrowserActivity(AboutActivity.this, getString(R.string.title_privacy_policy), Constant.privilege_url);
+            WebBrowserActivity.startWebBrowserActivity(AboutActivity.this, getString(R.string.titleBar_privacy), Constant.privilege_url);
 
         } else if (view == mLayoutCheckUpdate) {
-            ToastUtil.toast(AboutActivity.this, getString(R.string.str_latest_version));
+            ToastUtil.toast(AboutActivity.this, getString(R.string.toast_latest_version));
         }
     }
 

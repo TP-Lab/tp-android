@@ -117,7 +117,7 @@ public class WordsFragment extends BaseFragment implements View.OnClickListener 
         mImgboxTerms.setOnClickListener(this);
 
         mTvTerms = view.findViewById(R.id.tv_service_terms);
-        mTvTerms.setText(Html.fromHtml(getString(R.string.str_has_read_services)));
+        mTvTerms.setText(Html.fromHtml(getString(R.string.content_read_service)));
         mTvTerms.setOnClickListener(this);
 
         mTvImportWallet = view.findViewById(R.id.tv_import_wallet);
@@ -129,7 +129,7 @@ public class WordsFragment extends BaseFragment implements View.OnClickListener 
     }
 
     private void gotoServiceTermPage() {
-        WebBrowserActivity.startWebBrowserActivity(getActivity(), getString(R.string.title_user_agreement), Constant.service_term_url);
+        WebBrowserActivity.startWebBrowserActivity(getActivity(), getString(R.string.titleBar_user_agreement), Constant.service_term_url);
     }
 
     private boolean paramCheck() {
@@ -139,33 +139,33 @@ public class WordsFragment extends BaseFragment implements View.OnClickListener 
         String walletName = mEdtWalletName.getText().toString();
         boolean readedTerms = mImgboxTerms.isSelected();
         if (TextUtils.isEmpty(walletName)) {
-            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_input_wallet_name), "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.enter_hint_wallet_name), "OK");
             return false;
         }
         if (TextUtils.isEmpty(walletWords) || walletWords.split(" ") == null || walletWords.split(" ").length < 12) {
-            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_mnemonic_incorrect), "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.dialog_title_mnemonic_incorrect), "OK");
             return false;
         }
         if (TextUtils.isEmpty(walletPwd)) {
-            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_no_pwd), "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.dialog_content_no_password), "OK");
             return false;
         }
 
         if (TextUtils.isEmpty(walletPwdRepeat)) {
-            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_no_verify_pwd), "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.dialog_content_no_verify_password), "OK");
             return false;
         }
 
         if (!TextUtils.equals(walletPwdRepeat, walletPwd)) {
-            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_verify_pwd_error), "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.dialog_content_passwords_unmatch), "OK");
             return false;
         }
         if (walletPwd.length() < 8) {
-            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_short_pwd), "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.dialog_content_short_password), "OK");
             return false;
         }
         if (!readedTerms) {
-            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.str_no_read_service), "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.dialog_content_no_read_service), "OK");
             return false;
         }
         return true;
@@ -183,7 +183,7 @@ public class WordsFragment extends BaseFragment implements View.OnClickListener 
                     if (isWalletExsit(address)) {
                         if (flag == 1) {
                             //导入钱包
-                            ToastUtil.toast(getActivity(), getString(R.string.str_wallet_exists));
+                            ToastUtil.toast(getActivity(), getString(R.string.toast_wallet_exists));
                             return;
                         } else if (flag == 2) {
                             //重置密码
@@ -195,7 +195,7 @@ public class WordsFragment extends BaseFragment implements View.OnClickListener 
                     uploadWallet(mEdtWalletName.getText().toString(), extra.getInt("blockType", -1), FileUtil.getStringContent(password),
                             privateKey, address);
                 } else {
-                    ToastUtil.toast(getActivity(), getString(R.string.str_import_wallet_failed));
+                    ToastUtil.toast(getActivity(), getString(R.string.toast_import_wallet_failed));
                 }
             }
         });

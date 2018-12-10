@@ -60,6 +60,6 @@ public class PKDialog extends BaseDialog implements View.OnClickListener {
 
     private void copyPrivateKey() {
         Util.clipboard(getContext(), "", mTvPrivateKey.getText().toString());
-        ToastUtil.toast(getContext(), getContext().getString(R.string.str_private_key_copy));
+        ToastUtil.toast(getContext(), getContext().getString(R.string.toast_private_key_copied));
     }
 }

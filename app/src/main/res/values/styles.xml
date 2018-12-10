@@ -22,10 +22,6 @@
     </style>
 
 
-    <style name="OverflowStyle">
-        <item name="android:src">@drawable/ic_images_asset_menu</item>
-    </style>
-
     <style name="AppTheme.NoActionBar">
         <!--隐藏ActionBar-->
         <item name="windowActionBar">false</item>
@@ -33,14 +29,6 @@
         <!--<item name="android:layout_marginTop">25dp</item>-->
         <!--<item name="android:layout_marginRight">25dp</item>-->
     </style>
-
-    <style name="term_checkbox" parent="@android:style/Widget.CompoundButton.CheckBox">
-        <item name="android:button">@drawable/term_checkbox_bg</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Style_Pop_Item">
         <item name="android:layout_width">match_parent</item>
@@ -120,42 +108,6 @@
 
     <style name="Style.Edit.WalletCreate.Pwd">
         <item name="android:inputType">textPassword</item>
-    </style>
-    <style name="TokenBankTranslucentTheme" parent="android:Theme.Translucent.NoTitleBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/common_blue</item>
-        <!--<item name="android:windowBackground">@null</item>-->
-        <!--<item name="android:windowContentOverlay">@null</item>-->
-        <!--<item name="android:windowIsTranslucent">true</item>-->
-        <!--<item name="android:windowAnimationStyle">@null</item>-->
-        <!--<item name="android:windowDisablePreview">true</item>-->
-        <!--<item name="android:windowNoDisplay">true</item>-->
-        <!--<item name="android:windowFullscreen">true</item>-->
-    </style>
-
-    <style name="TranActivity" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/color_transparent</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/common_blue</item>
-        <item name="android:listDivider">@drawable/shape_divider</item>
-        <!-- 更换右侧actionbar图标-->
-        <!--<item name="android:actionOverflowButtonStyle">@style/OverflowStyle</item>-->
-    </style>
-
-    <style name="AppTheme.NoDisplay" parent="Theme.AppCompat.Light">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation</item>
-        <item name="android:windowDisablePreview">true</item>
-        <item name="android:windowNoTitle">true</item>
     </style>
 
 

@@ -16,7 +16,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/shape_importwallet_privatkey"
-            android:hint="@string/str_plaintext_private_key"
+            android:hint="@string/enter_hint_plaintext_private_key"
             android:padding="5dp"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="14sp"
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="@string/str_wallet_system"
+                android:text="@string/enter_title_import_block"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -69,7 +69,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_wallet_name"
+                android:text="@string/enter_title_wallet_name"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18sp"
                 android:background="@null"
-                android:hint="@string/str_hint_wallet_name"
+                android:hint="@string/enter_hint_import_wallet"
                 android:inputType="text"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
@@ -103,7 +103,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_wallet_pwd"
+                android:text="@string/enter_title_import_password"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18sp"
                 android:background="@null"
-                android:hint="@string/str_hint_pwd"
+                android:hint="@string/enter_hint_import_password"
                 android:inputType="textPassword"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
@@ -137,7 +137,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_verify_password"
+                android:text="@string/enter_title_verify_password"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18sp"
                 android:background="@null"
-                android:hint="@string/str_hint_repeat_password"
+                android:hint="@string/enter_hint_import_verify_password"
                 android:inputType="textPassword"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
@@ -171,7 +171,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_pwd_prompt"
+                android:text="@string/enter_title_import_prompt"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -180,7 +180,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="@string/str_hint_password"
+                android:hint="@string/enter_hint_optional"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp"
                 android:layout_marginLeft="18dp"/>
@@ -204,7 +204,7 @@
             <ImageView
                 android:id="@+id/img_service_terms"
                 android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/selector_service_terms" />
 
@@ -226,7 +226,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/selector_createwallet_btnbg"
             android:gravity="center"
-            android:text="@string/str_import"
+            android:text="@string/btn_import"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
@@ -237,7 +237,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
             android:gravity="center"
-            android:text="@string/str_what_private_key"
+            android:text="@string/content_what_private_key"
             android:textColor="@color/tab_text_color_selected"
             android:textSize="14sp"
             android:layout_marginBottom="20dp"/>

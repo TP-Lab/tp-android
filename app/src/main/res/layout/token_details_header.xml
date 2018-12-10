@@ -43,7 +43,7 @@
         android:paddingBottom="6dp"
         android:paddingLeft="15dp"
         android:paddingTop="10dp"
-        android:text="@string/str_recent_transaction_history"
+        android:text="@string/btn_recent_transactions"
         android:textColor="@color/color_text_80"
         android:textSize="@dimen/text_size_13" />
 </LinearLayout>

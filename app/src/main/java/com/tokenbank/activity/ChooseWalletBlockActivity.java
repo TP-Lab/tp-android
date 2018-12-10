@@ -34,7 +34,7 @@ public class ChooseWalletBlockActivity extends BaseActivity {
 
     private void initView() {
         TitleBar mTitleBar = findViewById(R.id.title_bar);
-        mTitleBar.setTitle(getString(R.string.title_select_block));
+        mTitleBar.setTitle(getString(R.string.titleBar_select_block));
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
         mTitleBar.setRightDrawable(R.drawable.ic_walletutil_help);
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
@@ -64,7 +64,7 @@ public class ChooseWalletBlockActivity extends BaseActivity {
 
                 int hid = (int) adapter.getList().get(position).hid;
                 if (hid == -1) {
-                    ToastUtil.toast(ChooseWalletBlockActivity.this, getString(R.string.str_data_exception) + hid);
+                    ToastUtil.toast(ChooseWalletBlockActivity.this, getString(R.string.toast_abnormal_data) + hid);
                     return;
                 }
 

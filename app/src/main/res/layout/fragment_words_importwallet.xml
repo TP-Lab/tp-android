@@ -16,7 +16,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/shape_importwallet_privatkey"
-            android:hint="@string/str_hint_mnemonic"
+            android:hint="@string/enter_hint_mnemonic"
             android:padding="5dp"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="14sp"
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="@string/str_wallet_system"
+                android:text="@string/enter_title_import_block"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="15sp" />
 
@@ -75,7 +75,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_select_format"
+                android:text="@string/enter_title_select_format"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -109,7 +109,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_wallet_name"
+                android:text="@string/enter_title_import_wallet"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -118,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="@string/str_hint_wallet_name"
+                android:hint="@string/enter_hint_import_wallet"
                 android:inputType="text"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="14sp"
@@ -143,7 +143,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_wallet_pwd"
+                android:text="@string/enter_title_import_password"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -152,7 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="@string/str_hint_pwd"
+                android:hint="@string/enter_hint_import_password"
                 android:inputType="textPassword"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp"
@@ -177,7 +177,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_verify_password"
+                android:text="@string/enter_title_verify_password"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -186,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="@string/str_hint_repeat_password"
+                android:hint="@string/enter_hint_import_verify_password"
                 android:inputType="textPassword"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp"
@@ -211,7 +211,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/str_tips"
+                android:text="@string/enter_title_prompt"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp" />
 
@@ -220,7 +220,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="@string/str_hint_password"
+                android:hint="@string/enter_hint_optional"
                 android:textColor="@color/common_black_fontcolor"
                 android:textSize="16sp"
                 android:layout_marginLeft="18dp"/>
@@ -267,7 +267,7 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/selector_createwallet_btnbg"
             android:gravity="center"
-            android:text="@string/str_import"
+            android:text="@string/btn_import"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:layout_marginBottom="20dp"/>

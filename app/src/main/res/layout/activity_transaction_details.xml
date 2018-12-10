@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="22dp"
-                android:text="@string/str_payer"
+                android:text="@string/content_payer"
                 android:textColor="#808080"
                 android:textSize="15sp" />
 
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="14dp"
-                android:text="@string/str_payee"
+                android:text="@string/content_payee"
                 android:textColor="#808080"
                 android:textSize="15sp" />
 
@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="14dp"
-                android:text="@string/str_gas_price"
+                android:text="@string/content_gas"
                 android:textColor="#808080"
                 android:textSize="15sp" />
 
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="14dp"
-                android:text="@string/str_remarks"
+                android:text="@string/content_note"
                 android:textColor="#808080"
                 android:textSize="15sp" />
 
@@ -172,7 +172,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_transaction_No"
+                    android:text="@string/content_transaction_No"
                     android:textColor="#808080"
                     android:textSize="15sp" />
 
@@ -200,7 +200,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_block_No"
+                    android:text="@string/content_block_No"
                     android:textColor="#808080"
                     android:textSize="15sp" />
 
@@ -229,7 +229,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_exchange_hour"
+                    android:text="@string/content_trading_time"
                     android:textColor="#808080"
                     android:textSize="15sp" />
 
@@ -260,7 +260,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_splash_createwallet_bg"
                 android:gravity="center"
-                android:text="@string/str_copy_url"
+                android:text="@string/btn_copy_url"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
         </LinearLayout>

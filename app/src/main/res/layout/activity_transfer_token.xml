@@ -23,7 +23,7 @@
             <TextView
                 style="@style/Style.WalletCreateTitle"
                 android:minWidth="60dp"
-                android:text="@string/str_token_name" />
+                android:text="@string/enter_title_transfer_token" />
 
             <TextView
                 android:id="@+id/tv_token_name"
@@ -46,12 +46,12 @@
             <TextView
                 style="@style/Style.WalletCreateTitle"
                 android:minWidth="60dp"
-                android:text="@string/str_wallet_address" />
+                android:text="@string/enter_title_transfer_address" />
 
             <EditText
                 android:id="@+id/edt_wallet_address"
                 style="@style/Style.Edit.WalletCreate"
-                android:hint="@string/str_enter_wallet_address"
+                android:hint="@string/dialog_content_no_wallet_address"
                 android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 />
         </LinearLayout>
@@ -63,14 +63,14 @@
             <TextView
                 style="@style/Style.WalletCreateTitle"
                 android:minWidth="60dp"
-                android:text="@string/str_quantity_transferred"
+                android:text="@string/enter_title_transfer_amount"
 
                 />
 
             <EditText
                 android:id="@+id/edt_transfer_num"
                 style="@style/Style.Edit.WalletCreate"
-                android:hint="@string/str_enter_quantity_transferred"
+                android:hint="@string/enter_hint_transfer_amount"
                 android:digits="0123456789."
                 android:inputType="numberDecimal"/>
         </LinearLayout>
@@ -82,7 +82,7 @@
             <TextView
                 style="@style/Style.WalletCreateTitle"
                 android:minWidth="60dp"
-                android:text="@string/str_gas" />
+                android:text="@string/enter_title_transfer_gas" />
 
             <TextView
                 android:id="@+id/tv_transfer_gas"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:drawableRight="@drawable/ic_arrow_right"
-                android:hint="@string/str_choose_gas"
+                android:hint="@string/enter_hint_transfer_gas"
                 android:textColor="@color/color_text_3"
                 android:textColorHint="@color/color_text_80"
                 android:textSize="@dimen/text_size_16" />
@@ -104,7 +104,7 @@
             <TextView
                 style="@style/Style.WalletCreateTitle"
                 android:minWidth="60dp"
-                android:text="@string/str_remarks" />
+                android:text="@string/content_note" />
 
             <EditText
                 android:id="@+id/edt_transfer_remark"
@@ -117,6 +117,6 @@
             android:id="@+id/btn_next"
             style="@style/Style.Btn.Theme"
             android:layout_marginTop="50dp"
-            android:text="@string/str_next" />
+            android:text="@string/btn_next" />
     </LinearLayout>
 </LinearLayout>
