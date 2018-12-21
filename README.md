@@ -7,17 +7,20 @@ This is a wallet tool based on [TokenPocket](https://www.mytokenpocket.vip) earl
 这是一个基于TokenPocket早期版本的Android钱包工具，我们可以用它来管理多个钱包，查看余额和交易历史记录以及转账。
 目前仅支持SWTC公链，未来我们将支持以太坊等。
 
-## Donate
+## Donation
 
-If you wanna donate token of SWTC Blockchain, we'll appreciate it.
+If you wanna donate token, we'll appreciate it.
 
-如果您想捐赠SWTC公链上的Token，我们将非常感激。
+如果您想捐赠Token，我们将非常感激。
 
-Official Address of SWTC Blockchain:
+Official Address:
 
-官方捐赠地址:
+| Chain | Address/Account  |
+| :-: |:-:|
+| EOS | [tpopensource](https://eosflare.io/account/tpopensource) |
+| SWTC | [jGj83Xe4GEyDKXBDrFBGXdMWHKTSy29XUp](http://state.jingtum.com/#!/wallet/jGj83Xe4GEyDKXBDrFBGXdMWHKTSy29XUp) |
+| MOAC | [0x77e7b7b5ea39bf1103f191e58ef44b1f74ccef1b](http://47.75.53.185/addr/0x77e7b7b5ea39bf1103f191e58ef44b1f74ccef1b) |
 
-[jGj83Xe4GEyDKXBDrFBGXdMWHKTSy29XUp](http://state.jingtum.com/#!/wallet/jGj83Xe4GEyDKXBDrFBGXdMWHKTSy29XUp)
 
 ## License
 
