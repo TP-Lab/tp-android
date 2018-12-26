@@ -44,20 +44,36 @@ public class MainUserFragment extends BaseFragment implements View.OnClickListen
         initView(view);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mLayoutManageWallet.setClickable(true);
+        mLayoutRecordTransaction.setClickable(true);
+        mLayoutNotification.setClickable(true);
+        mLayoutHelp.setClickable(true);
+        mLayoutAbout.setClickable(true);
+        mLayoutLanguage.setClickable(true);
+    }
 
     @Override
     public void onClick(View view) {
         if (view == mLayoutManageWallet) {
+            mLayoutManageWallet.setClickable(false);
             ManageWalletActivity.startModifyWalletActivity(getActivity());
         } else if (view == mLayoutRecordTransaction) {
+            mLayoutRecordTransaction.setClickable(false);
             TransactionRecordActivity.startTransactionRecordActivity(getActivity(), 2);
         } else if (view == mLayoutNotification) {
+            mLayoutNotification.setClickable(false);
             TransactionRecordActivity.startTransactionRecordActivity(getActivity(), 1);
         } else if (view == mLayoutHelp) {
+            mLayoutHelp.setClickable(false);
             WebBrowserActivity.startWebBrowserActivity(getActivity(), getString(R.string.titleBar_help_center), Constant.help_url);
         } else if (view == mLayoutAbout) {
+            mLayoutAbout.setClickable(false);
             AboutActivity.startAboutActivity(getActivity());
         } else if (view == mLayoutLanguage) {
+            mLayoutLanguage.setClickable(false);
             LanguageActivity.startLanguageActivity(getActivity());
         }
     }

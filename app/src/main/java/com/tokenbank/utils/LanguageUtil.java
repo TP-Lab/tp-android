@@ -131,41 +131,4 @@ public class LanguageUtil {
     public static boolean needUpdateLocale(Context pContext, Locale pNewUserLocale) {
         return pNewUserLocale != null && !getCurrentLocale(pContext).equals(pNewUserLocale);
     }
-
-
-//    public static Context selectLanguage(Context context, String language) {
-//        Context updateContext;
-//        //设置语言类型
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            updateContext = createConfigurationResources(context, language);
-//        } else {
-//            applyLanguage(context, language);
-//            updateContext = context;
-//        }
-//        //保存设置语言的类型
-//        return updateContext;
-//    }
-
-//    @TargetApi(Build.VERSION_CODES.N)
-//    private static Context createConfigurationResources(Context context, String language) {
-//        //设置语言类型
-//        Resources resources = context.getResources();
-//        Configuration configuration = resources.getConfiguration();
-//        Locale locale = new Locale(language);
-//        configuration.setLocale(locale);
-//        return context.createConfigurationContext(configuration);
-//    }
-//
-//    private static void applyLanguage(Context context, String language) {
-//        Resources resources = context.getResources();
-//        Configuration configuration = resources.getConfiguration();
-//        DisplayMetrics dm = resources.getDisplayMetrics();
-//        Locale locale = new Locale(language);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            configuration.setLocale(locale);
-//        } else {
-//            configuration.locale = locale;
-//        }
-//        resources.updateConfiguration(configuration, dm);
-//    }
 }
