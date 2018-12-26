@@ -1,10 +1,11 @@
 package com.tokenbank.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.tokenbank.TApplication;
 import com.tokenbank.utils.LanguageUtil;
@@ -45,6 +46,24 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Locale userLocale = LanguageUtil.getUserLocale(this);
+        //系统语言改变了应用保持之前设置的语言
+        if (userLocale != null) {
+            Locale.setDefault(userLocale);
+            Configuration configuration = new Configuration(newConfig);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                configuration.setLocale(userLocale);
+                createConfigurationContext(configuration);
+            } else {
+                configuration.locale = userLocale;
+            }
+            getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
+        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

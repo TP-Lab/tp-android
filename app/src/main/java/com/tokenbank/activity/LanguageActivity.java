@@ -2,6 +2,9 @@ package com.tokenbank.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -63,7 +66,14 @@ public class LanguageActivity extends BaseActivity implements View.OnClickListen
         } else {
             LanguageUtil.saveUserSelect(this, "auto");
             imageShow("auto");
-            LanguageUtil.saveUserLocale(this, Locale.getDefault());
+            Locale locale;
+            Configuration configuration = Resources.getSystem().getConfiguration();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                locale = configuration.getLocales().get(0);
+            } else {
+                locale = configuration.locale;
+            }
+            LanguageUtil.saveUserLocale(this, locale);
         }
     }
 

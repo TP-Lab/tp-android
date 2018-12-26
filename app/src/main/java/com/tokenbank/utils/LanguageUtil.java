@@ -3,8 +3,10 @@ package com.tokenbank.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.LocaleList;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import org.greenrobot.eventbus.EventBus;
@@ -33,6 +35,17 @@ public class LanguageUtil {
     public static Locale getUserLocale(Context pContext) {
         String fileName = pContext.getPackageName() + "_" + "LANGUAGE";
         SharedPreferences preferences = pContext.getSharedPreferences(fileName, Context.MODE_PRIVATE);
+        String select = preferences.getString(SELECT, "auto");
+        if (TextUtils.equals(select, "auto")) {
+            Locale locale;
+            Configuration configuration = Resources.getSystem().getConfiguration();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                locale = configuration.getLocales().get(0);
+            } else {
+                locale = configuration.locale;
+            }
+            return locale;
+        }
         String localeLan = preferences.getString(LANGUAGE, Locale.getDefault().getLanguage());
         return new Locale(localeLan);
     }
@@ -106,17 +119,14 @@ public class LanguageUtil {
     public static Context updateLocale(Context pContext, Locale pNewUserLocale) {
         Context updateContext;
         Configuration configuration = pContext.getResources().getConfiguration();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             configuration.setLocale(pNewUserLocale);
-            DisplayMetrics displayMetrics = pContext.getResources().getDisplayMetrics();
-            pContext.getResources().updateConfiguration(configuration, displayMetrics);
             updateContext = pContext.createConfigurationContext(configuration);
         } else {
             configuration.locale = pNewUserLocale;
             updateContext = pContext;
-            DisplayMetrics displayMetrics = pContext.getResources().getDisplayMetrics();
-            pContext.getResources().updateConfiguration(configuration, displayMetrics);
         }
+        pContext.getResources().updateConfiguration(configuration, pContext.getResources().getDisplayMetrics());
         return updateContext;
     }
 
@@ -129,6 +139,6 @@ public class LanguageUtil {
      *    
      */
     public static boolean needUpdateLocale(Context pContext, Locale pNewUserLocale) {
-        return pNewUserLocale != null && !getCurrentLocale(pContext).equals(pNewUserLocale);
+        return pNewUserLocale != null && !TextUtils.equals(getCurrentLocale(pContext).getLanguage(), pNewUserLocale.getLanguage());
     }
 }
