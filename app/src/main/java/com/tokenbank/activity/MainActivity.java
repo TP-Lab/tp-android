@@ -2,13 +2,15 @@ package com.tokenbank.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,7 +20,10 @@ import com.tokenbank.R;
 import com.tokenbank.base.WalletInfoManager;
 import com.tokenbank.fragment.MainUserFragment;
 import com.tokenbank.fragment.MainWalletFragment;
+import com.tokenbank.utils.LanguageUtil;
 import com.tokenbank.utils.ViewUtil;
+
+import java.util.Locale;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -57,8 +62,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         if (view == mLayoutTabWallet) {
             mMainViewPager.setCurrentItem(WALLET_INDEX);
-        }
-        else if (view == mLayoutTabMine) {
+        } else if (view == mLayoutTabMine) {
             mMainViewPager.setCurrentItem(MINE_INDEX);
         }
     }
@@ -152,6 +156,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         @Override
         public int getCount() {
             return mFragments.length;
+        }
+    }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Locale userLocale = LanguageUtil.getUserLocale(this);
+        //系统语言改变了应用保持之前设置的语言
+        if (userLocale != null) {
+            Locale.setDefault(userLocale);
+            Configuration configuration = new Configuration(newConfig);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                configuration.setLocale(userLocale);
+            } else {
+                configuration.locale = userLocale;
+            }
+            getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
         }
     }
 

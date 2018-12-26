@@ -152,10 +152,45 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/layout_help"
+        android:id="@+id/layout_language"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/tv_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:drawableLeft="@drawable/ic_language"
+            android:drawablePadding="13dp"
+            android:gravity="center_vertical"
+            android:text="@string/btn_language"
+            android:textColor="#333333" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/ic_user_rightarrow" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.33dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="50dp"
+            android:background="@color/split_color" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_help"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="#ffffff">
 
         <TextView
