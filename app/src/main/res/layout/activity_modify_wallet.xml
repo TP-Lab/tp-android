@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="钱包名"
+                android:text="@string/enter_title_wallet_name"
                 android:textColor="#333333"
                 android:textSize="16sp" />
 
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="修改密码"
+                    android:text="@string/btn_change_pwd"
                     android:textColor="#333333"
                     android:textSize="16sp" />
 
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="导出私钥"
+                    android:text="@string/btn_export_private_key"
                     android:textColor="#333333"
                     android:textSize="16sp" />
 
@@ -159,7 +159,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/shape_delete_wallet_bg"
                 android:gravity="center"
-                android:text="删除钱包"
+                android:text="@string/btn_delete_wallet"
                 android:textColor="@color/white"
                 android:textSize="13sp" />
 
@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="备份助记词"
+                android:text="@string/btn_backup_mnemonic"
                 android:textColor="@color/common_blue"
                 android:textSize="15sp"
                 android:visibility="gone"/>

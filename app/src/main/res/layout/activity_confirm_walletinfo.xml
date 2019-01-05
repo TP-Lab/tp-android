@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
-        android:text="确认你的钱包助记词"
+        android:text="@string/title_verify_mnemonic"
         android:textColor="@color/common_black_fontcolor"
         android:textSize="18sp" />
 
@@ -28,7 +28,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:text="请按抄写的顺序点击助记词，确认你的备份助记词正确"
+        android:text="@string/content_verify_mnemonic"
         android:textColor="#808080"
         android:textSize="14sp" />
 
@@ -73,7 +73,7 @@
         android:layout_marginTop="40dp"
         android:background="@drawable/shape_splash_createwallet_bg"
         android:gravity="center"
-        android:text="完成"
+        android:text="@string/titleBar_completed"
         android:textColor="@color/white"
         android:textSize="17sp" />
 

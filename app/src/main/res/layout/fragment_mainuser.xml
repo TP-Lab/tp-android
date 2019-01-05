@@ -23,7 +23,7 @@
             android:drawableLeft="@drawable/ic_wallet_manage"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="管理钱包"
+            android:text="@string/btn_manage_wallet"
             android:textColor="#333333" />
 
         <ImageView
@@ -59,7 +59,7 @@
             android:drawableLeft="@drawable/ic_record"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="交易记录"
+            android:text="@string/btn_transactions"
             android:textColor="#333333" />
 
         <ImageView
@@ -89,7 +89,7 @@
             android:drawableLeft="@drawable/ic_notification"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="消息中心"
+            android:text="@string/btn_message_center"
             android:textColor="#333333" />
 
         <ImageView
@@ -139,7 +139,7 @@
             android:drawableLeft="@drawable/ic_contact"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="联系人"
+            android:text="@string/btn_contacts"
             android:textColor="#333333" />
 
         <ImageView
@@ -152,10 +152,45 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/layout_help"
+        android:id="@+id/layout_language"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/tv_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:drawableLeft="@drawable/ic_language"
+            android:drawablePadding="13dp"
+            android:gravity="center_vertical"
+            android:text="@string/btn_language"
+            android:textColor="#333333" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/ic_user_rightarrow" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.33dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="50dp"
+            android:background="@color/split_color" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_help"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="#ffffff">
 
         <TextView
@@ -168,7 +203,7 @@
             android:drawableLeft="@drawable/ic_help"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="帮助中心"
+            android:text="@string/btn_help_support"
             android:textColor="#333333" />
 
         <ImageView
@@ -204,7 +239,7 @@
             android:drawableLeft="@drawable/ic_about_us"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="关于我们"
+            android:text="@string/btn_about_us"
             android:textColor="#333333" />
 
         <ImageView
@@ -240,7 +275,7 @@
             android:drawableLeft="@drawable/ic_setting"
             android:drawablePadding="13dp"
             android:gravity="center_vertical"
-            android:text="系统设置"
+            android:text="@string/btn_settings"
             android:textColor="#333333" />
 
         <ImageView

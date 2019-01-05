@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="让财富更自由"
+        android:text="@string/content_splash"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="58dp"
         android:textSize="15sp"
@@ -39,7 +39,7 @@
             android:layout_height="47dp"
             android:background="@drawable/shape_splash_createwallet_bg"
             android:gravity="center"
-            android:text="创建钱包"
+            android:text="@string/btn_create_wallet"
             android:textColor="@color/white"
             android:textSize="17dp" />
 
@@ -50,7 +50,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/shape_splash_importwallet_bg"
             android:gravity="center"
-            android:text="导入钱包"
+            android:text="@string/btn_import_wallet"
             android:textColor="@color/common_blue"
             android:textSize="17dp"
             />

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.tokenbank.view.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_bar"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout_auto"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffffff">
+
+            <TextView
+                android:id="@+id/tv_auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:drawablePadding="13dp"
+                android:gravity="center_vertical"
+                android:text="@string/btn_language_auto"
+                android:textColor="#333333" />
+
+            <ImageView
+                android:id="@+id/img_auto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                    android:src="@drawable/ic_terms_select" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_chinese"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffffff">
+
+            <TextView
+                android:id="@+id/tv_chinese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:drawablePadding="13dp"
+                android:gravity="center_vertical"
+                android:text="@string/btn_language_zh"
+                android:textColor="#333333" />
+
+            <ImageView
+                android:id="@+id/img_chinese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_terms_select" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_english"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffffff">
+
+            <TextView
+                android:id="@+id/tv_english"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="22dp"
+                android:drawablePadding="13dp"
+                android:gravity="center_vertical"
+                android:text="@string/btn_language_en"
+                android:textColor="#333333" />
+
+            <ImageView
+                android:id="@+id/img_english"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_terms_select" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

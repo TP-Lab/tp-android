@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:gravity="center"
-                android:text="转账"
+                android:text="@string/content_transfer"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_15" />
         </LinearLayout>
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:gravity="center"
-                android:text="收款"
+                android:text="@string/btn_collect"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_15" />
         </LinearLayout>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.tokenbank.R;
 import com.tokenbank.activity.StartBakupActivity;
 import com.tokenbank.base.WalletInfoManager;
 import com.tokenbank.dialog.PwdDialog;
@@ -50,7 +51,7 @@ public class ViewUtil {
     }
 
     public static void showBakupDialog(final Context context, final WalletInfoManager.WData walletData, boolean canCancel, final boolean needVerifyPwd, final String pwdHash) {
-        final WarnDialog warnDialog = new WarnDialog(context, "为了您的钱包安全，请备份钱包", "立即备份", canCancel,
+        final WarnDialog warnDialog = new WarnDialog(context, context.getString(R.string.dialog_content_wallet_security), context.getString(R.string.dialog_btn_backup), canCancel,
                 new WarnDialog.OnConfirmClickListener() {
                     @Override
                     public void onConfirmClick(final Dialog dialog, View view) {
@@ -69,7 +70,7 @@ public class ViewUtil {
                                         }
                                         dialog.dismiss();
                                     } else {
-                                        ToastUtil.toast(context, "密码错误");
+                                        ToastUtil.toast(context, context.getString(R.string.toast_password_incorrect));
                                     }
                                 }
                             }, pwdHash, "");

@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="22dp"
-                android:text="发款方"
+                android:text="@string/content_payer"
                 android:textColor="#808080"
                 android:textSize="15sp" />
 
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="14dp"
-                android:text="收款方"
+                android:text="@string/content_payee"
                 android:textColor="#808080"
                 android:textSize="15sp" />
 
@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="14dp"
-                android:text="矿工费用"
+                android:text="@string/content_gas"
                 android:textColor="#808080"
                 android:textSize="15sp" />
 
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="14dp"
-                android:text="备注"
+                android:text="@string/content_note"
                 android:textColor="#808080"
                 android:textSize="15sp" />
 
@@ -172,7 +172,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="交易号"
+                    android:text="@string/content_transaction_No"
                     android:textColor="#808080"
                     android:textSize="15sp" />
 
@@ -200,7 +200,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="区块号"
+                    android:text="@string/content_block_No"
                     android:textColor="#808080"
                     android:textSize="15sp" />
 
@@ -229,7 +229,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="交易时间"
+                    android:text="@string/content_trading_time"
                     android:textColor="#808080"
                     android:textSize="15sp" />
 
@@ -260,7 +260,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_splash_createwallet_bg"
                 android:gravity="center"
-                android:text="复制URL"
+                android:text="@string/btn_copy_url"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
         </LinearLayout>

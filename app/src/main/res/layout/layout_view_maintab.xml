@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="资产"
+                android:text="@string/btn_asset"
                 android:textColor="@color/selector_maintab_item_textcolor"
                 android:textSize="10sp" />
         </LinearLayout>
@@ -114,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:text="我"
+                android:text="@string/btn_me"
                 android:textColor="@color/selector_maintab_item_textcolor"
                 android:textSize="10sp" />
         </LinearLayout>

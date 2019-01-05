@@ -22,7 +22,7 @@
 
             <TextView
                 style="@style/Style.WalletCreateTitle"
-                android:text="@string/str_block" />
+                android:text="@string/enter_title_block" />
 
             <TextView
                 android:id="@+id/tv_wallet_type"
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:drawableRight="@drawable/ic_arrow_right"
-                android:hint="@string/str_choose_block"
+                android:hint="@string/enter_hint_choose_block"
                 android:textColor="@color/color_text_3"
                 android:textColorHint="@color/color_text_80"
                 android:textSize="@dimen/text_size_16" />
@@ -42,12 +42,12 @@
 
             <TextView
                 style="@style/Style.WalletCreateTitle"
-                android:text="@string/str_wallet_name" />
+                android:text="@string/enter_title_wallet_name" />
 
             <EditText
                 android:id="@+id/edt_wallet_name"
                 style="@style/Style.Edit.WalletCreate"
-                android:hint="@string/str_input_wallet_name" />
+                android:hint="@string/enter_hint_wallet_name" />
         </LinearLayout>
 
         <View style="@style/Style.Line" />
@@ -56,12 +56,12 @@
 
             <TextView
                 style="@style/Style.WalletCreateTitle"
-                android:text="@string/str_pwd" />
+                android:text="@string/enter_title_password" />
 
             <EditText
                 android:id="@+id/edt_wallet_pwd"
                 style="@style/Style.Edit.WalletCreate.Pwd"
-                android:hint="@string/str_input_pwd" />
+                android:hint="@string/enter_hint_password" />
         </LinearLayout>
 
         <View style="@style/Style.Line" />
@@ -70,12 +70,12 @@
 
             <TextView
                 style="@style/Style.WalletCreateTitle"
-                android:text="@string/str_input_repeat_pwd" />
+                android:text="@string/enter_title_verify" />
 
             <EditText
                 android:id="@+id/edt_wallet_pwd_confirm"
                 style="@style/Style.Edit.WalletCreate.Pwd"
-                android:hint="@string/str_input_repeat_pwd" />
+                android:hint="@string/enter_hint_verify" />
         </LinearLayout>
 
         <View style="@style/Style.Line" />
@@ -89,13 +89,13 @@
 
                 <TextView
                     style="@style/Style.WalletCreateTitle"
-                    android:text="@string/str_tips" />
+                    android:text="@string/enter_title_prompt" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2.5dp"
-                    android:text="@string/str_tip_cannull"
+                    android:text="@string/enter_hint_prompt"
                     android:textSize="@dimen/text_size_11" />
             </LinearLayout>
 
@@ -107,10 +107,12 @@
         <View style="@style/Style.Line" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/img_service_terms"
@@ -120,27 +122,18 @@
                 android:src="@drawable/selector_service_terms" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textSize="13sp"
-                android:textColor="#565d67"
-                android:text="我已经仔细阅读并同意"/>
-            <TextView
                 android:id="@+id/tv_service_terms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="13sp"
-                android:textColor="@color/common_blue"
-                android:text="服务及隐私条款"
-                />
+                android:layout_marginLeft="10dp"
+                android:textSize="13sp" />
         </LinearLayout>
 
         <Button
             android:id="@+id/btn_confirm"
             style="@style/Style.Btn.Theme"
             android:layout_marginTop="50dp"
-            android:text="@string/str_create_wallet" />
+            android:text="@string/btn_create_wallet_done" />
     </LinearLayout>
 </LinearLayout>
