@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
     <script src="framework.js"></script>
+
+    <script src="web3.min.js"></script>
+    <script src="mnemonic.js"></script>
     <script src = "bundle.js"></script>
     <script src = "jt_wallet.js"></script>
     <meta charset="UTF-8">
     <title>Web</title>
     <script>
-
+        window.onload = function () {
+            web3 = new Web3();
+            web3.setProvider(new web3.providers.HttpProvider("https://eth626892d.jccdex.cn"));
+        }
     </script>
 </head>
 <body>

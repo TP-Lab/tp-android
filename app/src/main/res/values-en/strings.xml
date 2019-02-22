@@ -98,8 +98,10 @@
     <string name="toast_scan_failure">Scan failure</string>
     <string name="toast_not_support_eth_wallet">No support for ETH wallet now</string>
     <string name="toast_no_jintum_wallet">There is no Jintum, please create and scan it</string>
+    <string name="toast_no_eth_wallet">There is no Eth, please create and scan it</string>
     <string name="dialog_title_reminder">Reminder</string>
     <string name="dialog_content_switch_jintum_wallet">The scanned address is Jintum address, but the current wallet is not Jintum wallet, whether to switch to Jintum wallet.</string>
+    <string name="dialog_content_switch_eth_wallet">The scanned address is Eth address, but the current wallet is not Eth wallet, whether to switch to Eth wallet.</string>
     <string name="dialog_btn_not_switch">No</string>
     <string name="dialog_btn_switch">Yes</string>
     <string name="content_my_asset">My Asset</string>

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -36,10 +37,13 @@ import com.tokenbank.base.WalletInfoManager;
 import com.tokenbank.config.Constant;
 import com.tokenbank.dialog.WalletActionPop;
 import com.tokenbank.dialog.WalletMenuPop;
+import com.tokenbank.net.api.GetWalletTokenList;
+import com.tokenbank.net.load.RequestPresenter;
 import com.tokenbank.utils.DefaultItemDecoration;
 import com.tokenbank.utils.FileUtil;
 import com.tokenbank.utils.GsonUtil;
 import com.tokenbank.utils.NetUtil;
+import com.tokenbank.utils.TLog;
 import com.tokenbank.utils.ToastUtil;
 import com.tokenbank.utils.TokenImageLoader;
 import com.tokenbank.utils.Util;
@@ -187,7 +191,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
                 } else {
                     if (scanResult.startsWith("iban")) {
                         //eth
-                        ToastUtil.toast(getContext(), getString(R.string.toast_not_support_eth_wallet));
+                        handleEthScanResult(scanResult);
                     } else if (scanResult.startsWith("jingtum")) {
                         //swt
                         handleSwtScanResult(scanResult);
@@ -196,6 +200,48 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
                     }
                 }
             }
+        }
+    }
+
+    private void handleEthScanResult(final String scanResult) {
+        if (!WalletInfoManager.getInstance().hasWallet(TBController.ETH_INDEX)) {
+            ToastUtil.toast(getContext(), getString(R.string.toast_no_eth_wallet));
+            return;
+        }
+        if (WalletInfoManager.getInstance().getWalletType() == TBController.ETH_INDEX) {
+            //当前就是eth钱包
+            int beginIndex = scanResult.indexOf("amount=") + 7;
+            double num = Util.parseDouble(scanResult.substring(beginIndex, scanResult.indexOf("&token")));
+            final String token = scanResult.substring(scanResult.indexOf("&token=") + 7);
+            String ibanAddress = scanResult.substring(scanResult.indexOf("iban:") + 5, scanResult.indexOf("?"));
+            TokenTransferActivity.startTokenTransferActivity(getContext(), ibanAddress,
+                    "", num, token, 0, 0);
+        } else {
+            ViewUtil.showSysAlertDialog(getContext(), getString(R.string.dialog_title_reminder), getString(R.string.dialog_content_switch_eth_wallet),
+                    getString(R.string.dialog_btn_not_switch), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }, getString(R.string.dialog_btn_switch), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (WalletInfoManager.getInstance().setCurrentWallet(TBController.ETH_INDEX)) {
+                                //跳转到以太坊转账
+                                if (!WalletInfoManager.getInstance().getCurrentWallet().isBaked) {
+                                    ViewUtil.showBakupDialog(getActivity(), WalletInfoManager.getInstance().getCurrentWallet(),
+                                            true, true, WalletInfoManager.getInstance().getCurrentWallet().whash);
+                                } else {
+                                    int beginIndex = scanResult.indexOf("amount=") + 7;
+                                    double num = Util.parseDouble(scanResult.substring(beginIndex, scanResult.indexOf("&token")));
+                                    final String token = scanResult.substring(scanResult.indexOf("&token=") + 7);
+                                    String ibanAddress = scanResult.substring(scanResult.indexOf("iban:") + 5, scanResult.indexOf("?"));
+                                    TokenTransferActivity.startTokenTransferActivity(getContext(), ibanAddress,
+                                            "", num, token, 0, 0);
+                                }
+                            }
+                        }
+                    });
         }
     }
 
@@ -214,7 +260,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
             TokenTransferActivity.startTokenTransferActivity(getContext(), ibanAddress,
                     "", num, token, 0, 0);
         } else {
-            ViewUtil.showSysAlertDialog(getContext(), getString(R.string.dialog_title_reminder), getString(R.string.dialog_content_switch_jintum_wallet),
+            ViewUtil.showSysAlertDialog(getContext(), getString(R.string.dialog_title_reminder),  getString(R.string.dialog_content_switch_jintum_wallet),
                     getString(R.string.dialog_btn_not_switch), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -433,17 +479,24 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
                 mDataLoadingListener.onDataLoadingFinish(params, false, loadmore);
             }
 
-            int type = WalletInfoManager.getInstance().getWalletType();
-            String address = WalletInfoManager.getInstance().getWAddress();
-            TBController.getInstance().getWalletUtil(type).queryBalance(address, type, new WCallback() {
+            final int type = WalletInfoManager.getInstance().getWalletType();
+            final String address = WalletInfoManager.getInstance().getWAddress();
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
                 @Override
-                public void onGetWResult(int ret, GsonUtil extra) {
-                    if (ret == 0) {
-                        handleTokenRequestResult(params, loadmore, extra);
-                    }
-                    mSwipteRefreshLayout.setRefreshing(false);
+                public void run() {
+                    TBController.getInstance().getWalletUtil(type).queryBalance(address, type, new WCallback() {
+                        @Override
+                        public void onGetWResult(int ret, GsonUtil extra) {
+                            if (ret == 0) {
+                                handleTokenRequestResult(params, loadmore, extra);
+                            }
+                            mSwipteRefreshLayout.setRefreshing(false);
+                        }
+                    });
                 }
-            });
+            }, 1500);
         }
 
         private void handleTokenRequestResult(final String params, final boolean loadmore, GsonUtil json) {
@@ -470,8 +523,8 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
 
         private void fillTokenData(TokenViewHolder holder, GsonUtil data) {
             TokenImageLoader.displayImage(data.getString("icon_url", ""), holder.mImgTokenIcon,
-                    TokenImageLoader.imageOption(R.drawable.ic_images_common_loading, R.drawable.ic_images_asset_eth,
-                            R.drawable.ic_images_asset_eth));
+                    TokenImageLoader.imageOption(R.drawable.js_images_common_loading, R.drawable.js_images_asset_eth,
+                            R.drawable.js_images_asset_eth));
             holder.mTvTokenName.setText(data.getString("bl_symbol", "ETH"));
             if (isAssetVisible) {
                 holder.mTvTokenCount.setText("" + mWalletUtil.getValue(data.getInt("decimal", 0), Util.parseDouble(data.getString("balance", "0"))));

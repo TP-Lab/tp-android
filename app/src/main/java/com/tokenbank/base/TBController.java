@@ -10,10 +10,12 @@ public class TBController {
 
     private final static String TAG = "TBController";
 
+    public final static int ETH_INDEX = 1;
     public final static int SWT_INDEX = 2;
 
     private BaseWalletUtil mWalletUtil;
 
+    private BaseWalletUtil mEthWalletUtil;
     private BaseWalletUtil mSwtWalletUtil;
     private TestWalletBlockchain mNullWalletUtil;
 
@@ -29,7 +31,11 @@ public class TBController {
     }
 
     public void init() {
+        mSupportType.add(ETH_INDEX);
         mSupportType.add(SWT_INDEX);
+
+        mEthWalletUtil = new ETHWalletBlockchain();
+        mEthWalletUtil.init();
 
         mSwtWalletUtil = new SWTWalletBlockchain();
         mSwtWalletUtil.init();
@@ -38,7 +44,9 @@ public class TBController {
     }
 
     public BaseWalletUtil getWalletUtil(int type) {
-        if(type == SWT_INDEX) {
+        if (type == ETH_INDEX) {
+            mWalletUtil = mEthWalletUtil;
+        } else if(type == SWT_INDEX) {
             mWalletUtil = mSwtWalletUtil;
         } else {
             mWalletUtil = mNullWalletUtil;// do nothing

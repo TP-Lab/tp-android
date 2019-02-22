@@ -133,7 +133,12 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void checkPrivateKey() {
-
+        if (mBlock.hid == TBController.ETH_INDEX) {
+            String privateKey = mEdtWalletPrivateKey.getText().toString();
+            if (!TextUtils.isEmpty(privateKey) && !privateKey.startsWith("0x")) {
+                mEdtWalletPrivateKey.setText("0x" + privateKey);
+            }
+        }
     }
 
     private void gotoServiceTermPage() {
@@ -147,7 +152,7 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
         String walletName = mEdtWalletName.getText().toString();
         boolean readedTerms = mImgboxTerms.isSelected();
         if (TextUtils.isEmpty(walletName)) {
-            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.enter_hint_wallet_name), "OK");
+            ViewUtil.showSysAlertDialog(getActivity(),  getString(R.string.enter_hint_wallet_name), "OK");
             return false;
         }
         if (TextUtils.isEmpty(walletPrivateKey)) {
@@ -178,7 +183,7 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
             return false;
         }
         if (!readedTerms) {
-            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.dialog_content_no_read_service), "OK");
+            ViewUtil.showSysAlertDialog(getActivity(),  getString(R.string.dialog_content_no_read_service), "OK");
             return false;
         }
         return true;
@@ -207,7 +212,7 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
                     uploadWallet(mEdtWalletName.getText().toString(), extra.getInt("blockType", -1), FileUtil.getStringContent(password),
                             privateKey, address);
                 } else {
-                    ToastUtil.toast(getActivity(), getString(R.string.toast_import_wallet_failed));
+                    ToastUtil.toast(getActivity(),  getString(R.string.toast_import_wallet_failed));
                 }
             }
         });

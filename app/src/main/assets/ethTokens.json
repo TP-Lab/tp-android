@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "value": "ETH",
+      "contract": "0x0",
+      "decimals": 18,
+      "icon_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAaVBMVEVHcEz////////////////////////////////////////////////////////////////////9/v8seLb5+/1alsZnnsq10OawzeSnx+Hj7fWMttd0ps/T4/BJi8Dt8/nU4/B5qtFemMcsxHsBAAAAEXRSTlMAmL8S5/o/yAnELyd2gZtAvGeGRfkAAADuSURBVCjPfZLZEoMgDEWjxS5qlwQUqbi0//+RRQSEbnlwDHcCJ8kFcFHVN1YU7FZXkMb+hCFO+0g4ZphEdvTK7uCOus79HHauxisD57PX1rqLS+9cSn53ycUS+Bd6jah7ny0sgU01KEYVOAHKwEWTaFoKaQnnjTlR8Ay5JegVIRllEkiqtyw5MPOduR5NgSR8NAKVtj0wKEynXPrLqDUaSm56L7yUaE5idgz6afA6pMdE7aj5YC+MMNaSDSOCXx/a4MtEkXHL0aBGQcmgfo33uow++7aU7GOVQ7rKPwb4Z5t3s13fnFjV+WLRfLPoC2ZyJhgLtsr5AAAAAElFTkSuQmCC"
+    },
+    {
+      "value": "JCC",
+      "contract": "0x9BD4810a407812042F938d2f69f673843301cfa6",
+      "decimals": 18,
+      "icon_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAaVBMVEVHcEz////////////////////////////////////////////////////////////////////9/v8seLb5+/1alsZnnsq10OawzeSnx+Hj7fWMttd0ps/T4/BJi8Dt8/nU4/B5qtFemMcsxHsBAAAAEXRSTlMAmL8S5/o/yAnELyd2gZtAvGeGRfkAAADuSURBVCjPfZLZEoMgDEWjxS5qlwQUqbi0//+RRQSEbnlwDHcCJ8kFcFHVN1YU7FZXkMb+hCFO+0g4ZphEdvTK7uCOus79HHauxisD57PX1rqLS+9cSn53ycUS+Bd6jah7ny0sgU01KEYVOAHKwEWTaFoKaQnnjTlR8Ay5JegVIRllEkiqtyw5MPOduR5NgSR8NAKVtj0wKEynXPrLqDUaSm56L7yUaE5idgz6afA6pMdE7aj5YC+MMNaSDSOCXx/a4MtEkXHL0aBGQcmgfo33uow++7aU7GOVQ7rKPwb4Z5t3s13fnFjV+WLRfLPoC2ZyJhgLtsr5AAAAAElFTkSuQmCC"
+    }
+  ]
+}

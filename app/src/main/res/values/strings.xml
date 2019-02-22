@@ -98,8 +98,10 @@
     <string name="toast_scan_failure">扫描错误</string>
     <string name="toast_not_support_eth_wallet">当前不支持以太钱包</string>
     <string name="toast_no_jintum_wallet">当前没有井通，请创建钱包，再扫描</string>
+    <string name="toast_no_eth_wallet">当前没有以太坊，请创建钱包，再扫描</string>
     <string name="dialog_title_reminder">提示</string>
     <string name="dialog_content_switch_jintum_wallet">扫描到的地址为井通地址，但是当前钱包为非井通钱包，是否切换成井通钱包？</string>
+    <string name="dialog_content_switch_eth_wallet">扫描到的地址为以太坊地址，但是当前钱包为非以太坊钱包，是否切换成以太坊钱包？</string>
     <string name="dialog_btn_not_switch">不切换</string>
     <string name="dialog_btn_switch">立即切换</string>
     <string name="content_my_asset">我的资产</string>
