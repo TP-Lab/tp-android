@@ -70,7 +70,7 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
                 } else {
                     if (mBlock.hid == TBController.ETH_INDEX) {
                         initView();
-                    } else if (mBlock.hid == TBController.SWT_INDEX) {
+                    } else if (mBlock.hid == TBController.SWT_INDEX || mBlock.hid == TBController.MOAC_INDEX) {
                         Intent intent = new Intent();
                         intent.putExtra(PKFragment.BLOCK, mBlock);
                         FragmentContainerActivity.start(ImportWalletActivity.this,

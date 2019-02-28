@@ -212,6 +212,41 @@ function jtSingtx(params) {
 
 //end jt
 
+// moac
+
+function createMoacWallet(params) {
+    var paramsjson = JSON.parse(params);
+    var callid = paramsjson.callid;
+    Moac.createWallet(uuidv4(), uuidv4()).then(function(wallet) {
+        var accountInfo = {};
+        accountInfo.privatekey = wallet.secret;
+        accountInfo.address = wallet.address;
+        accountInfo.blockType = paramsjson.blockType;
+        notifyClient(callid, 0, accountInfo);
+    }).catch(function(error) {
+       notifyClient(callid, -1, null);
+    })
+}
+
+function importMoacSecret(params) {
+    var paramsjson = JSON.parse(params);
+    var callid = paramsjson.callid;
+    var secret = paramsjson.privateKey;
+    var address = Moac.getAddress(secret);
+    if (address === null) {
+       notifyClient(callid, -1, null);
+    } else {
+       notifyClient(callid, 0, {
+          address: address,
+          secret: secret,
+          blockType: paramsjson.blockType
+       })
+    }
+}
+
+
+// end moac
+
 
 function notifyClient(callid, ret, extra) {
     var result = new Object();

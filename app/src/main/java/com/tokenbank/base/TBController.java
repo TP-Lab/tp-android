@@ -12,11 +12,13 @@ public class TBController {
 
     public final static int ETH_INDEX = 1;
     public final static int SWT_INDEX = 2;
+    public final static int MOAC_INDEX = 3;
 
     private BaseWalletUtil mWalletUtil;
 
     private BaseWalletUtil mEthWalletUtil;
     private BaseWalletUtil mSwtWalletUtil;
+    private BaseWalletUtil mMoacWalletUtil;
     private TestWalletBlockchain mNullWalletUtil;
 
     private static TBController sInstance = new TBController();
@@ -33,12 +35,16 @@ public class TBController {
     public void init() {
         mSupportType.add(ETH_INDEX);
         mSupportType.add(SWT_INDEX);
+        mSupportType.add(MOAC_INDEX);
 
         mEthWalletUtil = new ETHWalletBlockchain();
         mEthWalletUtil.init();
 
         mSwtWalletUtil = new SWTWalletBlockchain();
         mSwtWalletUtil.init();
+
+        mMoacWalletUtil = new MOACWalletBlockchain();
+        mMoacWalletUtil.init();
 
         mNullWalletUtil = new TestWalletBlockchain();
     }
@@ -48,6 +54,8 @@ public class TBController {
             mWalletUtil = mEthWalletUtil;
         } else if(type == SWT_INDEX) {
             mWalletUtil = mSwtWalletUtil;
+        } else if (type == MOAC_INDEX) {
+            mWalletUtil = mMoacWalletUtil;
         } else {
             mWalletUtil = mNullWalletUtil;// do nothing
         }
