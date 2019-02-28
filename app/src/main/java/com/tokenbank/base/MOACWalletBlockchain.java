@@ -3,7 +3,10 @@ package com.tokenbank.base;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.tokenbank.config.Constant;
+import com.tokenbank.utils.FileUtil;
 import com.tokenbank.utils.GsonUtil;
+import com.tokenbank.utils.Util;
 
 public class MOACWalletBlockchain implements BaseWalletUtil {
     @Override
@@ -128,8 +131,31 @@ public class MOACWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void queryBalance(String address, int type, WCallback callback) {
-
+    public void queryBalance(String address, int type,final WCallback callback) {
+        if (!checkInit(callback)) {
+            return;
+        }
+        GsonUtil json = new GsonUtil("{}");
+        json.putString("address", address);
+        JSUtil.getInstance().callJS("getMoacBalance", json, new WCallback() {
+            @Override
+            public void onGetWResult(int ret, GsonUtil extra) {
+                if (ret == 0) {
+                    GsonUtil formatData = new GsonUtil("{}");
+                    GsonUtil arrays = new GsonUtil("[]");
+                    GsonUtil data = new GsonUtil("{}");
+                    data.putLong("blockchain_id", Long.parseLong("" + TBController.MOAC_INDEX));
+                    data.putString("icon_url", Constant.MOAC_ICON);
+                    data.putString("bl_symbol", "MOAC");
+                    data.putInt("decimal", 18);
+                    data.putString("balance", extra.getString("balance", "0"));
+                    data.putString("asset", "0");
+                    arrays.put(data);
+                    formatData.put("data", arrays);
+                    callback.onGetWResult(ret, formatData);
+                }
+            }
+        });
     }
 
     @Override
@@ -139,12 +165,13 @@ public class MOACWalletBlockchain implements BaseWalletUtil {
 
     @Override
     public double getValue(int decimal, double originValue) {
-        return 0;
+        return Util.formatDouble(5, originValue);
     }
 
     @Override
     public GsonUtil loadTransferTokens(Context context) {
-        return null;
+        String data = FileUtil.getConfigFile(context, "moacTokens.json");
+        return new GsonUtil(data);
     }
 
     @Override

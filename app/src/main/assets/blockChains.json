@@ -18,7 +18,7 @@
       "url": "http://state.jingtum.com",
       "status": 0,
       "create_time": "2018-11-16T22:11:20Z",
-      "symbol": "http://state.jingtum.com/favicon.ico"
+      "symbol": "https://state.jingtum.com/favicon.ico"
     },
     {
       "hid": 3,
@@ -28,7 +28,7 @@
       "url": "https://www.moac.io/",
       "status": 0,
       "create_time": "2019-02-25T22:11:20Z",
-      "symbol": "https://www.moac.io/favicon.ico"
+      "symbol": "http://explorer.moac.io/img/new-logo.png"
     }
   ]
 }

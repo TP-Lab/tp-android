@@ -244,6 +244,16 @@ function importMoacSecret(params) {
     }
 }
 
+function getMoacBalance(params) {
+    var paramsjson = JSON.parse(params);
+    var callid = paramsjson.callid;
+    moacInstance.getBalance(paramsjson.address).then(function(balance) {
+        var obj = {};
+        obj.balance = balance + "";
+        notifyClient(callid, 0, obj);
+    })
+}
+
 
 // end moac
 

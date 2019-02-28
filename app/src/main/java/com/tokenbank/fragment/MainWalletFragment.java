@@ -37,13 +37,10 @@ import com.tokenbank.base.WalletInfoManager;
 import com.tokenbank.config.Constant;
 import com.tokenbank.dialog.WalletActionPop;
 import com.tokenbank.dialog.WalletMenuPop;
-import com.tokenbank.net.api.GetWalletTokenList;
-import com.tokenbank.net.load.RequestPresenter;
 import com.tokenbank.utils.DefaultItemDecoration;
 import com.tokenbank.utils.FileUtil;
 import com.tokenbank.utils.GsonUtil;
 import com.tokenbank.utils.NetUtil;
-import com.tokenbank.utils.TLog;
 import com.tokenbank.utils.ToastUtil;
 import com.tokenbank.utils.TokenImageLoader;
 import com.tokenbank.utils.Util;
@@ -483,20 +480,33 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
             final String address = WalletInfoManager.getInstance().getWAddress();
 
             Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    TBController.getInstance().getWalletUtil(type).queryBalance(address, type, new WCallback() {
-                        @Override
-                        public void onGetWResult(int ret, GsonUtil extra) {
-                            if (ret == 0) {
-                                handleTokenRequestResult(params, loadmore, extra);
-                            }
-                            mSwipteRefreshLayout.setRefreshing(false);
+            if (type == TBController.SWT_INDEX) {
+                TBController.getInstance().getWalletUtil(type).queryBalance(address, type, new WCallback() {
+                    @Override
+                    public void onGetWResult(int ret, GsonUtil extra) {
+                        if (ret == 0) {
+                            handleTokenRequestResult(params, loadmore, extra);
                         }
-                    });
-                }
-            }, 1500);
+                        mSwipteRefreshLayout.setRefreshing(false);
+                    }
+                });
+            } else if (type == TBController.ETH_INDEX || type == TBController.MOAC_INDEX) {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        TBController.getInstance().getWalletUtil(type).queryBalance(address, type, new WCallback() {
+                            @Override
+                            public void onGetWResult(int ret, GsonUtil extra) {
+                                if (ret == 0) {
+                                    handleTokenRequestResult(params, loadmore, extra);
+                                }
+                                mSwipteRefreshLayout.setRefreshing(false);
+                            }
+                        });
+                    }
+                }, 2000);
+            }
+
         }
 
         private void handleTokenRequestResult(final String params, final boolean loadmore, GsonUtil json) {

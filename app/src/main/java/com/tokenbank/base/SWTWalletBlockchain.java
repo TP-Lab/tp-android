@@ -277,7 +277,7 @@ public class SWTWalletBlockchain implements BaseWalletUtil {
                     for (int i = 0; i < len; i++) {
                         GsonUtil data = new GsonUtil("{}");
                         data.putLong("blockchain_id", Long.parseLong("" + TBController.SWT_INDEX));
-                        data.putString("icon_url", "http://state.jingtum.com/favicon.ico");
+                        data.putString("icon_url", "https://state.jingtum.com/favicon.ico");
                         data.putString("bl_symbol", datas.getObject(i).getString("currency", ""));
                         data.putInt("decimal", 0);
                         data.putString("balance", datas.getObject(i).getString("value", "0"));
@@ -287,7 +287,7 @@ public class SWTWalletBlockchain implements BaseWalletUtil {
                 } else {
                     GsonUtil data = new GsonUtil("{}");
                     data.putLong("blockchain_id", Long.parseLong("" + TBController.SWT_INDEX));
-                    data.putString("icon_url", "http://state.jingtum.com/favicon.ico");
+                    data.putString("icon_url", "https://state.jingtum.com/favicon.ico");
                     data.putString("bl_symbol", "SWT");
                     data.putInt("decimal", 0);
                     data.putString("balance", "0");

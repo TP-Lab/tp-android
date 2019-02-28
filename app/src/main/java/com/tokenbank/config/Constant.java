@@ -60,6 +60,7 @@ public class Constant {
 
     public final static String ETHER_ICON = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAApVBMVEVHcEz///////////////////////////////////////////////////////////////////////////99fn8pKioyMzMPDw80NTUUFBTd3d2nqKmOjo+Gh4iKi4xjZGQ3ODghIiK9vb3i4uKRkpI6OzwuLy90dXXo6OiZmptERUXY2NihoqLOz8/ExMTHx8fKy8tOTk6wsLCEhYbV1dXv7+9YWVlcbRqNAAAAE3RSTlMAwxIv58g/+gm+gZjGJ3aZQJt3YXhNTAAAARdJREFUKM+FUtmCgjAMrAgiCl605b5PETzZ/f9PW1ibKL6Yp5lMm07SECLC2GiyqsraxiDTWMxMjNniTViuzUmsl6BIuvkRuiTuKJBxr4CU5709Hg4bhPt/B0g7antIRi/o7cenNq/RJyFzPOcF1GYV0jlZATwFo1Sega+IBvD4CB9xWd6Aa0QW6B769JYwzn2RkIkqWsrDqGCWk5Rx/8yoILVVw0ruWIMYgSQKZhXj8SA5VtRBQWHDza6FPUgs7XuwIcxnx9TNE4v2fpSBeWj55LeXe+v9xh22jIO6hLlX2XH6GtRrvF5OCx4A242j3+I8giICvJ1+ZU2bevqVRALtDA8p0ve1Gb28bY6++9hE4/Bc0QOu6B8WJy4NGzMfaAAAAABJRU5ErkJggg==";
 
+    public final static String MOAC_ICON = "http://explorer.moac.io/img/new-logo.png";
     //abi data
 
     public final static String ABI_DATA = " [\n" +
