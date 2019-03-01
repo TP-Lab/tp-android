@@ -31,6 +31,7 @@ import com.tokenbank.adapter.BaseRecycleAdapter;
 import com.tokenbank.adapter.BaseRecyclerViewHolder;
 import com.tokenbank.base.BlockChainData;
 import com.tokenbank.base.BaseWalletUtil;
+import com.tokenbank.base.JSUtil;
 import com.tokenbank.base.TBController;
 import com.tokenbank.base.WCallback;
 import com.tokenbank.base.WalletInfoManager;
@@ -504,7 +505,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
                             }
                         });
                     }
-                }, 2000);
+                }, JSUtil.getInstance().checkInit(null) ? 0 : 2000);
             }
 
         }

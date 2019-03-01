@@ -209,7 +209,7 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
                 gas.putDouble("gasPrice", gasPrice);
                 callback.onGetWResult(0, gas);
             }
-        }, gasPrice, defaultToken);
+        }, gasPrice, defaultToken, TBController.ETH_INDEX);
         gasSettignDialog.show();
     }
 

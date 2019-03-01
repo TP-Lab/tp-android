@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.tokenbank.config.Constant;
+import com.tokenbank.dialog.EthGasSettignDialog;
 import com.tokenbank.utils.FileUtil;
 import com.tokenbank.utils.GsonUtil;
 import com.tokenbank.utils.Util;
@@ -41,27 +42,81 @@ public class MOACWalletBlockchain implements BaseWalletUtil {
 
     @Override
     public void toIban(String address, WCallback callback) {
+        if (!checkInit(callback)) {
+            return;
+        }
 
+        GsonUtil json = new GsonUtil("{}");
+        json.putString("moacAddress", address);
+        JSUtil.getInstance().callJS("toIbanMoacAddress", json, callback);
     }
 
     @Override
     public void fromIban(String ibanAddress, WCallback callback) {
+        if (!checkInit(callback)) {
+            return;
+        }
 
+        GsonUtil json = new GsonUtil("{}");
+        json.putString("ibanAddress", ibanAddress);
+        JSUtil.getInstance().callJS("toMoacAddress", json, callback);
     }
 
     @Override
-    public void gasPrice(WCallback callback) {
+    public void gasPrice(final WCallback callback) {
+        if (!checkInit(callback)) {
+            return;
+        }
 
+        GsonUtil json = new GsonUtil("{}");
+        JSUtil.getInstance().callJS("getMoacGasPrice", json, new WCallback() {
+            @Override
+            public void onGetWResult(int ret, GsonUtil extra) {
+                double gasPrice = 8.0f;
+                if (ret == 0) {
+                    double wei = Util.parseDouble(extra.getString("gasPrice", "20000000000"));
+                    if (wei > 0) {
+                        gasPrice = wei / 1000000000.0f;
+                    }
+                }
+                GsonUtil gasPriceJson = new GsonUtil("{}");
+                gasPriceJson.putDouble("gasPrice", gasPrice);
+                callback.onGetWResult(0, gasPriceJson);
+            }
+        });
     }
 
     @Override
     public void signedTransaction(GsonUtil data, WCallback callback) {
+        if (!checkInit(callback)) {
+            return;
+        }
 
+        GsonUtil json = new GsonUtil("{}");
+        GsonUtil transactionToSign = new GsonUtil("{}");
+        json.putString("privateKey", data.getString("privateKey", ""));
+        String abi = data.getString("abi", "");
+        if (TextUtils.isEmpty(abi)) {
+            transactionToSign.putString("from", data.getString("senderAddress", ""));
+            transactionToSign.putString("value", Util.formatDoubleToStr(0, data.getDouble("tokencount", 0.0f)));
+            transactionToSign.putString("to", data.getString("receiverAddress", ""));
+            transactionToSign.putString("gas", Util.formatDoubleToStr(0, data.getDouble("gas", 0.0f)));
+            transactionToSign.putString("gasPrice", Util.formatDoubleToStr(0,
+                    Util.fromGweToWei(1, data.getDouble("gasPrice", 0.0f))));
+        }
+
+        json.put("transactionToSign", transactionToSign);
+        JSUtil.getInstance().callJS("signMoacTransaction", json, callback);
     }
 
     @Override
     public void sendSignedTransaction(String rawTransaction, WCallback callback) {
-
+        if (!checkInit(callback)) {
+            return;
+        }
+        GsonUtil json = new GsonUtil("{}");
+        json.putString("rawTransaction", rawTransaction);
+        JSUtil.getInstance().callJS("sendMoacTransaction", json, callback);
     }
 
     @Override
@@ -73,33 +128,93 @@ public class MOACWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void generateReceiveAddress(String walletAddress, double amount, String token, WCallback callback) {
-
+    public void generateReceiveAddress(String walletAddress, double amount,final String token,final WCallback callback) {
+        if (TextUtils.isEmpty(walletAddress) || TextUtils.isEmpty(token)) {
+            callback.onGetWResult(-1, new GsonUtil("{}"));
+            return;
+        }
+        final double tmpAmount = amount < 0 ? 0.0f : amount;
+        final GsonUtil address = new GsonUtil("{}");
+        toIban(walletAddress, new WCallback() {
+            @Override
+            public void onGetWResult(int ret, GsonUtil extra) {
+                if (ret == 0) {
+                    String ibanAddress = extra.getString("ibanAddress", "");
+                    if (TextUtils.isEmpty(ibanAddress)) {
+                        callback.onGetWResult(-1, address);
+                    } else {
+                        String receiveStr = String.format("iban:%s?amount=%f&token=%s", ibanAddress, tmpAmount, token);
+                        address.putString("receiveAddress", receiveStr);
+                        callback.onGetWResult(0, address);
+                    }
+                } else {
+                    callback.onGetWResult(-1, address);
+                }
+            }
+        });
     }
 
     @Override
-    public void calculateGasInToken(double gas, double gasPrice, boolean defaultToken, WCallback callback) {
-
+    public void calculateGasInToken(final double gas,final double gasPrice,final boolean defaultToken,final WCallback callback) {
+        if (gasPrice <= 0.0) {
+            gasPrice(new WCallback() {
+                @Override
+                public void onGetWResult(int ret, GsonUtil extra) {
+                    double gasPrice = 8.0f;
+                    if (ret == 0) {
+                        double gasPriceByEth = extra.getDouble("gasPrice", 8.0f);
+                        if (gasPriceByEth > 0.0f) {
+                            gasPrice = gasPriceByEth;
+                        }
+                    }
+                    double totalGasInWei = gasPrice * 1000000000.0f * getRecommendGas(gas, defaultToken);
+                    GsonUtil gas = new GsonUtil("{}");
+                    gas.putString("gas", Util.formatDoubleToStr(5, Util.fromWei(TBController.MOAC_INDEX, totalGasInWei)) + " " + "MOAC");
+                    callback.onGetWResult(0, gas);
+                }
+            });
+        } else {
+            double totalGasInWei = gasPrice * 1000000000.0f * getRecommendGas(gas, defaultToken);
+            GsonUtil gasJson = new GsonUtil("{}");
+            gasJson.putString("gas", Util.formatDoubleToStr(5, Util.fromWei(TBController.MOAC_INDEX, totalGasInWei)) + " " + "MOAC");
+            callback.onGetWResult(0, gasJson);
+        }
     }
 
     @Override
-    public void gasSetting(Context context, double gasPrice, boolean defaultToken, WCallback callback) {
-
+    public void gasSetting(Context context, double gasPrice, boolean defaultToken,final WCallback callback) {
+        EthGasSettignDialog gasSettignDialog = new EthGasSettignDialog(context, new EthGasSettignDialog.OnSettingGasListener() {
+            @Override
+            public void onSettingGas(double gasPrice, double gasInToken) {
+                GsonUtil gas = new GsonUtil("{}");
+                gas.putString("gas", Util.formatDoubleToStr(5, gasInToken) + " " + "MOAC");
+                gas.putDouble("gasPrice", gasPrice);
+                callback.onGetWResult(0, gas);
+            }
+        }, gasPrice, defaultToken, TBController.MOAC_INDEX);
+        gasSettignDialog.show();
     }
 
     @Override
     public double getRecommendGas(double gas, boolean defaultToken) {
-        return 0;
+        if (gas <= 0.0f) {
+            if (defaultToken) {
+                return 2000;
+            } else {
+                return 6000;
+            }
+        }
+        return gas;
     }
 
     @Override
     public String getDefaultTokenSymbol() {
-        return null;
+        return "MOAC";
     }
 
     @Override
     public int getDefaultDecimal() {
-        return 0;
+        return 18;
     }
 
     @Override
@@ -108,13 +223,33 @@ public class MOACWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void translateAddress(String sourceAddress, WCallback callback) {
-
+    public void translateAddress(String sourceAddress,final WCallback callback) {
+        if (TextUtils.isEmpty(sourceAddress)) {
+            GsonUtil addressJson = new GsonUtil("{}");
+            addressJson.putString("receive_address", "");
+            callback.onGetWResult(0, addressJson);
+            return;
+        }
+        fromIban(sourceAddress, new WCallback() {
+            @Override
+            public void onGetWResult(int ret, GsonUtil extra) {
+                GsonUtil addressJson = new GsonUtil("{}");
+                if (ret == 0) {
+                    addressJson.putString("receive_address", extra.getString("moacAddress", ""));
+                } else {
+                    addressJson.putString("receive_address", "");
+                }
+                callback.onGetWResult(0, addressJson);
+            }
+        });
     }
 
     @Override
     public boolean checkWalletAddress(String receiveAddress) {
-        return false;
+        if (!receiveAddress.startsWith("0x") || receiveAddress.length() != 42) {
+            return false;
+        }
+        return true;
     }
 
     @Override

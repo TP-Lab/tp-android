@@ -209,6 +209,17 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
             ethTokenTransfer();
         } else if (mBlockChain == TBController.SWT_INDEX) {
             swtTokenTransfer();
+        } else if(mBlockChain == TBController.MOAC_INDEX ){
+            moacTokenTransfer();
+        }
+    }
+
+    private void moacTokenTransfer() {
+        if (defaultToken) {
+            signedEthTransaction(mWalletData.wpk, "", "", mWalletData.waddress,
+                    mEdtWalletAddress.getText().toString(), Util.formatDouble(0, Util.tokenToWei(mBlockChain,
+                            Util.parseDouble(mEdtTransferNum.getText().toString()), mWalletUtil.getDefaultDecimal())),
+                    mGas, mGasPrice);
         }
     }
 
@@ -233,6 +244,8 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                         Util.parseDouble(mEdtTransferNum.getText().toString()), mDecimal)),
                 mGas, mGasPrice);
     }
+
+
 
     private void signedEthTransaction(String privateKey, String abi, String contactAddress, String senderAddress, String receiverAddress,
                                       double tokencount, double gas, double gasPrice) {

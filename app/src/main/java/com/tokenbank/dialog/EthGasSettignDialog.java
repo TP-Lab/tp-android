@@ -35,10 +35,10 @@ public class EthGasSettignDialog extends BaseDialog implements View.OnClickListe
     private double mGasPrice = 8.0f;
     private boolean mDefaultToken;
 
-    public EthGasSettignDialog(@NonNull Context context, OnSettingGasListener onSettingGasListener,  double gasPrice, boolean defaultToken) {
+    public EthGasSettignDialog(@NonNull Context context, OnSettingGasListener onSettingGasListener,  double gasPrice, boolean defaultToken, int blockChain) {
         super(context, R.style.DialogStyle);
         mOnsettingGasListener = onSettingGasListener;
-        mBlockChain = TBController.ETH_INDEX;
+        mBlockChain = blockChain;
         mGasPrice = gasPrice;
         mDefaultToken = defaultToken;
         mGas = Util.getRecommendGweiGas(mBlockChain, defaultToken);

@@ -112,6 +112,12 @@ public class Util {
             } else {
                 return 60000;
             }
+        } else if (blockChain == 3) {
+            if(defaultToken) {
+                return 2000;
+            } else {
+                return 6000;
+            }
         }
         return 0;
     }
@@ -121,13 +127,15 @@ public class Util {
             return "ETH";
         } else if(blockChain == 2) {
             return "SWT";
+        } else if (blockChain == 3) {
+            return "MOAC";
         }
         return "";
     }
 
     //wei to token value
     public static double fromWei(long blockChain, double wei) {
-        if (blockChain == 1) {
+        if (blockChain == 1 || blockChain == 3) {
             if (wei <= 0) {
                 return 0;
             }
@@ -157,7 +165,7 @@ public class Util {
 
     //tokenvalue to wei
     public static double toWei(long blockChain, double tokenvalue) {
-        if (blockChain == 1) {
+        if (blockChain == 1 || blockChain == 3) {
             if (tokenvalue <= 0) {
                 return 0;
             }
@@ -167,7 +175,7 @@ public class Util {
     }
 
     public static double tokenToWei(long blockChain, double tokenValue, int dec) {
-        if(blockChain == 1) {
+        if(blockChain == 1 || blockChain == 3) {
             String decimal = "1";
             for(int i = 0; i < dec; i++)  {
                 decimal = decimal + "0";
@@ -179,7 +187,7 @@ public class Util {
     }
 
     public static double fromGweToWei(long blockChain, double gwei) {
-        if (blockChain == 1) {
+        if (blockChain == 1 || blockChain == 3)  {
             if (gwei <= 0) {
                 return 0.0f;
             }
@@ -189,7 +197,7 @@ public class Util {
     }
 
     public static double fromWeiToGwei(long blockChain, double wei) {
-        if (blockChain == 1) {
+        if (blockChain == 1 || blockChain == 3) {
             if (wei <= 0) {
                 return 0.0f;
             }

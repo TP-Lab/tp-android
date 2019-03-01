@@ -114,7 +114,7 @@ public class OrderDetailDialog extends BaseDialog implements View.OnClickListene
     }
 
     private String generateGasInfoByGas() {
-        if (mBlockChain == TBController.ETH_INDEX) {
+        if (mBlockChain == TBController.ETH_INDEX || mBlockChain == TBController.MOAC_INDEX) {
             return "≈ " + Util.fromGweToWei(mBlockChain, mGasPrice) + " * " + mGas;
 
         } else if (mBlockChain == TBController.SWT_INDEX) {

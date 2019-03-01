@@ -254,6 +254,79 @@ function getMoacBalance(params) {
     })
 }
 
+function getMoacGasPrice(params) {
+    var paramsjson = JSON.parse(params);
+    var callid = paramsjson.callid;
+    moacInstance.getGasPrice().then(function(gas) {
+        var obj = {
+           gasPrice: gas
+        };
+        notifyClient(callid, 0, obj);
+    })
+}
+
+function signMoacTransaction(params) {
+    var paramsjson = JSON.parse(params);
+    var callid = paramsjson.callid;
+    var privateKey = paramsjson.privateKey;
+    var transactionToSign = paramsjson.transactionToSign;
+    if (transactionToSign.abi == null || transactionToSign.abi == undefined) {
+        var to = transactionToSign.to;
+        var from = transactionToSign.from;
+        var value = transactionToSign.value;
+        var gasLimit = transactionToSign.gas;
+        var gasPrice = transactionToSign.gasPrice;
+        moacInstance.getNonce(from).then(function(nonce) {
+           var tx = moacInstance.getTx(from, to, nonce, gasLimit, gasPrice, value);
+           var signedTransaction = moacInstance._chain3.signTransaction(tx, privateKey);
+           var callbackData = {
+              signedTransaction: {
+                 rawTransaction: signedTransaction
+              }
+           };
+           notifyClient(callid, 0, callbackData)
+        })
+    }
+}
+
+function sendMoacTransaction(params) {
+    var paramsjson = JSON.parse(params);
+    var callid = paramsjson.callid;
+
+    var rawTransaction = paramsjson.rawTransaction; //由signedTransaction产生
+
+    moacInstance.sendRawSignedTransaction(rawTransaction).then(function(hash) {
+       var callbackData = new Object();
+       callbackData.receipt = hash;
+       notifyClient(callid, 0, callbackData)
+    }).catch(function(error) {
+       console.log("墨客转账错误:"+error.message);
+       var callbackData = new Object();
+       callbackData.error = error;
+       notifyClient(callid, -1, callbackData)
+    })
+}
+
+function toIbanMoacAddress(params) {
+    var paramsjson = JSON.parse(params);
+    var callid = paramsjson.callid;
+    var address = paramsjson.moacAddress;
+    var ibanAddress = moacInstance._chain3.mc.iban.fromAddress(address)
+    var callbackData = new Object();
+    callbackData.ibanAddress = ibanAddress.toString();
+    notifyClient(callid, 0, callbackData);
+}
+
+function toMoacAddress(params) {
+    var paramsjson = JSON.parse(params);
+    var callid = paramsjson.callid;
+    var ibanAddress = paramsjson.ibanAddress;
+    var moacAddress = moacInstance._chain3.mc.iban.fromBban(ibanAddress);
+    var callbackData = new Object();
+    callbackData.moacAddress = moacAddress.toString();
+    notifyClient(callid, 0, callbackData);
+}
+
 
 // end moac
 
