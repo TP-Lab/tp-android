@@ -53,6 +53,8 @@ public class Constant {
     //jt
     public final static String jt_base_url = "https://api.jingtum.com";
 
+    public final static String MOAC_BROWSER = "http://explorer.moac.io/addr/";
+
     //activity requestCode
     public final static int CHOOSE_BLOCK_REQUEST_CODE = 1001;
 

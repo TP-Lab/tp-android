@@ -16,6 +16,16 @@
         android:layout_height="0dp"
         android:layout_weight="1.0"
         android:orientation="vertical">
+        <TextView
+            android:id="@+id/go_browser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="6dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:text="@string/moac_browser"
+            android:textColor="@color/common_blue"
+            android:textSize="@dimen/text_size_15" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"

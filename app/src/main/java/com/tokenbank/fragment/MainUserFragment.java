@@ -13,6 +13,8 @@ import com.tokenbank.activity.LanguageActivity;
 import com.tokenbank.activity.ManageWalletActivity;
 import com.tokenbank.activity.TransactionRecordActivity;
 import com.tokenbank.activity.WebBrowserActivity;
+import com.tokenbank.base.TBController;
+import com.tokenbank.base.WalletInfoManager;
 import com.tokenbank.config.Constant;
 
 
@@ -61,8 +63,13 @@ public class MainUserFragment extends BaseFragment implements View.OnClickListen
             mLayoutManageWallet.setClickable(false);
             ManageWalletActivity.startModifyWalletActivity(getActivity());
         } else if (view == mLayoutRecordTransaction) {
-            mLayoutRecordTransaction.setClickable(false);
-            TransactionRecordActivity.startTransactionRecordActivity(getActivity(), 2);
+            WalletInfoManager.WData wallet = WalletInfoManager.getInstance().getCurrentWallet();
+            if (wallet.type == TBController.MOAC_INDEX) {
+                WebBrowserActivity.startWebBrowserActivity(getActivity(), getString(R.string.moac_browser), Constant.MOAC_BROWSER + wallet.waddress);
+            } else {
+                mLayoutRecordTransaction.setClickable(false);
+                TransactionRecordActivity.startTransactionRecordActivity(getActivity(), 2);
+            }
         } else if (view == mLayoutNotification) {
             mLayoutNotification.setClickable(false);
             TransactionRecordActivity.startTransactionRecordActivity(getActivity(), 1);

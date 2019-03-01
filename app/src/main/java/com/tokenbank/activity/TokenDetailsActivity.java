@@ -21,6 +21,7 @@ import com.tokenbank.base.BaseWalletUtil;
 import com.tokenbank.base.WalletInfoManager;
 import com.tokenbank.base.WCallback;
 import com.tokenbank.base.TBController;
+import com.tokenbank.config.Constant;
 import com.tokenbank.utils.GsonUtil;
 import com.tokenbank.utils.TLog;
 import com.tokenbank.utils.Util;
@@ -48,6 +49,7 @@ public class TokenDetailsActivity extends BaseActivity implements BaseRecycleAda
     private WalletInfoManager.WData mWalletData;
     private long mBlockChainId;
     private BaseWalletUtil mWalletUtil;
+    private TextView mBrowser;
     private String mUnit;
 
     @Override
@@ -65,6 +67,8 @@ public class TokenDetailsActivity extends BaseActivity implements BaseRecycleAda
                     mContractAddress, 0.0f, mItem.getString("bl_symbol", ""), mItem.getInt("decimal", 18), 0);
         } else if (v == mLayoutReceive) {
             TokenReceiveActivity.startTokenReceiveActivity(TokenDetailsActivity.this, mItem.getString("bl_symbol", ""));
+        } else if (v == mBrowser) {
+            WebBrowserActivity.startWebBrowserActivity(TokenDetailsActivity.this, getString(R.string.moac_browser), Constant.MOAC_BROWSER + mWalletData.waddress);
         }
     }
 
@@ -143,6 +147,11 @@ public class TokenDetailsActivity extends BaseActivity implements BaseRecycleAda
 
         mLayoutTranster = findViewById(R.id.wallet_action_transfer);
         mLayoutTranster.setOnClickListener(this);
+        mBrowser = findViewById(R.id.go_browser);
+        if(mWalletData.type != TBController.MOAC_INDEX) {
+            mBrowser.setVisibility(View.GONE);
+        }
+        mBrowser.setOnClickListener(this);
         mLayoutReceive = findViewById(R.id.wallet_action_receive);
         mLayoutReceive.setOnClickListener(this);
 
