@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 
+import com.android.jccdex.app.JTWalletManager;
 import com.tokenbank.activity.BaseActivity;
 import com.tokenbank.base.BlockChainData;
 import com.tokenbank.base.JSUtil;
@@ -32,6 +33,7 @@ public class TApplication extends Application {
         TBController.getInstance().init();
         WalletInfoManager.getInstance().init();
         JSUtil.getInstance().init();
+        JTWalletManager.getInstance().init(this);
     }
 
     public void addActivity(BaseActivity activity) {

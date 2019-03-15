@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.jccdex.app.JTWalletManager;
+import com.android.jccdex.app.base.JCallback;
+import com.android.jccdex.app.util.JCCJson;
 import com.tokenbank.R;
 import com.tokenbank.base.BaseWalletUtil;
 import com.tokenbank.base.TBController;
@@ -315,21 +318,29 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
 
     private void signedSwtTransaction(double fee, long sequence, String senderAddress, String receiverAddress,
                                       double value, String seed, String currency, String issuer) {
-        GsonUtil swtSigned = new GsonUtil("{}");
-        swtSigned.putDouble("fee", fee);
-        swtSigned.putDouble("value", value);
-        swtSigned.putLong("sequence", sequence);
-        swtSigned.putString("account", senderAddress);
-        swtSigned.putString("destination", receiverAddress);
-        swtSigned.putString("currency", currency);
-        swtSigned.putString("seed", seed);
-        swtSigned.putString("issuer", issuer);
-        mWalletUtil.signedTransaction(swtSigned, new WCallback() {
+        GsonUtil transaction = new GsonUtil("{}");
+        transaction.putInt("Flags", 0);
+        transaction.putString("Account", senderAddress);
+        transaction.putString("TransactionType", "Payment");
+        transaction.putDouble("Fee", fee);
+        transaction.putLong("Sequence", sequence);
+        transaction.putString("Destination", receiverAddress);
+        if (currency.toUpperCase() == "SWT") {
+            transaction.putDouble("Amount", value);
+        } else {
+            GsonUtil amount = new GsonUtil("{}");
+            amount.putDouble("value", value);
+            amount.putString("issuer", issuer);
+            amount.putString("currency", currency.toUpperCase());
+            transaction.put("Amount", amount);
+        }
+
+        JTWalletManager.getInstance().sign(transaction.getObj(), seed, JTWalletManager.SWTC_CHAIN, new JCallback() {
             @Override
-            public void onGetWResult(int ret, GsonUtil extra) {
-                if (ret == 0) {
-                    final String rawTransaction = extra.getObject("signedTransaction", "{}").getString("rawTransaction", "");
-                    sendSignedTransaction(rawTransaction);
+            public void completion(JCCJson json) {
+                String signature = json.getString("signature");
+                if (signature != null) {
+                    sendSignedTransaction(signature);
                 } else {
                     resetTranferBtn();
                     ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 6);

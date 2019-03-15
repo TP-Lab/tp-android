@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.tokenbank"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -20,6 +20,9 @@ android {
     }
 }
 
+repositories {
+    maven { url 'https://jitpack.io' }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -36,4 +39,5 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'org.greenrobot:eventbus:3.0.0'
+    implementation 'com.github.JCCDex:jcc-android-base-lib:0.1.3'
 }

@@ -3,6 +3,9 @@ package com.tokenbank.base;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.android.jccdex.app.JTWalletManager;
+import com.android.jccdex.app.base.JCallback;
+import com.android.jccdex.app.util.JCCJson;
 import com.tokenbank.config.Constant;
 import com.tokenbank.net.api.GetWalletTokenList;
 import com.tokenbank.net.api.jtrequest.JTTransactionDetailsRequest;
@@ -23,30 +26,43 @@ public class SWTWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void createWallet(final String walletName, final String walletPassword, int blockType, final WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-        GsonUtil json = new GsonUtil("{}");
-        json.putInt("blockType", blockType);
-        JSUtil.getInstance().callJS("createJtWallet", json, callback);
+    public void createWallet(final String walletName, final String walletPassword, final int blockType, final WCallback callback) {
+        JTWalletManager.getInstance().createWallet(JTWalletManager.SWTC_CHAIN, new JCallback() {
+            @Override
+            public void completion(JCCJson json) {
+                String address = json.getString("address");
+                String secret = json.getString("secret");
+                if(address != null && secret != null) {
+                    GsonUtil gsonUtil = new GsonUtil("{}");
+                    gsonUtil.putInt("blockType", blockType);
+                    gsonUtil.putString("privatekey", secret);
+                    gsonUtil.putString("address", address);
+                    callback.onGetWResult(0, gsonUtil);
+                } else {
+                    callback.onGetWResult(-1, null);
+                }
+            }
+        });
     }
 
     @Override
-    public void importWallet(String privateKey, int blockType, int type, WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-        GsonUtil json = new GsonUtil("{}");
-        json.putInt("blockType", blockType);
-
-        if (type == 1) {
-            json.putString("words", privateKey);
-            JSUtil.getInstance().callJS("importWalletWithWords", json, callback);
-        } else if (type == 2) {
-            json.putString("privateKey", privateKey);
-            JSUtil.getInstance().callJS("retrieveWalletFromPk", json, callback);
-        }
+    public void importWallet(String privateKey,final int blockType, int type,final WCallback callback) {
+        JTWalletManager.getInstance().importSecret(privateKey, JTWalletManager.SWTC_CHAIN, new JCallback() {
+            @Override
+            public void completion(JCCJson json) {
+                String secret = json.getString("secret");
+                String address = json.getString("address");
+                if(address != null && secret != null) {
+                    GsonUtil gsonUtil = new GsonUtil("{}");
+                    gsonUtil.putInt("blockType", blockType);
+                    gsonUtil.putString("privatekey", secret);
+                    gsonUtil.putString("address", address);
+                    callback.onGetWResult(0, gsonUtil);
+                } else {
+                    callback.onGetWResult(-1, null);
+                }
+            }
+        });
     }
 
     @Override

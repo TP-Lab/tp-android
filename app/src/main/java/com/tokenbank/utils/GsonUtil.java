@@ -1,6 +1,7 @@
 package com.tokenbank.utils;
 
 import android.os.Build;
+import android.text.GetChars;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
@@ -30,6 +31,10 @@ public class GsonUtil implements Serializable {
         }
 
         return "";
+    }
+
+    public JSONObject getObj() {
+        return obj;
     }
 
     private void writeObject(ObjectOutputStream out) throws IOException {
