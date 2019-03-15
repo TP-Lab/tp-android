@@ -1,7 +1,6 @@
 package com.tokenbank.utils;
 
 import android.os.Build;
-import android.text.GetChars;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
