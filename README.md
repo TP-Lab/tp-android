@@ -11,7 +11,7 @@ This is a wallet tool based on [TokenPocket](https://www.mytokenpocket.vip) earl
 
 If you wanna donate token, we'll appreciate it.
 
-如果您想捐赠Token，我们将非常感激。
+如果您想捐赠Token，我们将非常感谢。
 
 Official Address:
 
