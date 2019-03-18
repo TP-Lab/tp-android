@@ -12,12 +12,12 @@ public class TestWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void createWallet(String walletName,  String walletPassword, int blockType, WCallback callback) {
+    public void createWallet(WCallback callback) {
 
     }
 
     @Override
-    public void importWallet(String privateKey, int blockType, int type, WCallback callback) {
+    public void importWallet(String privateKey, int type, WCallback callback) {
 
     }
 

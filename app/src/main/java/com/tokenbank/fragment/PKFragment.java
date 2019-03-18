@@ -152,7 +152,7 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
         String walletName = mEdtWalletName.getText().toString();
         boolean readedTerms = mImgboxTerms.isSelected();
         if (TextUtils.isEmpty(walletName)) {
-            ViewUtil.showSysAlertDialog(getActivity(),  getString(R.string.enter_hint_wallet_name), "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.enter_hint_wallet_name), "OK");
             return false;
         }
         if (TextUtils.isEmpty(walletPrivateKey)) {
@@ -183,7 +183,7 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
             return false;
         }
         if (!readedTerms) {
-            ViewUtil.showSysAlertDialog(getActivity(),  getString(R.string.dialog_content_no_read_service), "OK");
+            ViewUtil.showSysAlertDialog(getActivity(), getString(R.string.dialog_content_no_read_service), "OK");
             return false;
         }
         return true;
@@ -192,11 +192,12 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
     private void importWallet() {
         final String privateKey = mEdtWalletPrivateKey.getText().toString();
         final String password = mEdtWalletPwd.getText().toString();
-        walletblockchain.importWallet(privateKey, (int) mBlock.hid, 2, new WCallback() {
+        walletblockchain.importWallet(privateKey, 2, new WCallback() {
             @Override
             public void onGetWResult(int ret, GsonUtil extra) {
                 if (ret == 0) {
                     String address = extra.getString("address", "");
+                    int blockType = (int) mBlock.hid;
                     if (isWalletExsit(address)) {
                         if (flag == 1) {
                             //导入钱包
@@ -209,10 +210,10 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
                         }
 
                     }
-                    uploadWallet(mEdtWalletName.getText().toString(), extra.getInt("blockType", -1), FileUtil.getStringContent(password),
+                    uploadWallet(mEdtWalletName.getText().toString(), blockType, FileUtil.getStringContent(password),
                             privateKey, address);
                 } else {
-                    ToastUtil.toast(getActivity(),  getString(R.string.toast_import_wallet_failed));
+                    ToastUtil.toast(getActivity(), getString(R.string.toast_import_wallet_failed));
                 }
             }
         });

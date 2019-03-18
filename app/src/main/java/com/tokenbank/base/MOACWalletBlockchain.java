@@ -19,7 +19,7 @@ public class MOACWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void createWallet(String walletName, String walletPassword, final int blockType, final WCallback callback) {
+    public void createWallet(final WCallback callback) {
 
         MoacWallet.getInstance().createWallet(new JCallback() {
             @Override
@@ -29,7 +29,6 @@ public class MOACWalletBlockchain implements BaseWalletUtil {
                 String words = json.getString("words");
                 if (address != null && secret != null && words != null) {
                     GsonUtil gsonUtil = new GsonUtil(json.toString());
-                    gsonUtil.putInt("blockType", blockType);
                     callback.onGetWResult(0, gsonUtil);
                 } else {
                     callback.onGetWResult(-1, null);
@@ -39,7 +38,7 @@ public class MOACWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void importWallet(String privateKey, final int blockType, int type, final WCallback callback) {
+    public void importWallet(String privateKey, int type, final WCallback callback) {
         if (type == 1) {
             MoacWallet.getInstance().importWords(privateKey, new JCallback() {
                 @Override
@@ -48,7 +47,6 @@ public class MOACWalletBlockchain implements BaseWalletUtil {
                     String secret = json.getString("secret");
                     if (address != null && secret != null) {
                         GsonUtil gsonUtil = new GsonUtil(json.toString());
-                        gsonUtil.putInt("blockType", blockType);
                         callback.onGetWResult(0, gsonUtil);
                     } else {
                         callback.onGetWResult(-1, null);
@@ -63,7 +61,6 @@ public class MOACWalletBlockchain implements BaseWalletUtil {
                     String secret = json.getString("secret");
                     if (address != null && secret != null) {
                         GsonUtil gsonUtil = new GsonUtil(json.toString());
-                        gsonUtil.putInt("blockType", blockType);
                         callback.onGetWResult(0, gsonUtil);
                     } else {
                         callback.onGetWResult(-1, null);

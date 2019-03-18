@@ -26,7 +26,7 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void createWallet(final String walletName, final String walletPassword, final int blockType, final WCallback callback) {
+    public void createWallet(final WCallback callback) {
 
         EthereumWallet.getInstance().createWallet(new JCallback() {
             @Override
@@ -36,7 +36,6 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
                 String words = json.getString("words");
                 if (address != null && secret != null && words != null) {
                     GsonUtil gsonUtil = new GsonUtil(json.toString());
-                    gsonUtil.putInt("blockType", blockType);
                     callback.onGetWResult(0, gsonUtil);
                 } else {
                     callback.onGetWResult(-1, null);
@@ -46,7 +45,7 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void importWallet(String privateKey, final int blockType, int type, final WCallback callback) {
+    public void importWallet(String privateKey, int type, final WCallback callback) {
         if (type == 1) {
             EthereumWallet.getInstance().importWords(privateKey, new JCallback() {
                 @Override
@@ -55,7 +54,6 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
                     String secret = json.getString("secret");
                     if (address != null && secret != null) {
                         GsonUtil gsonUtil = new GsonUtil(json.toString());
-                        gsonUtil.putInt("blockType", blockType);
                         callback.onGetWResult(0, gsonUtil);
                     } else {
                         callback.onGetWResult(-1, null);
@@ -70,7 +68,6 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
                     String secret = json.getString("secret");
                     if (address != null && secret != null) {
                         GsonUtil gsonUtil = new GsonUtil(json.toString());
-                        gsonUtil.putInt("blockType", blockType);
                         callback.onGetWResult(0, gsonUtil);
                     } else {
                         callback.onGetWResult(-1, null);
