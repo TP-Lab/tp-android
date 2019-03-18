@@ -60,7 +60,7 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constant.CHOOSE_BLOCK_REQUEST_CODE) {
-                if(data == null) {
+                if (data == null) {
                     this.finish();
                     return;
                 }
@@ -68,9 +68,9 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
                 if (mBlock == null) {
                     this.finish();
                 } else {
-                    if (mBlock.hid == TBController.ETH_INDEX) {
+                    if (mBlock.hid == TBController.ETH_INDEX || mBlock.hid == TBController.MOAC_INDEX) {
                         initView();
-                    } else if (mBlock.hid == TBController.SWT_INDEX || mBlock.hid == TBController.MOAC_INDEX) {
+                    } else if (mBlock.hid == TBController.SWT_INDEX) {
                         Intent intent = new Intent();
                         intent.putExtra(PKFragment.BLOCK, mBlock);
                         FragmentContainerActivity.start(ImportWalletActivity.this,

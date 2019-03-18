@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.android.jccdex.app.JTWalletManager;
 import com.android.jccdex.app.base.JCallback;
+import com.android.jccdex.app.jingtum.JingtumWallet;
 import com.android.jccdex.app.util.JCCJson;
 import com.tokenbank.R;
 import com.tokenbank.base.BaseWalletUtil;
@@ -32,7 +32,6 @@ import com.tokenbank.utils.ViewUtil;
 import com.tokenbank.view.TitleBar;
 
 import java.text.DecimalFormat;
-
 
 
 public class TokenTransferActivity extends BaseActivity implements View.OnClickListener {
@@ -184,7 +183,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                     }
                 });
                 break;
-            case  R.id.tv_token_name:
+            case R.id.tv_token_name:
                 Intent intent = new Intent(TokenTransferActivity.this, ChooseTokenTransferActivity.class);
                 TokenTransferActivity.this.startActivityForResult(intent, 0);
         }
@@ -212,7 +211,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
             ethTokenTransfer();
         } else if (mBlockChain == TBController.SWT_INDEX) {
             swtTokenTransfer();
-        } else if(mBlockChain == TBController.MOAC_INDEX ){
+        } else if (mBlockChain == TBController.MOAC_INDEX) {
             moacTokenTransfer();
         }
     }
@@ -249,7 +248,6 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
     }
 
 
-
     private void signedEthTransaction(String privateKey, String abi, String contactAddress, String senderAddress, String receiverAddress,
                                       double tokencount, double gas, double gasPrice) {
         GsonUtil ethSigned = new GsonUtil("{}");
@@ -267,7 +265,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
             @Override
             public void onGetWResult(int ret, GsonUtil extra) {
                 if (ret == 0) {
-                    final String rawTransaction = extra.getObject("signedTransaction", "{}").getString("rawTransaction", "");
+                    final String rawTransaction = extra.getString("rawTransaction", "");
                     sendSignedTransaction(rawTransaction);
                 } else {
                     resetTranferBtn();
@@ -335,11 +333,15 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
             transaction.put("Amount", amount);
         }
 
-        JTWalletManager.getInstance().sign(transaction.getObj(), seed, JTWalletManager.SWTC_CHAIN, new JCallback() {
+        GsonUtil data = new GsonUtil("{}");
+        data.put("transaction", transaction);
+        data.putString("secret", seed);
+
+        mWalletUtil.signedTransaction(data, new WCallback() {
             @Override
-            public void completion(JCCJson json) {
-                String signature = json.getString("signature");
-                if (signature != null) {
+            public void onGetWResult(int ret, GsonUtil extra) {
+                if (ret == 0) {
+                    String signature = extra.getString("signature", "");
                     sendSignedTransaction(signature);
                 } else {
                     resetTranferBtn();
@@ -362,7 +364,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                 if (ret == 0) {
                     resetTranferBtn();
                     ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_success));
-                    if(mBlockChain == TBController.ETH_INDEX) {
+                    if (mBlockChain == TBController.ETH_INDEX) {
 //                        new RequestPresenter().loadData(new TransactionRecordRequest());
                     }
 
@@ -395,13 +397,13 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
         }
 
         if (!mWalletUtil.checkWalletAddress(address)) {
-            ViewUtil.showSysAlertDialog(this,  getString(R.string.dialog_content_address_format_incorrect), "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_address_format_incorrect), "OK");
             return false;
         }
 
 
         if ((TextUtils.isEmpty(num) || Util.parseDouble(num) <= 0.0f)) {
-            ViewUtil.showSysAlertDialog(this,  getString(R.string.dialog_content_amount_incorrect), "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_amount_incorrect), "OK");
             return false;
         }
         return true;

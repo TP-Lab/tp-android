@@ -3,6 +3,9 @@ package com.tokenbank.base;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.android.jccdex.app.base.JCallback;
+import com.android.jccdex.app.ethereum.EthereumWallet;
+import com.android.jccdex.app.util.JCCJson;
 import com.tokenbank.config.Constant;
 import com.tokenbank.dialog.EthGasSettignDialog;
 import com.tokenbank.net.api.GetTransactionDetailsRequest;
@@ -13,81 +16,117 @@ import com.tokenbank.utils.GsonUtil;
 import com.tokenbank.utils.Util;
 
 
-
 public class ETHWalletBlockchain implements BaseWalletUtil {
 
     private final static String TAG = "ETHWalletBlockchain";
 
     @Override
     public void init() {
+
     }
 
     @Override
-    public void createWallet(final String walletName, final String walletPassword, int blockType, final WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-        GsonUtil json = new GsonUtil("{}");
-        json.putInt("blockType", blockType);
-        JSUtil.getInstance().callJS("createWalletWithWord", json, callback);
+    public void createWallet(final String walletName, final String walletPassword, final int blockType, final WCallback callback) {
+
+        EthereumWallet.getInstance().createWallet(new JCallback() {
+            @Override
+            public void completion(JCCJson json) {
+                String address = json.getString("address");
+                String secret = json.getString("secret");
+                String words = json.getString("words");
+                if (address != null && secret != null && words != null) {
+                    GsonUtil gsonUtil = new GsonUtil(json.toString());
+                    gsonUtil.putInt("blockType", blockType);
+                    callback.onGetWResult(0, gsonUtil);
+                } else {
+                    callback.onGetWResult(-1, null);
+                }
+            }
+        });
     }
 
     @Override
-    public void importWallet(String privateKey, int blockType, int type, WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-        GsonUtil json = new GsonUtil("{}");
-        json.putInt("blockType", blockType);
-
+    public void importWallet(String privateKey, final int blockType, int type, final WCallback callback) {
         if (type == 1) {
-            json.putString("words", privateKey);
-            JSUtil.getInstance().callJS("importWalletWithWords", json, callback);
+            EthereumWallet.getInstance().importWords(privateKey, new JCallback() {
+                @Override
+                public void completion(JCCJson json) {
+                    String address = json.getString("address");
+                    String secret = json.getString("secret");
+                    if (address != null && secret != null) {
+                        GsonUtil gsonUtil = new GsonUtil(json.toString());
+                        gsonUtil.putInt("blockType", blockType);
+                        callback.onGetWResult(0, gsonUtil);
+                    } else {
+                        callback.onGetWResult(-1, null);
+                    }
+                }
+            });
         } else if (type == 2) {
-            json.putString("privateKey", privateKey);
-            JSUtil.getInstance().callJS("importWalletWithPK", json, callback);
+            EthereumWallet.getInstance().importSecret(privateKey, new JCallback() {
+                @Override
+                public void completion(JCCJson json) {
+                    String address = json.getString("address");
+                    String secret = json.getString("secret");
+                    if (address != null && secret != null) {
+                        GsonUtil gsonUtil = new GsonUtil(json.toString());
+                        gsonUtil.putInt("blockType", blockType);
+                        callback.onGetWResult(0, gsonUtil);
+                    } else {
+                        callback.onGetWResult(-1, null);
+                    }
+                }
+            });
         }
     }
 
     @Override
-    public void toIban(String ethAddress, WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-
-        GsonUtil json = new GsonUtil("{}");
-        json.putString("ethAddress", ethAddress);
-        JSUtil.getInstance().callJS("toIbanAddress", json, callback);
+    public void toIban(String ethAddress, final WCallback callback) {
+        EthereumWallet.getInstance().toIban(ethAddress, new JCallback() {
+            @Override
+            public void completion(JCCJson json) {
+                String iban = json.getString("iban");
+                if (iban == null) {
+                    callback.onGetWResult(-1, null);
+                } else {
+                    GsonUtil gsonUtil = new GsonUtil(json.toString());
+                    callback.onGetWResult(0, gsonUtil);
+                }
+            }
+        });
     }
 
     @Override
-    public void fromIban(String ibanAddress, WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-
-        GsonUtil json = new GsonUtil("{}");
-        json.putString("ibanAddress", ibanAddress);
-        JSUtil.getInstance().callJS("toEthAddress", json, callback);
+    public void fromIban(String ibanAddress, final WCallback callback) {
+        EthereumWallet.getInstance().fromIban(ibanAddress, new JCallback() {
+            @Override
+            public void completion(JCCJson json) {
+                String address = json.getString("address");
+                if (address == null) {
+                    callback.onGetWResult(-1, null);
+                } else {
+                    GsonUtil gsonUtil = new GsonUtil(json.toString());
+                    callback.onGetWResult(0, gsonUtil);
+                }
+            }
+        });
     }
 
     //gasPrice 以gwei为单位
     @Override
     public void gasPrice(final WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
 
-        GsonUtil json = new GsonUtil("{}");
-        JSUtil.getInstance().callJS("getGasPrice", json, new WCallback() {
+        EthereumWallet.getInstance().gasPrice(new JCallback() {
             @Override
-            public void onGetWResult(int ret, GsonUtil extra) {
+            public void completion(JCCJson json) {
+                String gas = json.getString("gasPrice");
+                if (gas == null) {
+                    gas = "8000000000";
+                }
                 double gasPrice = 8.0f;
-                if (ret == 0) {
-                    double wei = Util.parseDouble(extra.getString("gasPrice", "8000000000"));
-                    if (wei > 0) {
-                        gasPrice = wei / 1000000000.0f;
-                    }
+                double wei = Util.parseDouble(gas);
+                if (wei > 0) {
+                    gasPrice = wei / 1000000000.0f;
                 }
                 GsonUtil gasPriceJson = new GsonUtil("{}");
                 gasPriceJson.putDouble("gasPrice", gasPrice);
@@ -97,14 +136,10 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void signedTransaction(GsonUtil data, WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
+    public void signedTransaction(GsonUtil data, final WCallback callback) {
 
-        GsonUtil json = new GsonUtil("{}");
         GsonUtil transactionToSign = new GsonUtil("{}");
-        json.putString("privateKey", data.getString("privateKey", ""));
+        String secret = data.getString("privateKey", "");
         String abi = data.getString("abi", "");
         if (TextUtils.isEmpty(abi)) {
             transactionToSign.putString("from", data.getString("senderAddress", ""));
@@ -123,18 +158,32 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
             transactionToSign.putString("toAddress", data.getString("receiverAddress", ""));
         }
 
-        json.put("transactionToSign", transactionToSign);
-        JSUtil.getInstance().callJS("accountSignTransaction", json, callback);
+        EthereumWallet.getInstance().sign(transactionToSign.getObj(), secret, new JCallback() {
+            @Override
+            public void completion(JCCJson json) {
+                String rawTransaction = json.getString("rawTransaction");
+                if (rawTransaction == null) {
+                    callback.onGetWResult(-1, null);
+                } else {
+                    callback.onGetWResult(0, new GsonUtil(json.toString()));
+                }
+            }
+        });
     }
 
     @Override
-    public void sendSignedTransaction(String rawTransaction, WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-        GsonUtil json = new GsonUtil("{}");
-        json.putString("rawTransaction", rawTransaction);
-        JSUtil.getInstance().callJS("sendTransaction", json, callback);
+    public void sendSignedTransaction(String rawTransaction, final WCallback callback) {
+        EthereumWallet.getInstance().sendSignedTransaction(rawTransaction, new JCallback() {
+            @Override
+            public void completion(JCCJson json) {
+                String hash = json.getString("hash");
+                if (hash == null) {
+                    callback.onGetWResult(-1, null);
+                } else {
+                    callback.onGetWResult(0, null);
+                }
+            }
+        });
     }
 
     @Override
@@ -157,7 +206,7 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
             @Override
             public void onGetWResult(int ret, GsonUtil extra) {
                 if (ret == 0) {
-                    String ibanAddress = extra.getString("ibanAddress", "");
+                    String ibanAddress = extra.getString("iban", "");
                     if (TextUtils.isEmpty(ibanAddress)) {
                         callback.onGetWResult(-1, address);
                     } else {
@@ -253,7 +302,7 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
             public void onGetWResult(int ret, GsonUtil extra) {
                 GsonUtil addressJson = new GsonUtil("{}");
                 if (ret == 0) {
-                    addressJson.putString("receive_address", extra.getString("ethAddress", ""));
+                    addressJson.putString("receive_address", extra.getString("address", ""));
                 } else {
                     addressJson.putString("receive_address", "");
                 }
@@ -337,28 +386,25 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
 
     @Override
     public void queryBalance(String address, int type, final WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-        GsonUtil json = new GsonUtil("{}");
-        json.putString("address", address);
-        JSUtil.getInstance().callJS("getBalance", json, new WCallback() {
+        EthereumWallet.getInstance().getBalance(address, new JCallback() {
             @Override
-            public void onGetWResult(int ret, GsonUtil extra) {
-                if (ret == 0) {
-                    GsonUtil formatData = new GsonUtil("{}");
-                    GsonUtil arrays = new GsonUtil("[]");
-                    GsonUtil data = new GsonUtil("{}");
-                    data.putLong("blockchain_id", Long.parseLong("" + TBController.ETH_INDEX));
-                    data.putString("icon_url", Constant.ETHER_ICON);
-                    data.putString("bl_symbol", "ETH");
-                    data.putInt("decimal", 18);
-                    data.putString("balance", extra.getString("balance", "0"));
-                    data.putString("asset", "0");
-                    arrays.put(data);
-                    formatData.put("data", arrays);
-                    callback.onGetWResult(ret, formatData);
+            public void completion(JCCJson json) {
+                String balance = json.getString("balance");
+                if (balance == null) {
+                    balance = "0";
                 }
+                GsonUtil formatData = new GsonUtil("{}");
+                GsonUtil arrays = new GsonUtil("[]");
+                GsonUtil data = new GsonUtil("{}");
+                data.putLong("blockchain_id", Long.parseLong("" + TBController.ETH_INDEX));
+                data.putString("icon_url", Constant.ETHER_ICON);
+                data.putString("bl_symbol", "ETH");
+                data.putInt("decimal", 18);
+                data.putString("balance", balance);
+                data.putString("asset", "0");
+                arrays.put(data);
+                formatData.put("data", arrays);
+                callback.onGetWResult(0, formatData);
             }
         });
     }
@@ -372,9 +418,5 @@ public class ETHWalletBlockchain implements BaseWalletUtil {
     public GsonUtil loadTransferTokens(Context context) {
         String data = FileUtil.getConfigFile(context, "ethTokens.json");
         return new GsonUtil(data);
-    }
-
-    private boolean checkInit(WCallback callback) {
-        return JSUtil.getInstance().checkInit(callback);
     }
 }

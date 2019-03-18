@@ -1,7 +1,6 @@
 package com.tokenbank.config;
 
 
-
 public class Constant {
 
     public final static String wallet_prefs_prefix = "wallet_pref_";
@@ -26,9 +25,6 @@ public class Constant {
     public final static String sys_prefs = "sys_prefs";
     public final static String init_keys = "init_keys";
 
-    //本地web3文件地址
-    public final static String base_web3_url = "file:///android_asset/web3.html";
-
     //帮助
     public final static String help_url = "";
 
@@ -46,7 +42,7 @@ public class Constant {
 
     public final static String ETHPLORER_SERVER = "http://api.ethplorer.io";
 
-    public final static  String ETHERSCAN_SERVER = "https://api.etherscan.io";
+    public final static String ETHERSCAN_SERVER = "https://api.etherscan.io";
 
     public final static String ETHERSCAN_API_TOKEN = "";
 

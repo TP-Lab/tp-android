@@ -206,7 +206,7 @@ public class CreateWalletActivity extends BaseActivity implements View.OnClickLi
                 if (ret == 0) {
                     TLog.d(TAG, "创建钱包成功");
                     String hash = FileUtil.getStringContent(walletPwd);
-                    String privateKey = extra.getString("privatekey", "");
+                    String privateKey = extra.getString("secret", "");
                     int walletType = extra.getInt("blockType", -1);
                     String words = extra.getString("words", "");
                     String address = extra.getString("address", "");

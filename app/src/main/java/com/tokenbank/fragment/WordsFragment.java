@@ -179,7 +179,7 @@ public class WordsFragment extends BaseFragment implements View.OnClickListener 
             public void onGetWResult(int ret, GsonUtil extra) {
                 if (ret == 0) {
                     String address = extra.getString("address", "");
-                    String privateKey = extra.getString("privateKey", "");
+                    String privateKey = extra.getString("secret", "");
                     if (isWalletExsit(address)) {
                         if (flag == 1) {
                             //导入钱包

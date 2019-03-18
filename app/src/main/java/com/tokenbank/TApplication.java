@@ -4,10 +4,11 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 
-import com.android.jccdex.app.JTWalletManager;
+import com.android.jccdex.app.ethereum.EthereumWallet;
+import com.android.jccdex.app.jingtum.JingtumWallet;
+import com.android.jccdex.app.moac.MoacWallet;
 import com.tokenbank.activity.BaseActivity;
 import com.tokenbank.base.BlockChainData;
-import com.tokenbank.base.JSUtil;
 import com.tokenbank.base.WalletInfoManager;
 import com.tokenbank.base.TBController;
 import com.tokenbank.config.AppConfig;
@@ -32,8 +33,11 @@ public class TApplication extends Application {
         BlockChainData.getInstance().init();
         TBController.getInstance().init();
         WalletInfoManager.getInstance().init();
-        JSUtil.getInstance().init();
-        JTWalletManager.getInstance().init(this);
+        JingtumWallet.getInstance().init(this);
+        EthereumWallet.getInstance().init(this);
+        EthereumWallet.getInstance().initWeb3Provider("https://eth626892d.jccdex.cn");
+        MoacWallet.getInstance().init(this);
+        MoacWallet.getInstance().initChain3Provider("https://moac1ma17f1.jccdex.cn");
     }
 
     public void addActivity(BaseActivity activity) {
@@ -50,7 +54,7 @@ public class TApplication extends Application {
 
     public void clearActivity() {
         for (BaseActivity activity : mActivities
-                ) {
+        ) {
             if (!activity.isFinishing()) {
                 activity.finish();
             }

@@ -31,7 +31,6 @@ import com.tokenbank.adapter.BaseRecycleAdapter;
 import com.tokenbank.adapter.BaseRecyclerViewHolder;
 import com.tokenbank.base.BlockChainData;
 import com.tokenbank.base.BaseWalletUtil;
-import com.tokenbank.base.JSUtil;
 import com.tokenbank.base.TBController;
 import com.tokenbank.base.WCallback;
 import com.tokenbank.base.WalletInfoManager;
@@ -258,7 +257,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
             TokenTransferActivity.startTokenTransferActivity(getContext(), ibanAddress,
                     "", num, token, 0, 0);
         } else {
-            ViewUtil.showSysAlertDialog(getContext(), getString(R.string.dialog_title_reminder),  getString(R.string.dialog_content_switch_jintum_wallet),
+            ViewUtil.showSysAlertDialog(getContext(), getString(R.string.dialog_title_reminder), getString(R.string.dialog_content_switch_jintum_wallet),
                     getString(R.string.dialog_btn_not_switch), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -505,7 +504,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
                             }
                         });
                     }
-                }, JSUtil.getInstance().checkInit(null) ? 0 : 2000);
+                }, 2000);
             }
 
         }
