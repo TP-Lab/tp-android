@@ -109,6 +109,9 @@
         <activity
             android:name=".activity.LanguageActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.EosTokenTransferActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tokenbank.R;
+import com.tokenbank.base.JSUtil;
 import com.tokenbank.base.WalletInfoManager;
 import com.tokenbank.config.AppConfig;
 import com.tokenbank.utils.DeviceUtil;

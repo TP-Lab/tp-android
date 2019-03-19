@@ -29,6 +29,16 @@
       "status": 0,
       "create_time": "2019-02-25T22:11:20Z",
       "symbol": "http://explorer.moac.io/img/new-logo.png"
+    },
+    {
+      "hid": 4,
+      "title": "EOS",
+      "desc": "EOS",
+      "default_token": "eos",
+      "url": "https://eos.io/",
+      "status": 0,
+      "create_time": "2019-02-25T22:11:20Z",
+      "symbol": "http://res.mobilecoinabcbene.nlren.cn/coinbene-upload/EOS.png"
     }
   ]
 }

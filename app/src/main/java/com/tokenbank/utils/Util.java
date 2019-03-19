@@ -218,4 +218,8 @@ public class Util {
             return 0.0f;
         }
     }
+
+    public static String getEosValue(String symbol, double value) {
+        return new BigDecimal(value).setScale(4, BigDecimal.ROUND_DOWN).toPlainString() + " " + symbol.toUpperCase();
+    }
 }

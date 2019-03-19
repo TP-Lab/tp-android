@@ -52,6 +52,8 @@ public class TokenDetailsActivity extends BaseActivity implements BaseRecycleAda
     private TextView mBrowser;
     private String mUnit;
 
+    private String chainType;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
