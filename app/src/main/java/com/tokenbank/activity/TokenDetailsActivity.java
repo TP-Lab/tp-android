@@ -52,6 +52,8 @@ public class TokenDetailsActivity extends BaseActivity implements BaseRecycleAda
     private TextView mBrowser;
     private String mUnit;
 
+    private String chainType;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,7 +150,7 @@ public class TokenDetailsActivity extends BaseActivity implements BaseRecycleAda
         mLayoutTranster = findViewById(R.id.wallet_action_transfer);
         mLayoutTranster.setOnClickListener(this);
         mBrowser = findViewById(R.id.go_browser);
-        if(mWalletData.type != TBController.MOAC_INDEX) {
+        if (mWalletData.type != TBController.MOAC_INDEX) {
             mBrowser.setVisibility(View.GONE);
         }
         mBrowser.setOnClickListener(this);

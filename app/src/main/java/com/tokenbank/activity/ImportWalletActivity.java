@@ -18,6 +18,7 @@ import com.tokenbank.base.BlockChainData;
 import com.tokenbank.base.TBController;
 import com.tokenbank.config.Constant;
 import com.tokenbank.fragment.BaseFragment;
+import com.tokenbank.fragment.EOSPKFragment;
 import com.tokenbank.fragment.PKFragment;
 import com.tokenbank.fragment.WordsFragment;
 import com.tokenbank.view.TitleBar;
@@ -76,6 +77,12 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
                         FragmentContainerActivity.start(ImportWalletActivity.this,
                                 PKFragment.class, intent);
                         this.finish();
+                    } else if (mBlock.hid == TBController.EOS_INDEX) {
+                        Intent intent = new Intent();
+                        intent.putExtra(EOSPKFragment.BLOCK, mBlock);
+                        FragmentContainerActivity.start(ImportWalletActivity.this,
+                                EOSPKFragment.class, intent);
+                        this.finish();
                     } else {
                         finish();
                     }
@@ -132,6 +139,7 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
         mTvWords.setTextColor(getResources().getColor(R.color.common_blue));
         mTvPrivateKey.setTextColor(getResources().getColor(R.color.common_black_fontcolor));
     }
+
 
     public static void startImportWalletActivity(Context context, int blockChainId) {
 

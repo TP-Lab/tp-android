@@ -24,6 +24,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.tokenbank.R;
+import com.tokenbank.activity.EosTokenTransferActivity;
 import com.tokenbank.activity.TokenDetailsActivity;
 import com.tokenbank.activity.TokenReceiveActivity;
 import com.tokenbank.activity.TokenTransferActivity;
@@ -41,6 +42,7 @@ import com.tokenbank.utils.DefaultItemDecoration;
 import com.tokenbank.utils.FileUtil;
 import com.tokenbank.utils.GsonUtil;
 import com.tokenbank.utils.NetUtil;
+import com.tokenbank.utils.TLog;
 import com.tokenbank.utils.ToastUtil;
 import com.tokenbank.utils.TokenImageLoader;
 import com.tokenbank.utils.Util;
@@ -167,8 +169,15 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
                 break;
             case R.id.wallet_action_transfer:
             case R.id.wallet_action_transfer1:
-                TokenTransferActivity.startTokenTransferActivity(getContext(), "", "", 0,
-                        mWalletUtil.getDefaultTokenSymbol(), mWalletUtil.getDefaultDecimal(), 0);
+                if (WalletInfoManager.getInstance().getWalletType() == TBController.EOS_INDEX) {
+                    TLog.d(TAG, "getWalletType = " + WalletInfoManager.getInstance().getWalletType());
+                    EosTokenTransferActivity.startTokenTransferActivity(getContext(), "", "eosio.token", 0,
+                            mWalletUtil.getDefaultTokenSymbol(), mWalletUtil.getDefaultDecimal());
+                } else {
+                    TokenTransferActivity.startTokenTransferActivity(getContext(), "", "", 0,
+                            mWalletUtil.getDefaultTokenSymbol(), mWalletUtil.getDefaultDecimal(), 0);
+                }
+
                 break;
             case R.id.wallet_action_receive:
             case R.id.wallet_action_receive1:
@@ -192,6 +201,8 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
                     } else if (scanResult.startsWith("jingtum")) {
                         //swt
                         handleSwtScanResult(scanResult);
+                    } else if (scanResult.startsWith("eos")) {
+                        handleEosScanResult(scanResult);
                     } else {
                         ToastUtil.toast(getContext(), getString(R.string.toast_scan_failure));
                     }
@@ -278,6 +289,47 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
                                     String ibanAddress = scanResult.substring(scanResult.indexOf("jingtum:") + 8, scanResult.indexOf("?"));
                                     TokenTransferActivity.startTokenTransferActivity(getContext(), ibanAddress,
                                             "", num, token, 0, 0);
+                                }
+                            }
+                        }
+                    });
+        }
+    }
+
+    private void handleEosScanResult(final String scanResult) {
+        if (!WalletInfoManager.getInstance().hasWallet(TBController.EOS_INDEX)) {
+            ToastUtil.toast(getContext(), getString(R.string.toast_no_jintum_wallet));
+            return;
+        }
+        if (WalletInfoManager.getInstance().getWalletType() == TBController.EOS_INDEX) {
+            int beginIndex = scanResult.indexOf("amount=") + 7;
+            double num = Util.parseDouble(scanResult.substring(beginIndex, scanResult.indexOf("&token")));
+            final String token = scanResult.substring(scanResult.indexOf("&token=") + 7);
+            String ibanAddress = scanResult.substring(scanResult.indexOf("eos:") + 4, scanResult.indexOf("?"));
+            EosTokenTransferActivity.startTokenTransferActivity(getContext(), ibanAddress,
+                    "", num, token, 4);
+        } else {
+            ViewUtil.showSysAlertDialog(getContext(), getString(R.string.dialog_title_reminder), getString(R.string.dialog_content_switch_eos_wallet),
+                    getString(R.string.dialog_btn_not_switch), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }, getString(R.string.dialog_btn_switch), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (WalletInfoManager.getInstance().setCurrentWallet(TBController.EOS_INDEX)) {
+                                //跳转到eos转账
+                                if (!WalletInfoManager.getInstance().getCurrentWallet().isBaked) {
+                                    ViewUtil.showBakupDialog(getActivity(), WalletInfoManager.getInstance().getCurrentWallet(),
+                                            true, true, WalletInfoManager.getInstance().getCurrentWallet().whash);
+                                } else {
+                                    int beginIndex = scanResult.indexOf("amount=") + 7;
+                                    double num = Util.parseDouble(scanResult.substring(beginIndex, scanResult.indexOf("&token")));
+                                    final String token = scanResult.substring(scanResult.indexOf("&token=") + 7);
+                                    String ibanAddress = scanResult.substring(scanResult.indexOf("eos:") + 4, scanResult.indexOf("?"));
+                                    EosTokenTransferActivity.startTokenTransferActivity(getContext(), ibanAddress,
+                                            "", num, token, 4);
                                 }
                             }
                         }
@@ -490,7 +542,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
                         mSwipteRefreshLayout.setRefreshing(false);
                     }
                 });
-            } else if (type == TBController.ETH_INDEX || type == TBController.MOAC_INDEX) {
+            } else if (type == TBController.ETH_INDEX || type == TBController.MOAC_INDEX || type == TBController.EOS_INDEX) {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -535,7 +587,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
             TokenImageLoader.displayImage(data.getString("icon_url", ""), holder.mImgTokenIcon,
                     TokenImageLoader.imageOption(R.drawable.js_images_common_loading, R.drawable.js_images_asset_eth,
                             R.drawable.js_images_asset_eth));
-            holder.mTvTokenName.setText(data.getString("bl_symbol", "ETH"));
+            holder.mTvTokenName.setText(data.getString("bl_symbol", "EOS"));
             if (isAssetVisible) {
                 holder.mTvTokenCount.setText("" + mWalletUtil.getValue(data.getInt("decimal", 0), Util.parseDouble(data.getString("balance", "0"))));
             } else {

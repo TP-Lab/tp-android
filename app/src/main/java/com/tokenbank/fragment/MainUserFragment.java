@@ -66,6 +66,8 @@ public class MainUserFragment extends BaseFragment implements View.OnClickListen
             WalletInfoManager.WData wallet = WalletInfoManager.getInstance().getCurrentWallet();
             if (wallet.type == TBController.MOAC_INDEX) {
                 WebBrowserActivity.startWebBrowserActivity(getActivity(), getString(R.string.moac_browser), Constant.MOAC_BROWSER + wallet.waddress);
+            } else if (wallet.type == TBController.EOS_INDEX) {
+                WebBrowserActivity.startWebBrowserActivity(getActivity(), getString(R.string.eos_browser), Constant.EOS_BROWSER + wallet.waddress);
             } else {
                 mLayoutRecordTransaction.setClickable(false);
                 TransactionRecordActivity.startTransactionRecordActivity(getActivity(), 2);

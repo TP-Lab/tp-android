@@ -227,5 +227,12 @@
     <string name="btn_language_en">English</string>
     <string name="title_languages">Language Settings</string>
     <string name="moac_browser">MOAC Browser</string>
-
+    <string name="enter_title_eos_transfer_account">receive account</string>
+    <string name="enter_title_eos_transfer_amount">transfer amount</string>
+    <string name="dialog_content_no_wallet_account">Enter the receive account</string>
+    <string name="toast_no_eos_wallet">There is no Eos, please create and scan it</string>
+    <string name="dialog_content_switch_eos_wallet">The scanned address is Eos address, but the current wallet is not Eos wallet, whether to switch to Eos wallet.</string>
+    <string name="content_to_account">To</string>
+    <string name="content_payment_account">Pay</string>
+    <string name="eos_browser">EOS explorer</string>
 </resources>

@@ -107,25 +107,29 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
         mEdtWalletAddress = findViewById(R.id.edt_wallet_address);
 
         mEdtTransferNum = findViewById(R.id.edt_transfer_num);
+        TLog.e(TAG, "mBlockChain" + mBlockChain);
+        if (mBlockChain != TBController.EOS_INDEX) {
+            TLog.e(TAG, "mBlockChain" + mBlockChain);
+            mGas = mWalletUtil.getRecommendGas(mGas, defaultToken);
 
-        mGas = mWalletUtil.getRecommendGas(mGas, defaultToken);
-
-        mTvGas = findViewById(R.id.tv_transfer_gas);
-        mTvGas.setOnClickListener(this);
-        mWalletUtil.gasPrice(new WCallback() {
-            @Override
-            public void onGetWResult(int ret, GsonUtil extra) {
-                if (ret == 0) {
-                    mGasPrice = extra.getDouble("gasPrice", 0.0);
-                    mWalletUtil.calculateGasInToken(mGas, mGasPrice, defaultToken, new WCallback() {
-                        @Override
-                        public void onGetWResult(int ret, GsonUtil extra) {
-                            mTvGas.setText(extra.getString("gas", ""));
-                        }
-                    });
+            mTvGas = findViewById(R.id.tv_transfer_gas);
+            mTvGas.setOnClickListener(this);
+            mWalletUtil.gasPrice(new WCallback() {
+                @Override
+                public void onGetWResult(int ret, GsonUtil extra) {
+                    if (ret == 0) {
+                        mGasPrice = extra.getDouble("gasPrice", 0.0);
+                        mWalletUtil.calculateGasInToken(mGas, mGasPrice, defaultToken, new WCallback() {
+                            @Override
+                            public void onGetWResult(int ret, GsonUtil extra) {
+                                mTvGas.setText(extra.getString("gas", ""));
+                            }
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
+
         mWalletUtil.translateAddress(mOriginAddress, new WCallback() {
             @Override
             public void onGetWResult(int ret, GsonUtil extra) {
