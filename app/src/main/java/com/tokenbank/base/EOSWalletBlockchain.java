@@ -3,6 +3,9 @@ package com.tokenbank.base;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.android.jccdex.app.base.JCallback;
+import com.android.jccdex.app.eos.EosWallet;
+import com.android.jccdex.app.util.JCCJson;
 import com.tokenbank.config.Constant;
 import com.tokenbank.dialog.EthGasSettignDialog;
 import com.tokenbank.net.api.GetTransactionDetailsRequest;
@@ -28,16 +31,21 @@ public class EOSWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void importWallet(String privateKey, int type, WCallback callback) {
-
-        if (!checkInit(callback)) {
-            return;
-        }
-        GsonUtil json = new GsonUtil("{}");
-
+    public void importWallet(String privateKey, int type, final WCallback callback) {
         if (type == 2) {
-            json.putString("privateKey", privateKey);
-            JSUtil.getInstance().callJS("importEosByPK", json, callback);
+            EosWallet.getInstance().importSecret(privateKey, new JCallback() {
+                @Override
+                public void completion(JCCJson json) {
+                    String address = json.getString("address");
+                    String secret = json.getString("secret");
+                    if (address != null && secret != null) {
+                        GsonUtil gsonUtil = new GsonUtil(json.toString());
+                        callback.onGetWResult(0, gsonUtil);
+                    } else {
+                        callback.onGetWResult(-1, null);
+                    }
+                }
+            });
         }
     }
 
@@ -58,30 +66,32 @@ public class EOSWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void signedTransaction(GsonUtil data, WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
+    public void signedTransaction(GsonUtil data, final WCallback callback) {
 
         GsonUtil transaction = new GsonUtil("{}");
-        transaction.putString("privateKey", data.getString("privateKey", ""));
-
+        String secret = data.getString("privateKey", "");
         transaction.putString("from", data.getString("senderAddress", ""));
         transaction.putString("value", Util.getEosValue(data.getString("symbol", ""), data.getDouble("tokencount", 0.0f)));
         transaction.putString("to", data.getString("receiverAddress", ""));
         transaction.putString("contract", data.getString("contactAddress", ""));
         transaction.putString("memo", data.getString("memo", ""));
-        JSUtil.getInstance().callJS("eosSignTransaction", transaction, callback);
+        EosWallet.getInstance().sendTransaction(transaction.getObj(), secret, new JCallback() {
+            @Override
+            public void completion(JCCJson json) {
+                String hash = json.getString("hash");
+                if (hash == null) {
+                    callback.onGetWResult(-1, null);
+                } else {
+                    callback.onGetWResult(0, null);
+                }
+            }
+        });
     }
 
     @Override
     public void sendSignedTransaction(String rawTransaction, WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
         GsonUtil json = new GsonUtil("{}");
         json.putString("rawTransaction", rawTransaction);
-        JSUtil.getInstance().callJS("sendTransaction", json, callback);
     }
 
     @Override
@@ -214,28 +224,25 @@ public class EOSWalletBlockchain implements BaseWalletUtil {
 
     @Override
     public void queryBalance(String account, int type, final WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-        GsonUtil json = new GsonUtil("{}");
-        json.putString("account", account);
-        JSUtil.getInstance().callJS("getEosBalance", json, new WCallback() {
+        EosWallet.getInstance().getBalance(account, new JCallback() {
             @Override
-            public void onGetWResult(int ret, GsonUtil extra) {
-                if (ret == 0) {
-                    GsonUtil formatData = new GsonUtil("{}");
-                    GsonUtil arrays = new GsonUtil("[]");
-                    GsonUtil data = new GsonUtil("{}");
-                    data.putLong("blockchain_id", Long.parseLong("" + TBController.EOS_INDEX));
-                    data.putString("icon_url", Constant.EOS_ICON);
-                    data.putString("bl_symbol", "EOS");
-                    data.putInt("decimal", 4);
-                    data.putString("balance", extra.getString("balance", "0"));
-                    data.putString("asset", "0");
-                    arrays.put(data);
-                    formatData.put("data", arrays);
-                    callback.onGetWResult(ret, formatData);
+            public void completion(JCCJson json) {
+                String balance = json.getString("balance");
+                if (balance == null) {
+                    balance = "0";
                 }
+                GsonUtil formatData = new GsonUtil("{}");
+                GsonUtil arrays = new GsonUtil("[]");
+                GsonUtil data = new GsonUtil("{}");
+                data.putLong("blockchain_id", Long.parseLong("" + TBController.EOS_INDEX));
+                data.putString("icon_url", Constant.EOS_ICON);
+                data.putString("bl_symbol", "EOS");
+                data.putInt("decimal", 4);
+                data.putString("balance", balance);
+                data.putString("asset", "0");
+                arrays.put(data);
+                formatData.put("data", arrays);
+                callback.onGetWResult(0, formatData);
             }
         });
     }
@@ -249,9 +256,5 @@ public class EOSWalletBlockchain implements BaseWalletUtil {
     public GsonUtil loadTransferTokens(Context context) {
         String data = FileUtil.getConfigFile(context, "eosTokens.json");
         return new GsonUtil(data);
-    }
-
-    private boolean checkInit(WCallback callback) {
-        return JSUtil.getInstance().checkInit(callback);
     }
 }

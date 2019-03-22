@@ -33,7 +33,6 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
     private final static String BLOCK_ID = "BlockId";
     private BlockChainData.Block mBlock;
     private int mFlag = 1;
-    private int mBlockChainId;
 
     public final static String TAG = "ImportWalletActivity";
 

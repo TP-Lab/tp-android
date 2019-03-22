@@ -175,7 +175,6 @@ public class EosTokenTransferActivity extends BaseActivity implements View.OnCli
 
     }
 
-
     private void signedEosTransaction(String privateKey, String mTokenSymbol, String contactAddress, String senderAddress, String receiverAddress,
                                       double tokencount, String memo) {
         GsonUtil eosSigned = new GsonUtil("{}");

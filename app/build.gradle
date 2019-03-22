@@ -39,5 +39,5 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'org.greenrobot:eventbus:3.0.0'
-    implementation 'com.github.JCCDex:jcc-android-base-lib:0.1.8'
+    implementation 'com.github.JCCDex:jcc-android-base-lib:0.2.0'
 }
