@@ -587,7 +587,7 @@ public class MainWalletFragment extends BaseFragment implements View.OnClickList
             TokenImageLoader.displayImage(data.getString("icon_url", ""), holder.mImgTokenIcon,
                     TokenImageLoader.imageOption(R.drawable.js_images_common_loading, R.drawable.js_images_asset_eth,
                             R.drawable.js_images_asset_eth));
-            holder.mTvTokenName.setText(data.getString("bl_symbol", "EOS"));
+            holder.mTvTokenName.setText(data.getString("bl_symbol", "ETH"));
             if (isAssetVisible) {
                 holder.mTvTokenCount.setText("" + mWalletUtil.getValue(data.getInt("decimal", 0), Util.parseDouble(data.getString("balance", "0"))));
             } else {
