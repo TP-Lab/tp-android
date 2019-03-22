@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="framework.js"></script>
+    <script src="eos.min.js"></script>
+    <script src="eosjs-ecc.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Web</title>
+    <script>
+        window.onload = function () {
+            eosChainId = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906';
+            eosHttpEndpoint = 'http://openapi.eos.ren';
+            eos = Eos({
+                keyProvider: '',
+                httpEndpoint: eosHttpEndpoint,
+                chainId: eosChainId,
+                broadcast: true,
+                debug: false,
+                sign: true
+            });
+
+            ecc = eosjs_ecc;
+        }
+
+
+    </script>
+</head>
+
+<body>
+<BUTTON onclick="createWalletWithWordTest()">create</BUTTON>
+</body>
+
+</html>

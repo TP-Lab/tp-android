@@ -36,6 +36,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mImgMine;
     private TextView mTvMine;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

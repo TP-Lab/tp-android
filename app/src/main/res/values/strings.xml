@@ -227,5 +227,13 @@
     <string name="btn_language_en">English</string>
     <string name="title_languages">语言设置</string>
     <string name="moac_browser">墨客浏览器</string>
+    <string name="enter_title_eos_transfer_account">收款账号</string>
+    <string name="enter_title_eos_transfer_amount">转账金额</string>
+    <string name="dialog_content_no_wallet_account">输入或粘贴收款账号</string>
+    <string name="toast_no_eos_wallet">当前没有eos钱包，请创建钱包，再扫描</string>
+    <string name="dialog_content_switch_eos_wallet">扫描到的地址为EOS地址，但是当前钱包为非EOS钱包，是否切换成EOS钱包？</string>
+    <string name="content_to_account">转入账号</string>
+    <string name="content_payment_account">付款账号</string>
+    <string name="eos_browser">EOS浏览器</string>
 
 </resources>

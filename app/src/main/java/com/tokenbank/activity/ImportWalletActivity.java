@@ -70,7 +70,7 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
                 } else {
                     if (mBlock.hid == TBController.ETH_INDEX || mBlock.hid == TBController.MOAC_INDEX) {
                         initView();
-                    } else if (mBlock.hid == TBController.SWT_INDEX) {
+                    } else if (mBlock.hid == TBController.SWT_INDEX || mBlock.hid == TBController.EOS_INDEX) {
                         Intent intent = new Intent();
                         intent.putExtra(PKFragment.BLOCK, mBlock);
                         FragmentContainerActivity.start(ImportWalletActivity.this,
@@ -132,6 +132,7 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
         mTvWords.setTextColor(getResources().getColor(R.color.common_blue));
         mTvPrivateKey.setTextColor(getResources().getColor(R.color.common_black_fontcolor));
     }
+
 
     public static void startImportWalletActivity(Context context, int blockChainId) {
 

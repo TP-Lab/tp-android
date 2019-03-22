@@ -63,12 +63,22 @@ public class TokenDetailsActivity extends BaseActivity implements BaseRecycleAda
     @Override
     public void onClick(View v) {
         if (v == mLayoutTranster) {
-            TokenTransferActivity.startTokenTransferActivity(TokenDetailsActivity.this, "",
-                    mContractAddress, 0.0f, mItem.getString("bl_symbol", ""), mItem.getInt("decimal", 18), 0);
+            if (WalletInfoManager.getInstance().getWalletType() == TBController.EOS_INDEX) {
+                TLog.d(TAG, "getWalletType = " + WalletInfoManager.getInstance().getWalletType());
+                EosTokenTransferActivity.startTokenTransferActivity(TokenDetailsActivity.this, "", "eosio.token", 0,
+                        mWalletUtil.getDefaultTokenSymbol(), mWalletUtil.getDefaultDecimal());
+            } else {
+                TokenTransferActivity.startTokenTransferActivity(TokenDetailsActivity.this, "",
+                        mContractAddress, 0.0f, mItem.getString("bl_symbol", ""), mItem.getInt("decimal", 18), 0);
+            }
         } else if (v == mLayoutReceive) {
             TokenReceiveActivity.startTokenReceiveActivity(TokenDetailsActivity.this, mItem.getString("bl_symbol", ""));
         } else if (v == mBrowser) {
-            WebBrowserActivity.startWebBrowserActivity(TokenDetailsActivity.this, getString(R.string.moac_browser), Constant.MOAC_BROWSER + mWalletData.waddress);
+            if (mWalletData.type == TBController.MOAC_INDEX) {
+                WebBrowserActivity.startWebBrowserActivity(TokenDetailsActivity.this, getString(R.string.moac_browser), Constant.MOAC_BROWSER + mWalletData.waddress);
+            } else if (mWalletData.type == TBController.EOS_INDEX) {
+                WebBrowserActivity.startWebBrowserActivity(TokenDetailsActivity.this, getString(R.string.eos_browser), Constant.EOS_BROWSER + mWalletData.waddress);
+            }
         }
     }
 
@@ -148,7 +158,11 @@ public class TokenDetailsActivity extends BaseActivity implements BaseRecycleAda
         mLayoutTranster = findViewById(R.id.wallet_action_transfer);
         mLayoutTranster.setOnClickListener(this);
         mBrowser = findViewById(R.id.go_browser);
-        if(mWalletData.type != TBController.MOAC_INDEX) {
+        if (mWalletData.type == TBController.MOAC_INDEX) {
+            mBrowser.setText(getString(R.string.moac_browser));
+        } else if (mWalletData.type == TBController.EOS_INDEX) {
+            mBrowser.setText(getString(R.string.eos_browser));
+        } else {
             mBrowser.setVisibility(View.GONE);
         }
         mBrowser.setOnClickListener(this);
@@ -156,7 +170,7 @@ public class TokenDetailsActivity extends BaseActivity implements BaseRecycleAda
         mLayoutReceive.setOnClickListener(this);
 
         mTitleBar.setTitle(mItem.getString("bl_symbol", ""));
-//
+
         TextView tvBalance = findViewById(R.id.token_balance);
         TextView tvAsset = findViewById(R.id.token_asset);
         mUnit = getIntent().getStringExtra(UNIT_KEY);

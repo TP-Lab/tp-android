@@ -84,7 +84,7 @@ public class Util {
     //单位为gwei
     public static double getMinGweiGas(long blockChain, boolean defaultToken) {
         if (blockChain == 1) {
-            if(defaultToken) {
+            if (defaultToken) {
 
             }
             return 32000;
@@ -107,13 +107,13 @@ public class Util {
     //单位为gwei
     public static double getRecommendGweiGas(long blockChain, boolean defaultToken) {
         if (blockChain == 1) {
-            if(defaultToken) {
+            if (defaultToken) {
                 return 25200;
             } else {
                 return 60000;
             }
         } else if (blockChain == 3) {
-            if(defaultToken) {
+            if (defaultToken) {
                 return 2000;
             } else {
                 return 6000;
@@ -125,7 +125,7 @@ public class Util {
     public static String getSymbolByBlockChain(long blockChain) {
         if (blockChain == 1) {
             return "ETH";
-        } else if(blockChain == 2) {
+        } else if (blockChain == 2) {
             return "SWT";
         } else if (blockChain == 3) {
             return "MOAC";
@@ -157,7 +157,7 @@ public class Util {
 
     public static double translateValue(int decimal, double value) {
         double divider = 1.0f;
-        for(int i = 0; i < decimal; i++) {
+        for (int i = 0; i < decimal; i++) {
             divider *= 10;
         }
         return value / divider;
@@ -175,9 +175,9 @@ public class Util {
     }
 
     public static double tokenToWei(long blockChain, double tokenValue, int dec) {
-        if(blockChain == 1 || blockChain == 3) {
+        if (blockChain == 1 || blockChain == 3) {
             String decimal = "1";
-            for(int i = 0; i < dec; i++)  {
+            for (int i = 0; i < dec; i++) {
                 decimal = decimal + "0";
             }
             TLog.e(TAG, "decimal:" + decimal);
@@ -187,7 +187,7 @@ public class Util {
     }
 
     public static double fromGweToWei(long blockChain, double gwei) {
-        if (blockChain == 1 || blockChain == 3)  {
+        if (blockChain == 1 || blockChain == 3) {
             if (gwei <= 0) {
                 return 0.0f;
             }
@@ -208,7 +208,7 @@ public class Util {
 
 
     public static double parseDouble(String doubStr) {
-        if(TextUtils.isEmpty(doubStr)) {
+        if (TextUtils.isEmpty(doubStr)) {
             return 0.0f;
         }
         try {
@@ -217,5 +217,9 @@ public class Util {
             e.printStackTrace();
             return 0.0f;
         }
+    }
+
+    public static String getEosValue(String symbol, double value) {
+        return new BigDecimal(value).setScale(4, BigDecimal.ROUND_DOWN).toPlainString() + " " + symbol.toUpperCase();
     }
 }

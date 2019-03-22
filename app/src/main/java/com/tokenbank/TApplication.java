@@ -9,6 +9,7 @@ import com.android.jccdex.app.jingtum.JingtumWallet;
 import com.android.jccdex.app.moac.MoacWallet;
 import com.tokenbank.activity.BaseActivity;
 import com.tokenbank.base.BlockChainData;
+import com.tokenbank.base.JSUtil;
 import com.tokenbank.base.WalletInfoManager;
 import com.tokenbank.base.TBController;
 import com.tokenbank.config.AppConfig;
@@ -33,6 +34,7 @@ public class TApplication extends Application {
         BlockChainData.getInstance().init();
         TBController.getInstance().init();
         WalletInfoManager.getInstance().init();
+        JSUtil.getInstance().init();
         JingtumWallet.getInstance().init(this);
         EthereumWallet.getInstance().init(this);
         EthereumWallet.getInstance().initWeb3Provider("https://eth626892d.jccdex.cn");
