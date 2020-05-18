@@ -47,7 +47,7 @@
         android:layout_marginTop="35dp"
         android:background="@drawable/shape_splash_createwallet_bg"
         android:gravity="center"
-        android:text="备份钱包"
+        android:text="@string/btn_backup_wallet"
         android:textColor="@color/white"
         android:textSize="17sp" />
 

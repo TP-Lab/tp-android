@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -59,7 +60,7 @@ public class CreateWalletActivity extends BaseActivity implements View.OnClickLi
     private void initView() {
         mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle(R.string.str_create_wallet);
+        mTitleBar.setTitle(R.string.btn_create_wallet);
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
             public void onLeftClick(View view) {
@@ -75,6 +76,7 @@ public class CreateWalletActivity extends BaseActivity implements View.OnClickLi
         mImgServiceTerms = findViewById(R.id.img_service_terms);
         mImgServiceTerms.setOnClickListener(this);
         mTvServiceTerms = findViewById(R.id.tv_service_terms);
+        mTvServiceTerms.setText(Html.fromHtml(getString(R.string.content_read_service)));
         mTvServiceTerms.setOnClickListener(this);
         mBtnConfirm = findViewById(R.id.btn_confirm);
 
@@ -157,7 +159,7 @@ public class CreateWalletActivity extends BaseActivity implements View.OnClickLi
 
     private boolean paramCheck() {
         if (mBlock == null) {
-            ViewUtil.showSysAlertDialog(this, "请选择币种体系", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_no_block), "OK");
             return false;
         }
 
@@ -167,29 +169,29 @@ public class CreateWalletActivity extends BaseActivity implements View.OnClickLi
         boolean readedTerms = mImgServiceTerms.isSelected();
 
         if (TextUtils.isEmpty(walletName)) {
-            ViewUtil.showSysAlertDialog(this, "钱包名称不能为空", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_no_wallet_name), "OK");
             return false;
         }
         if (TextUtils.isEmpty(walletPwd)) {
-            ViewUtil.showSysAlertDialog(this, "密码不能为空", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_no_password), "OK");
             return false;
         }
 
         if (TextUtils.isEmpty(walletPwdRepeat)) {
-            ViewUtil.showSysAlertDialog(this, "密码重复不能为空", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_no_verify_password), "OK");
             return false;
         }
 
         if (!TextUtils.equals(walletPwdRepeat, walletPwd)) {
-            ViewUtil.showSysAlertDialog(this, "两次密码不同，请重新输入", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_passwords_unmatch), "OK");
             return false;
         }
         if (walletPwd.length() < 8) {
-            ViewUtil.showSysAlertDialog(this, "密码长度不能小于8位", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_short_password), "OK");
             return false;
         }
         if (!readedTerms) {
-            ViewUtil.showSysAlertDialog(this, "您尚未阅读并同意服务和隐私条款", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_no_read_service), "OK");
             return false;
         }
 
@@ -226,7 +228,7 @@ public class CreateWalletActivity extends BaseActivity implements View.OnClickLi
                               final String words, String tips, final String address) {
         long walletID = System.currentTimeMillis();
         storeWallet(walletID, walletType, name, address, hash, privateKey, words);
-        ToastUtil.toast(CreateWalletActivity.this, "钱包创建成功");
+        ToastUtil.toast(CreateWalletActivity.this, getString(R.string.toast_wallet_created));
         gotoBakup();
     }
 
@@ -244,12 +246,12 @@ public class CreateWalletActivity extends BaseActivity implements View.OnClickLi
 
 
     private void resetBtn() {
-        mBtnConfirm.setText("创建钱包");
+        mBtnConfirm.setText(getString(R.string.btn_create_wallet_done));
         mBtnConfirm.setEnabled(true);
     }
 
     private void setBtnStateToCreating() {
-        mBtnConfirm.setText("正在创建钱包");
+        mBtnConfirm.setText(getString(R.string.btn_creating_wallet));
         mBtnConfirm.setEnabled(false);
     }
 
@@ -265,6 +267,6 @@ public class CreateWalletActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void gotoServiceTermPage() {
-        WebBrowserActivity.startWebBrowserActivity(this, "服务条款", Constant.service_term_url);
+        WebBrowserActivity.startWebBrowserActivity(this, getString(R.string.titleBar_service_terms), Constant.service_term_url);
     }
 }

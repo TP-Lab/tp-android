@@ -16,20 +16,17 @@ import com.tokenbank.base.BaseWalletUtil;
 import com.tokenbank.base.TBController;
 import com.tokenbank.base.WalletInfoManager;
 import com.tokenbank.base.WCallback;
-import com.tokenbank.config.Constant;
 import com.tokenbank.dialog.OrderDetailDialog;
 import com.tokenbank.dialog.PwdDialog;
 import com.tokenbank.net.api.jtrequest.JTBalanceRequest;
 import com.tokenbank.net.load.RequestPresenter;
 import com.tokenbank.utils.GsonUtil;
-import com.tokenbank.utils.TLog;
 import com.tokenbank.utils.ToastUtil;
 import com.tokenbank.utils.Util;
 import com.tokenbank.utils.ViewUtil;
 import com.tokenbank.view.TitleBar;
 
 import java.text.DecimalFormat;
-
 
 
 public class TokenTransferActivity extends BaseActivity implements View.OnClickListener {
@@ -89,7 +86,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
     private void initView() {
         mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
-        mTitleBar.setTitle("转账");
+        mTitleBar.setTitle(getString(R.string.titleBar_transfer));
 //        mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener());
         mTitleBar.setTitleBarClickListener(new TitleBar.TitleBarListener() {
             @Override
@@ -181,7 +178,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                     }
                 });
                 break;
-            case  R.id.tv_token_name:
+            case R.id.tv_token_name:
                 Intent intent = new Intent(TokenTransferActivity.this, ChooseTokenTransferActivity.class);
                 TokenTransferActivity.this.startActivityForResult(intent, 0);
         }
@@ -195,7 +192,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                     if (result) {
                         pwdRight();
                     } else {
-                        ToastUtil.toast(TokenTransferActivity.this, "密码错误，请重新确认订单，并输入正确密码");
+                        ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_order_password_incorrect));
                     }
                 }
             }
@@ -218,7 +215,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                 if (ret == 0) {
                     long sequence = json.getLong("sequence", 0);
                     if (sequence <= 0) {
-                        ToastUtil.toast(TokenTransferActivity.this, "转账失败, 错误码:" + 1002);
+                        ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 1002);
                     } else {
                         GsonUtil dataList = json.getArray("balances", "[]");
                         int len = dataList.getLength();
@@ -230,7 +227,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                                 double value = item.getDouble("value", 0.0f);
                                 if (value < mAmount) {
                                     resetTranferBtn();
-                                    ToastUtil.toast(TokenTransferActivity.this, "余额不足，转账失败:" + 1003);
+                                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_insufficient_balance) + 1003);
                                     return;
                                 }
                                 signedSwtTransaction(mGas, sequence, mWalletData.waddress,
@@ -242,7 +239,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
 
                 } else {
                     resetTranferBtn();
-                    ToastUtil.toast(TokenTransferActivity.this, "转账失败, 错误码:" + 1001);
+                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 1001);
                 }
             }
         });
@@ -268,7 +265,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                     sendSignedTransaction(rawTransaction);
                 } else {
                     resetTranferBtn();
-                    ToastUtil.toast(TokenTransferActivity.this, "转账失败，错误码:" + 6);
+                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 6);
                 }
             }
         });
@@ -278,7 +275,7 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
     private void sendSignedTransaction(String rawTransaction) {
         if (TextUtils.isEmpty(rawTransaction)) {
             resetTranferBtn();
-            ToastUtil.toast(TokenTransferActivity.this, "转账失败，错误码:" + 3);
+            ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 3);
             return;
         }
         mWalletUtil.sendSignedTransaction(rawTransaction, new WCallback() {
@@ -286,11 +283,11 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
             public void onGetWResult(int ret, GsonUtil extra) {
                 if (ret == 0) {
                     resetTranferBtn();
-                    ToastUtil.toast(TokenTransferActivity.this, "转账成功");
+                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_success));
                     TokenTransferActivity.this.finish();
                 } else {
                     resetTranferBtn();
-                    ToastUtil.toast(TokenTransferActivity.this, "转账失败，错误码:" + 4);
+                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 4);
                 }
             }
         });
@@ -302,27 +299,27 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
         String num = mEdtTransferNum.getText().toString();
 
         if (TextUtils.isEmpty(mTvToken.getText().toString())) {
-            ViewUtil.showSysAlertDialog(this, "请选择代币", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_choose_token), "OK");
             return false;
         }
         if (TextUtils.isEmpty(address)) {
-            ViewUtil.showSysAlertDialog(this, "输入或粘贴钱包地址", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_no_wallet_address), "OK");
             return false;
         }
 
         if (TextUtils.equals(address, mWalletData.waddress)) {
-            ViewUtil.showSysAlertDialog(this, "收款钱包地址不能和转款钱包地址相同", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_receive_address_incorrect), "OK");
             return false;
         }
 
         if (!mWalletUtil.checkWalletAddress(address)) {
-            ViewUtil.showSysAlertDialog(this, "钱包地址格式不正确", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_address_format_incorrect), "OK");
             return false;
         }
 
 
         if ((TextUtils.isEmpty(num) || Util.parseDouble(num) <= 0.0f)) {
-            ViewUtil.showSysAlertDialog(this, "输入正确的转出数量", "OK");
+            ViewUtil.showSysAlertDialog(this, getString(R.string.dialog_content_amount_incorrect), "OK");
             return false;
         }
         return true;
@@ -330,12 +327,12 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
 
     private void updateBtnToTranferingState() {
         mBtnNext.setEnabled(false);
-        mBtnNext.setText("正在转账...");
+        mBtnNext.setText(getString(R.string.btn_transferring));
     }
 
     private void resetTranferBtn() {
         mBtnNext.setEnabled(true);
-        mBtnNext.setText("下一步");
+        mBtnNext.setText(getString(R.string.btn_next));
     }
 
     /**

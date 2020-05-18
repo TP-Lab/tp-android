@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="矿工费用设置"
+            android:text="@string/dialog_title_gas_setting"
             android:textColor="@color/common_black_fontcolor"
             android:textSize="16sp"
             android:layout_marginTop="15dp"/>
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="left"
-            android:text="慢"
+            android:text="@string/content_slow"
             android:textColor="#808080"
             android:textSize="15dp" />
 
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="推荐"
+            android:text="@string/content_recommend"
             android:textColor="#808080"
             android:textSize="15dp" />
 
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="快"
+            android:text="@string/content_fast"
             android:textColor="#808080"
             android:textSize="15dp" />
     </LinearLayout>
@@ -109,7 +109,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/shape_splash_createwallet_bg"
         android:gravity="center"
-        android:text="确认"
+        android:text="@string/dialog_btn_confirm"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:layout_marginLeft="5dp"

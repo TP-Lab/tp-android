@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.tokenbank.view.Web3WebCore xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/web3webcore"
-    android:layout_width="1dp" android:layout_height="1dp"
-    android:visibility="invisible">
-
-</com.tokenbank.view.Web3WebCore>

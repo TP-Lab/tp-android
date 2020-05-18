@@ -19,7 +19,7 @@ Official Address:
 | :-: |:-:|
 | EOS | [tpopensource](https://eosflare.io/account/tpopensource) |
 | SWTC | [jGj83Xe4GEyDKXBDrFBGXdMWHKTSy29XUp](http://state.jingtum.com/#!/wallet/jGj83Xe4GEyDKXBDrFBGXdMWHKTSy29XUp) |
-| MOAC | [0x77e7b7b5ea39bf1103f191e58ef44b1f74ccef1b](http://47.75.53.185/addr/0x77e7b7b5ea39bf1103f191e58ef44b1f74ccef1b) |
+| MOAC | [0x77e7b7b5ea39bf1103f191e58ef44b1f74ccef1b](http://explorer.moac.io/addr/0x77e7b7b5ea39bf1103f191e58ef44b1f74ccef1b) |
 
 
 ## License

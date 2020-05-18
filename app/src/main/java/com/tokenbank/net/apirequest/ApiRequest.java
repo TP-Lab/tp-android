@@ -4,6 +4,7 @@ import android.preference.PreferenceManager;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.tokenbank.R;
 import com.tokenbank.config.AppConfig;
 import com.tokenbank.net.NetManager;
 import com.tokenbank.net.volleyext.BaseJsonRequest;
@@ -97,13 +98,13 @@ public abstract class ApiRequest<T> implements IApiRequest {
                             @Override
                             public void onErrorResponse(VolleyError volleyError) {
                                 TLog.d(TAG, "RxJava request Exception = " + volleyError);
-                                String errMsg = "网络错误";
+                                String errMsg = AppConfig.getContext().getString(R.string.content_network_err);
                                 int errCode = AppConfig.ERR_CODE.NETWORK_ERR;
                                 if (volleyError != null && volleyError.networkResponse != null) {
                                     errCode = volleyError.networkResponse.statusCode;
                                     errMsg = volleyError.toString();
                                 }
-                                subscriber.onError(new Throwable(errMsg + "，错误码:" + errCode));
+                                subscriber.onError(new Throwable(errMsg + AppConfig.getContext().getString(R.string.content_error_code) + errCode));
                             }
                         });
                 request.setShouldCache(shouldCache);

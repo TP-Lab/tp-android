@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -57,8 +56,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         if (view == mLayoutTabWallet) {
             mMainViewPager.setCurrentItem(WALLET_INDEX);
-        }
-        else if (view == mLayoutTabMine) {
+        } else if (view == mLayoutTabMine) {
             mMainViewPager.setCurrentItem(MINE_INDEX);
         }
     }
@@ -154,5 +152,4 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             return mFragments.length;
         }
     }
-
 }

@@ -14,7 +14,6 @@ import com.tokenbank.R;
 import com.tokenbank.utils.ViewUtil;
 
 
-
 public class TitleBar extends LinearLayout implements View.OnClickListener {
     private TextView mTvLeft;
     private TextView mTvTitle;
@@ -72,18 +71,18 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
         super.onFinishInflate();
         View view = ViewUtil.inflatView(getContext(), this, R.layout.layout_view_titlebar, true);
         mTvLeft = view.findViewById(R.id.tv_left);
-        mLayoutLeft =  view.findViewById(R.id.layout_left);
-        mImgLeft =  view.findViewById(R.id.img_left);
+        mLayoutLeft = view.findViewById(R.id.layout_left);
+        mImgLeft = view.findViewById(R.id.img_left);
         mLayoutLeft.setOnClickListener(this);
 
-        mTvTitle =  view.findViewById(R.id.tv_title);
-        mLayoutTitle =  view.findViewById(R.id.layout_title);
-        mImgTitle =  view.findViewById(R.id.img_title);
+        mTvTitle = view.findViewById(R.id.tv_title);
+        mLayoutTitle = view.findViewById(R.id.layout_title);
+        mImgTitle = view.findViewById(R.id.img_title);
         mLayoutTitle.setOnClickListener(this);
 
-        mTvRight =  view.findViewById(R.id.tv_right);
-        mLayoutRight =  view.findViewById(R.id.layout_right);
-        mImgRight =  view.findViewById(R.id.img_right);
+        mTvRight = view.findViewById(R.id.tv_right);
+        mLayoutRight = view.findViewById(R.id.layout_right);
+        mImgRight = view.findViewById(R.id.img_right);
         mLayoutRight.setOnClickListener(this);
 
         mViewSplit = view.findViewById(R.id.view_split);

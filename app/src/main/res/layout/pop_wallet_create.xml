@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="未创建%1s钱包"
+            android:text="@string/dialog_title_no_wallet"
             android:textColor="@color/color_text_3"
             android:textSize="21.5sp" />
 
@@ -38,7 +38,7 @@
             android:layout_marginTop="8.5dp"
             android:gravity="center"
             android:lineSpacingExtra="5dp"
-            android:text="你未创建%1s的钱包，%2s的数字代币只能存放在该体系的钱包中"
+            android:text="@string/dialog_content_no_wallet"
             android:textColor="@color/color_text_80"
             android:textSize="@dimen/text_size_15" />
 
@@ -54,7 +54,7 @@
                 style="@style/Style.Btn.White"
                 android:layout_width="120dp"
                 android:layout_height="42dp"
-                android:text="导入钱包" />
+                android:text="@string/btn_import_wallet" />
 
             <Button
                 android:id="@+id/wallet_create"
@@ -62,7 +62,7 @@
                 android:layout_width="120dp"
                 android:layout_height="42dp"
                 android:layout_marginLeft="38dp"
-                android:text="创建钱包" />
+                android:text="@string/btn_create_wallet" />
         </LinearLayout>
 
         <View
@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
-            android:text="取消"
+            android:text="@string/dialog_btn_cancel"
             android:textColor="@color/color_text_3"
             android:textSize="@dimen/text_size_18" />
     </LinearLayout>
