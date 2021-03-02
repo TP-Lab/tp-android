@@ -25,6 +25,8 @@
     <color name="viewfinder_frame">#ff000000</color>
     <color name="viewfinder_laser">#ffff0000</color>
     <color name="viewfinder_mask">#60000000</color>
+    <color name="color_receive">#2F5794</color>
+    <color name="color_send">#25A886</color>
 
     <!--common-->
     <color name="common_blue">#2890FE</color>
@@ -38,4 +40,6 @@
     <color name="color_text_80">#808080</color>
     <color name="color_theme">#2890FE</color>
 
+    <color name="color_detail_receive">#FF27B498</color>
+    <color name="color_detail_send">#FFF55758</color>
 </resources>

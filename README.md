@@ -24,3 +24,9 @@ Official Address:
 ## License
 
 For more information see [License](https://github.com/TP-Lab/tp-android/blob/master/LICENSE)
+
+### Dapp
+
+> 发现模块支持Dapp使用，其接口格式请参考[这里](https://github.com/TP-Lab/tp-js-sdk#MOAC)。
+
+请在 发现模块的Dapp Url 输入框 输入  http://test 进入Dapp Api 测试demo 进行测试

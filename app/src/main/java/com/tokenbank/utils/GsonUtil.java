@@ -44,6 +44,17 @@ public class GsonUtil implements Serializable {
         }
     }
 
+    public GsonUtil putBoolean(String key, boolean value) {
+        if (obj != null) {
+            try {
+                obj.put(key, value);
+            } catch (Throwable e) {
+            }
+        }
+
+        return this;
+    }
+
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
 

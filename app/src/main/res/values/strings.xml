@@ -13,6 +13,7 @@
     <string name="enter_hint_prompt">可不填</string>
     <string name="btn_create_wallet_done">创建钱包</string>
     <string name="titleBar_about">关于我们</string>
+    <string name="titleBar_dapp">Dapp浏览器</string>
     <string name="content_version">当前版本:</string>
     <string name="titleBar_agreement">使用协议</string>
     <string name="titleBar_privacy">隐私条款</string>
@@ -235,5 +236,6 @@
     <string name="content_to_account">转入账号</string>
     <string name="content_payment_account">付款账号</string>
     <string name="eos_browser">EOS浏览器</string>
+    <string name="picture_save_false">图片保存失败</string>
 
 </resources>

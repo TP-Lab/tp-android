@@ -13,6 +13,7 @@
     <string name="enter_hint_prompt">Optional</string>
     <string name="btn_create_wallet_done">Done</string>
     <string name="titleBar_about">About</string>
+    <string name="titleBar_dapp">Dapp Server</string>
     <string name="content_version">Version&#160;</string>
     <string name="titleBar_agreement">User Agreement</string>
     <string name="titleBar_privacy">Privacy</string>
@@ -235,4 +236,5 @@
     <string name="content_to_account">To</string>
     <string name="content_payment_account">Pay</string>
     <string name="eos_browser">EOS explorer</string>
+    <string name="picture_save_false">save picture false</string>
 </resources>

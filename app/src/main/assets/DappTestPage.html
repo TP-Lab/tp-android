@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name = "viewport" content= "width=device-width , initial-scale=1.0">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1504.76">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    body{
+        padding:0;
+        margin:0;
+    }
+
+    </style>
+  <link rel="stylesheet" type="text/css" href="./button.css">
+  <script type="text/javascript" src="./tp.sdk.js"></script>
+  <script>
+
+        Connected();
+        function Connected(){
+            let isConnected;
+            if(window.TPJSBrigeClient!=null&&typeof(window.TPJSBrigeClient)!="undefined"){
+                isConnected = "true"
+            }else{
+                isConnected = "false"
+            }
+            alert("isConnected:   " + isConnected);
+        }
+
+        function testClick(FunctionName) {
+            switch (FunctionName) {
+                case "getAppInfo" :
+                    //获取app版本
+                    tp.getAppInfo().then((result) => {
+                        showElement("result = " + JSON.stringify(result));
+                    })
+                    break;
+                case "getDeviceId" :
+                    tp.getDeviceId().then((result) => {
+                        showElement("result = " + JSON.stringify(result));
+                    })
+                    break;
+                case "getCurrentWallet" :
+                    tp.getCurrentWallet().then((result) => {
+                        showElement("获取当前交易钱包   result = " + JSON.stringify(result));
+                    })
+                    break;
+                case "getNodeUrl" :
+                    tp.getNodeUrl({blockchain: 'eos'}).then((result) => {
+                        showElement("获取节点url   result = " + JSON.stringify(result));
+                    })
+                    break;
+                case "sign" :
+                    //交易签名
+                     tp.getCurrentWallet().then((result) => {
+                          tp.sign({
+                           address: result.data.address,
+                            to: '0xb4860ef01adae0f0714776d1c35e7ad4b0937b79',
+                            value: '1000000000000000000',
+                           gasPrice: '10000000000',
+                            gasLimit: '23000',
+                            data: ''
+                          }).then((result) => {
+                              showElement("result = " + JSON.stringify(result))
+                          })
+                    })
+                    break;
+                case "importWallet" :
+                    //跳转到导入钱包页面
+                    tp.importWallet()
+                    break;
+                case "invokeQRScanner" :
+                    //打开扫描
+                    tp.invokeQRScanner().then((result) => {
+                        showElement("扫描结果result = " + JSON.stringify(result));
+                    })
+                    break;
+                case "shareNewsToSNS" :
+                    //分享
+                     tp.shareNewsToSNS({
+                      title: 'TokenPocket',
+                      desc: 'Your Universal Wallet',
+                      url: 'https://www.mytokenpocket.vip/',
+                      previewImage: 'https://www.mytokenpocket.vip/images/index/logo.png'}).then((ret, result) => {
+                        showElement("ret = " + ret + "result = " + JSON.stringify(result))
+                    })
+                    break;
+                case "fullScreen" :
+                    //全屏  params   true (全屏)/ false（关闭）
+                    tp.fullScreen(true)
+                    break;
+                case "close" :
+                    //关闭Dapp
+                    tp.close()
+                    break;
+                case "back" :
+                    //返回
+                    tp.back();
+                    break;
+                case "rollHorizontal" :
+                    //横屏
+                    tp.rollHorizontal()
+                    break;
+                case "popGestureRecognizerEnable" :
+                    //禁止iOS自带的左滑手势返回，对安卓无影响
+                    tp.popGestureRecognizerEnable((ret, result) =>{
+                        showElement("ret = " + ret + "result = " + JSON.stringify(result))
+                    })
+                    break;
+                case "sendMoacTransaction" :
+                tp.getCurrentWallet().then((result) => {
+                        tp.sendMoacTransaction({
+                           address: result.data.address,
+                            to: '0xb4860ef01adae0f0714776d1c35e7ad4b0937b79',
+                            value: '1000000000000000000',
+                           gasPrice: '10000000000',
+                            gasLimit: '23000',
+                            data: ''
+                          }).then((hash) => {
+                            showElement("hash = " + JSON.stringify(hash))
+                        })
+                   })
+                    break;
+                case "setMenubar" :
+                    //设置导航条
+                    tp.setMenubar()
+                    break;
+                case "forwardNavigationGesturesEnable" :
+                    //禁止webview自带的左滑手势触发goback
+                    tp.forwardNavigationGesturesEnable()
+                    break;
+                case "saveImage" :
+                    //保存图片 通过url保存
+                    tp.saveImage({url: 'https://dapp.mytokenpocket.vip/tokenpocket_logo.png'})
+                    break;
+                case "signMoacTransaction":
+                tp.signMoacTransaction({
+                    from: '0xaaaaaaa',
+                    to: '0xaaaaaab',
+                    gasPrice: 100000000,
+                    gasLimit: 60000,
+                    data: '0xaawefwefwefwefwefef',
+                    value: 1000000000,
+                    chainId: 99,
+                    via: '',
+                    shardingFlag: 0,
+                }).then((hash) => {
+                            showElement("raw = " + JSON.stringify(hash))
+                        })
+                break;
+                case "signJingtumTransaction":
+                 tp.getCurrentWallet().then((result) => {
+                  tp.signJingtumTransaction({
+                      "Account":result.data.address,
+                      "Fee": 0.00001,
+                      "Flags": 524288,
+                      "TakerGets":"111",
+                      "TakerPays":{
+                          "currency":"CNY",
+                          "issuer":"jGa9J9TkqtBcUoHe2zqhVFFbgUVED6o9or",
+                          "value":"1.2321"
+                          },
+                      "TransactionType":"OfferCreate",
+                      "Sequence":4368
+                  }).then((hash) => {
+                            showElement("rew = " + JSON.stringify(hash))
+                        })
+                })
+                break;
+                case "moacTokenTransfer" :
+                  tp.moacTokenTransfer({
+                      from: '0xaaaaaaa',
+                      to: '0xaaaaaab',
+                      amount: '100',
+                      gasLimit: 60000,
+                      tokenName: 'MOAC',
+                      decimal: 18,
+                      contract: ''
+                  }).then((hash) => {
+                            showElement("rew = " + JSON.stringify(hash))
+                        })
+                break;
+            }
+        }
+        function showElement(msg) {
+        alert("调用成功: " + msg);
+        }
+
+    </script>
+</head>
+<!--
+ <body style="width: 100%;height: 100%;padding: 0px">
+
+<div id="div_box"
+     style="width: 100%;min-height: 100%;position: absolute;background: #0ff;margin-top: -50px;margin: 0px">
+</div>
+<div class = "button" id="test"></div>
+</body>
+ -->
+<body>
+<p><input type="button" class = "button" id="enter" value="getAppInfo" onclick="testClick('getAppInfo')"/></p>
+<p><input type="button" class = "button" id="enter1" value="getDeviceId" onclick="testClick('getDeviceId');"/></p>
+<p><input type="button" class = "button" id="enter3" value="getCurrentWallet" onclick="testClick('getCurrentWallet');"/></p>
+<p><input type="button" class = "button" id="enter4" value="getNodeUrl" onclick="testClick('getNodeUrl');"/></p>
+<p><input type="button" class = "button" id="enter6" value="sign" onclick="testClick('sign');"/></p>
+<p><input type="button" class = "button" id="enter7" value="importWallet" onclick="testClick('importWallet');"/></p>
+<p><input type="button" class = "button" id="enter9" value="invokeQRScanner" onclick="testClick('invokeQRScanner');"/></p>
+<p><input type="button" class = "button" id="enter10" value="shareNewsToSNS" onclick="testClick('shareNewsToSNS');"/></p>
+<p><input type="button" class = "button" id="enter11" value="fullScreen" onclick="testClick('fullScreen');"/></p>
+<p><input type="button" class = "button" id="enter12" value="close" onclick="testClick('close');"/></p>
+<p><input type="button" class = "button" id="enter13" value="back" onclick="testClick('back');"/></p>
+<p><input type="button" class = "button" id="enter14" value="rollHorizontal" onclick="testClick('rollHorizontal');"/></p>
+<p><input type="button" class = "button" id="enter16" value="sendMoacTransaction" onclick="testClick('sendMoacTransaction');"/></p>
+<p><input type="button" class = "button" id="enter17" value="setMenubar" onclick="testClick('setMenubar');"/></p>
+<p><input type="button" class = "button" id="enter19" value="saveImage" onclick="testClick('saveImage');"/></p>
+<p><input type="button" class = "button" id="enter20" value="signMoacTransaction" onclick="testClick('signMoacTransaction');"/></p>
+<p><input type="button" class = "button" id="enter21" value="signJingtumTransaction" onclick="testClick('signJingtumTransaction');"/></p>
+<p><input type="button" class = "button" id="enter22" value="moacTokenTransfer" onclick="testClick('moacTokenTransfer');"/></p>
+</body>
+
+</html>

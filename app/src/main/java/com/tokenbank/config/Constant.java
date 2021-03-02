@@ -36,6 +36,12 @@ public class Constant {
     //服务协议
     public final static String service_term_url = "";
 
+    //图片保存路径
+    public final static String photo_path = "/TokenPocket/dapp/img/";
+
+    public static final String LOAD_URL = "load_url";
+
+
     //交易查询
     public final static String eth_transaction_search_url = "https://etherscan.io/tx/";
     public final static String swt_transaction_search_url = "http://state.jingtum.com/#!/tx/";

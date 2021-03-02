@@ -80,7 +80,6 @@ public class SWTWalletBlockchain implements BaseWalletUtil {
 
         GsonUtil transaction = data.getObject("transaction");
         String secret = data.getString("secret", "");
-
         JingtumWallet.getInstance().sign(transaction.getObj(), secret, JingtumWallet.SWTC_CHAIN, new JCallback() {
             @Override
             public void completion(JCCJson json) {
