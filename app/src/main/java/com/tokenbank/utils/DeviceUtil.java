@@ -29,7 +29,7 @@ public final class DeviceUtil {
         try {
             String deviceUniqueId = FileUtil.getStringFromSp(AppConfig.getContext(), Constant.sys_prefs, Constant.init_keys);
             if (TextUtils.isEmpty(deviceUniqueId)) {
-                String id = "";
+                String id = "123456";
                 String deviceId = FileUtil.getStringContent(id);
                 FileUtil.putStringToSp(AppConfig.getContext(), Constant.sys_prefs, Constant.init_keys, deviceId);
                 return deviceId;

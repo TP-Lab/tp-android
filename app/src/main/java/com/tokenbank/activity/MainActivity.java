@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.tokenbank.R;
 import com.tokenbank.base.WalletInfoManager;
+import com.tokenbank.fragment.DappFragment;
 import com.tokenbank.fragment.MainUserFragment;
 import com.tokenbank.fragment.MainWalletFragment;
 import com.tokenbank.utils.ViewUtil;
@@ -24,17 +25,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private final static int WALLET_INDEX = 0;
     private final static int MINE_INDEX = 1;
+    private final static int FIND_INDEX = 2;
     private ViewPager mMainViewPager;
 
     //tab
     private LinearLayout mLayoutTabWallet;
     private LinearLayout mLayoutTabMine;
+    private LinearLayout mLayoutTabFind;
 
     private ImageView mImgWallet;
     private TextView mTvWallet;
 
     private ImageView mImgMine;
     private TextView mTvMine;
+
+    private ImageView mImgFind;
+    private TextView mTvFind;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +65,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             mMainViewPager.setCurrentItem(WALLET_INDEX);
         } else if (view == mLayoutTabMine) {
             mMainViewPager.setCurrentItem(MINE_INDEX);
+        } else if (view == mLayoutTabFind) {
+            mMainViewPager.setCurrentItem(FIND_INDEX);
         }
     }
 
@@ -75,10 +84,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //tab
         mLayoutTabWallet = (LinearLayout) findViewById(R.id.layout_tab_wallet);
         mLayoutTabMine = (LinearLayout) findViewById(R.id.layout_tab_mine);
-        mLayoutTabWallet.setOnClickListener(this);
+        mLayoutTabFind = (LinearLayout) findViewById(R.id.layout_tab_find);
 
+        mLayoutTabWallet.setOnClickListener(this);
+        mLayoutTabFind.setOnClickListener(this);
         mLayoutTabMine.setOnClickListener(this);
 
+        mImgFind = (ImageView) findViewById(R.id.img_tab_find);
+        mTvFind = (TextView) findViewById(R.id.tv_tab_find);
 
         mImgWallet = (ImageView) findViewById(R.id.img_tab_wallet);
         mTvWallet = (TextView) findViewById(R.id.tv_tab_wallet);
@@ -112,6 +125,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void pageSelected(int position) {
         resetTab();
         switch (position) {
+            case FIND_INDEX:
+                //mImgFind.setImageResource()
+                mTvFind.setSelected(true);
+                break;
             case WALLET_INDEX:
                 mImgWallet.setImageResource(R.drawable.ic_tab_asset_selected);
                 mTvWallet.setSelected(true);
@@ -129,6 +146,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         mImgMine.setImageResource(R.drawable.ic_tab_mine_unselected);
         mTvMine.setSelected(false);
+
+        mTvFind.setSelected(false);
     }
 
     class MainViewPagerAdapter extends FragmentPagerAdapter {
@@ -139,7 +158,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         private Fragment[] mFragments = new Fragment[]{
                 MainWalletFragment.newInstance(),
-                MainUserFragment.newInstance()
+                MainUserFragment.newInstance(),
+                DappFragment.newInstance()
         };
 
         @Override

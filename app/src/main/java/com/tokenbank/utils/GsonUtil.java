@@ -32,12 +32,27 @@ public class GsonUtil implements Serializable {
         return "";
     }
 
+    public JSONObject getObj() {
+        return obj;
+    }
+
     private void writeObject(ObjectOutputStream out) throws IOException {
         if (obj != null) {
             out.write(obj.toString().getBytes());
         } else if (arrayobj != null) {
             out.write(arrayobj.toString().getBytes());
         }
+    }
+
+    public GsonUtil putBoolean(String key, boolean value) {
+        if (obj != null) {
+            try {
+                obj.put(key, value);
+            } catch (Throwable e) {
+            }
+        }
+
+        return this;
     }
 
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {

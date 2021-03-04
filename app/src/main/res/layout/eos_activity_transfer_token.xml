@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.tokenbank.view.TitleBar
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dimen_content_padding"
+        android:paddingRight="@dimen/dimen_content_padding">
+
+        <LinearLayout style="@style/Style.ItemLayout.WalletCreateLayout">
+
+            <TextView
+                style="@style/Style.WalletCreateTitle"
+                android:minWidth="60dp"
+                android:text="@string/enter_title_transfer_token" />
+
+            <TextView
+                android:id="@+id/tv_token_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:textColor="@color/color_text_3"
+                android:textColorHint="@color/color_text_80"
+                android:drawableRight="@drawable/ic_arrow_right"
+                android:textSize="@dimen/text_size_16" />
+            <!--android:drawableRight="@drawable/ic_arrow_right"-->
+
+
+        </LinearLayout>
+
+        <View style="@style/Style.Line" />
+
+        <LinearLayout style="@style/Style.ItemLayout.WalletCreateLayout">
+
+            <TextView
+                style="@style/Style.WalletCreateTitle"
+                android:minWidth="60dp"
+                android:text="@string/enter_title_eos_transfer_account" />
+
+            <EditText
+                android:id="@+id/edt_wallet_address"
+                style="@style/Style.Edit.WalletCreate"
+                android:hint="@string/dialog_content_no_wallet_account"
+                android:digits="12345abcdefghijklmnopqrstuvwxyz"
+                />
+        </LinearLayout>
+
+        <View style="@style/Style.Line" />
+
+        <LinearLayout style="@style/Style.ItemLayout.WalletCreateLayout">
+
+            <TextView
+                style="@style/Style.WalletCreateTitle"
+                android:minWidth="60dp"
+                android:text="@string/enter_title_transfer_amount"
+
+                />
+
+            <EditText
+                android:id="@+id/edt_transfer_num"
+                style="@style/Style.Edit.WalletCreate"
+                android:hint="@string/enter_hint_transfer_amount"
+                android:digits="0123456789."
+                android:inputType="numberDecimal"/>
+        </LinearLayout>
+
+        <View style="@style/Style.Line" />
+
+
+        <View style="@style/Style.Line" />
+
+        <LinearLayout style="@style/Style.ItemLayout.WalletCreateLayout">
+
+            <TextView
+                style="@style/Style.WalletCreateTitle"
+                android:minWidth="60dp"
+                android:text="@string/content_note" />
+
+            <EditText
+                android:id="@+id/edt_transfer_remark"
+                style="@style/Style.Edit.WalletCreate" />
+        </LinearLayout>
+
+        <View style="@style/Style.Line" />
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/Style.Btn.Theme"
+            android:layout_marginTop="50dp"
+            android:text="@string/btn_next" />
+    </LinearLayout>
+</LinearLayout>

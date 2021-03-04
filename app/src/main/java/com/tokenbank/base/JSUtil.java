@@ -62,7 +62,7 @@ public class JSUtil {
             return;
         }
 
-        if(!isInit) {
+        if (!isInit) {
             return;
         }
 

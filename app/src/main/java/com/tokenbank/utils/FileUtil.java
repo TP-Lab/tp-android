@@ -1,14 +1,23 @@
 package com.tokenbank.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Environment;
+import android.util.Log;
+
+import com.tokenbank.config.Constant;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.MessageDigest;
+import java.util.UUID;
 
 
 public class FileUtil {
@@ -59,8 +68,6 @@ public class FileUtil {
         return sp.getBoolean(key, defValue);
     }
 
-
-
     public static String getStringContent(String originTxt) {
         return originTxt;
     }
@@ -86,6 +93,10 @@ public class FileUtil {
         return context.getFilesDir().getParent() + "/shared_prefs/";
     }
 
+    public static String getSaveImgDir(Context context) {
+        return context.getFilesDir().getParent() + "/image/";
+    }
+
     public static String getConfigFile(Context context, String fileName) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
@@ -100,5 +111,63 @@ public class FileUtil {
             e.printStackTrace();
         }
         return stringBuilder.toString();
+    }
+
+    public static void saveBitmap(Context context, Bitmap mBtimap){
+        //保存在相册
+        Log.d("FileUtil :","begin to save picture");
+        String PhotoPath;
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
+                || !Environment.isExternalStorageRemovable()) {
+            //外部存储可用
+           // PhotoPath = Environment.getExternalStorageDirectory().getAbsolutePath()+ Constant.photo_path;
+            PhotoPath = Environment.getExternalStorageDirectory().toString()+ Constant.photo_path;
+        }else {
+            //外部存储不可用
+            PhotoPath = context.getCacheDir().getPath()+ "/images/";
+        }
+        File file = new File(PhotoPath);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+        try {
+            File pictrueFile = new File(PhotoPath + UUID.randomUUID().toString() + ".jpg");
+            Log.d("saveBitmap", "path: "+PhotoPath + UUID.randomUUID().toString() + ".jpg");
+            if(!pictrueFile.exists()){
+                pictrueFile.createNewFile();
+            }
+            FileOutputStream out = new FileOutputStream(pictrueFile);
+            mBtimap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+            out.flush();
+            out.close();
+            Log.d("FileUtil", "save picture success !");
+            Uri uri = Uri.fromFile(file);
+            context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        /*
+        //保存在本地
+          String savePath;
+            File filePic;
+            savePath =  context.getExternalFilesDir(null)+"/1.JPEG";
+            try {
+                filePic = new File(savePath);
+                if (!filePic.exists()) {
+                    filePic.getParentFile().mkdirs();
+                    filePic.createNewFile();
+                }
+                FileOutputStream fos = new FileOutputStream(filePic);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                fos.flush();
+                fos.close();
+            } catch (IOException e) {
+                Log.e("saveBitmap","saveBitmap" + e.getMessage());
+                return;
+            }
+            Log.i( "saveBitmap","saveBitmap success: " + filePic.getAbsolutePath());
+        }
+         */
     }
 }

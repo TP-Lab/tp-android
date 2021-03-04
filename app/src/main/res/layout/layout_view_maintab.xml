@@ -41,57 +41,31 @@
                 android:textSize="10sp" />
         </LinearLayout>
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/layout_tab_market"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
+        <LinearLayout
+            android:id="@+id/layout_tab_find"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <!--<ImageView-->
-                <!--android:id="@+id/img_tab_market"-->
-                <!--android:layout_width="22dp"-->
-                <!--android:layout_height="22dp"-->
-                <!--android:scaleType="fitXY"-->
-                <!--android:src="@drawable/ic_tab_market_selected" />-->
+            <ImageView
+                android:id="@+id/img_tab_find"
+                android:layout_width="22dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_tab_mine_selected" />
 
-            <!--<TextView-->
-                <!--android:id="@+id/tv_tab_market"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="2dp"-->
-                <!--android:text="行情"-->
-                <!--android:textColor="@color/selector_maintab_item_textcolor"-->
-                <!--android:textSize="10sp" />-->
-        <!--</LinearLayout>-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/layout_tab_find"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:layout_weight="1"-->
-            <!--android:gravity="center"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/img_tab_find"-->
-                <!--android:layout_width="22dp"-->
-                <!--android:layout_height="22dp"-->
-                <!--android:scaleType="fitXY"-->
-                <!--android:src="@drawable/ic_tab_find_selected" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/tv_tab_find"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="2dp"-->
-                <!--android:text="发现"-->
-                <!--android:textColor="@color/selector_maintab_item_textcolor"-->
-                <!--android:textSize="10sp" />-->
-        <!--</LinearLayout>-->
+            <TextView
+                android:id="@+id/tv_tab_find"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="发现"
+                android:textColor="@color/selector_maintab_item_textcolor"
+                android:textSize="10sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout_tab_mine"

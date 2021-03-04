@@ -110,5 +110,9 @@
         <item name="android:inputType">textPassword</item>
     </style>
 
+    <style name="Dialog_anim">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
 
 </resources>

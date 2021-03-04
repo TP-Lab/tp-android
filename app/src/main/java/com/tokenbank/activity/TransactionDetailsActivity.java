@@ -53,7 +53,7 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
         }
         mHash = transactionData.getString("hash", "");
         if (TextUtils.isEmpty(mHash)) {
-            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_illegal_parameters));
+            ToastUtil.toast(TransactionDetailsActivity.this,  getString(R.string.toast_illegal_parameters));
             this.finish();
             return;
         }
@@ -101,6 +101,8 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
         int type = WalletInfoManager.getInstance().getWalletType();
         if (type == TBController.SWT_INDEX) {
             loadData();
+        } else if (type == TBController.ETH_INDEX) {
+            updateData(transactionData);
         }
     }
 
@@ -139,8 +141,7 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
                 if (ret == 0) {
                     updateData(extra.getObject("data", "{}"));
                 } else {
-                    ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_transaction_info_failure))
-                    ;
+                    ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_transaction_info_failure));
                     TransactionDetailsActivity.this.finish();
                 }
             }
@@ -168,15 +169,13 @@ public class TransactionDetailsActivity extends BaseActivity implements View.OnC
         if (v == mTvCopyUrl) {
             Util.clipboard(TransactionDetailsActivity.this, "",
                     mWalletUtil.getTransactionSearchUrl(mTvTransactionId.getText().toString()));
-            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_url_copied));
+            ToastUtil.toast(TransactionDetailsActivity.this,  getString(R.string.toast_url_copied));
         } else if (v == mTvSender) {
             Util.clipboard(TransactionDetailsActivity.this, "", mTvSender.getText().toString());
-            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_send_address_copied))
-            ;
+            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_send_address_copied));
         } else if (v == mTvReceiver) {
             Util.clipboard(TransactionDetailsActivity.this, "", mTvReceiver.getText().toString());
-            ToastUtil.toast(TransactionDetailsActivity.this, getString(R.string.toast_receive_address_copied))
-            ;
+            ToastUtil.toast(TransactionDetailsActivity.this,  getString(R.string.toast_receive_address_copied));
         } else if (v == mTvTransactionId) {
             WebBrowserActivity.startWebBrowserActivity(TransactionDetailsActivity.this, getString(R.string.titleBar_transaction_query),
                     mWalletUtil.getTransactionSearchUrl(mTvTransactionId.getText().toString()));

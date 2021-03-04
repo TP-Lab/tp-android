@@ -200,14 +200,14 @@ public class CreateWalletActivity extends BaseActivity implements View.OnClickLi
 
     private void createWallet(final String walletName, final String walletPwd) {
         setBtnStateToCreating();
-        mWalletUtil.createWallet(walletName, walletPwd, (int) mBlock.hid, new WCallback() {
+        mWalletUtil.createWallet(new WCallback() {
             @Override
             public void onGetWResult(int ret, GsonUtil extra) {
                 if (ret == 0) {
                     TLog.d(TAG, "创建钱包成功");
                     String hash = FileUtil.getStringContent(walletPwd);
-                    String privateKey = extra.getString("privatekey", "");
-                    int walletType = extra.getInt("blockType", -1);
+                    String privateKey = extra.getString("secret", "");
+                    int walletType = (int) mBlock.hid;
                     String words = extra.getString("words", "");
                     String address = extra.getString("address", "");
                     if (mWalletUtil.isWalletLegal(privateKey, address)) {

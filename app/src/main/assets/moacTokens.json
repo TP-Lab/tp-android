@@ -1,0 +1,10 @@
+{
+  "data": [
+    {
+      "value": "MOAC",
+      "contract": "0x0",
+      "decimals": 18,
+      "icon_url": "http://explorer.moac.io/img/new-logo.png"
+    }
+  ]
+}

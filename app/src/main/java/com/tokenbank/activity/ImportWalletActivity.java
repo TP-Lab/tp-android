@@ -33,7 +33,6 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
     private final static String BLOCK_ID = "BlockId";
     private BlockChainData.Block mBlock;
     private int mFlag = 1;
-    private int mBlockChainId;
 
     public final static String TAG = "ImportWalletActivity";
 
@@ -60,7 +59,7 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == Constant.CHOOSE_BLOCK_REQUEST_CODE) {
-                if(data == null) {
+                if (data == null) {
                     this.finish();
                     return;
                 }
@@ -68,7 +67,9 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
                 if (mBlock == null) {
                     this.finish();
                 } else {
-                    if (mBlock.hid == TBController.SWT_INDEX) {
+                    if (mBlock.hid == TBController.ETH_INDEX || mBlock.hid == TBController.MOAC_INDEX) {
+                        initView();
+                    } else if (mBlock.hid == TBController.SWT_INDEX || mBlock.hid == TBController.EOS_INDEX) {
                         Intent intent = new Intent();
                         intent.putExtra(PKFragment.BLOCK, mBlock);
                         FragmentContainerActivity.start(ImportWalletActivity.this,
@@ -130,6 +131,7 @@ public class ImportWalletActivity extends BaseActivity implements View.OnClickLi
         mTvWords.setTextColor(getResources().getColor(R.color.common_blue));
         mTvPrivateKey.setTextColor(getResources().getColor(R.color.common_black_fontcolor));
     }
+
 
     public static void startImportWalletActivity(Context context, int blockChainId) {
 

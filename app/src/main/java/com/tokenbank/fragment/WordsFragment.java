@@ -174,12 +174,13 @@ public class WordsFragment extends BaseFragment implements View.OnClickListener 
     private void importWallet() {
         final String words = mEdtWalletWords.getText().toString();
         final String password = mEdtWalletPwd.getText().toString();
-        mWalletUtil.importWallet(words, (int) mBlock.hid, 1, new WCallback() {
+        mWalletUtil.importWallet(words, 1, new WCallback() {
             @Override
             public void onGetWResult(int ret, GsonUtil extra) {
                 if (ret == 0) {
+                    int blockType = (int) mBlock.hid;
                     String address = extra.getString("address", "");
-                    String privateKey = extra.getString("privateKey", "");
+                    String privateKey = extra.getString("secret", "");
                     if (isWalletExsit(address)) {
                         if (flag == 1) {
                             //导入钱包
@@ -192,7 +193,7 @@ public class WordsFragment extends BaseFragment implements View.OnClickListener 
                         }
 
                     }
-                    uploadWallet(mEdtWalletName.getText().toString(), extra.getInt("blockType", -1), FileUtil.getStringContent(password),
+                    uploadWallet(mEdtWalletName.getText().toString(), blockType, FileUtil.getStringContent(password),
                             privateKey, address);
                 } else {
                     ToastUtil.toast(getActivity(), getString(R.string.toast_import_wallet_failed));

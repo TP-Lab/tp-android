@@ -133,7 +133,12 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void checkPrivateKey() {
-
+        if (mBlock.hid == TBController.ETH_INDEX) {
+            String privateKey = mEdtWalletPrivateKey.getText().toString();
+            if (!TextUtils.isEmpty(privateKey) && !privateKey.startsWith("0x")) {
+                mEdtWalletPrivateKey.setText("0x" + privateKey);
+            }
+        }
     }
 
     private void gotoServiceTermPage() {
@@ -187,11 +192,12 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
     private void importWallet() {
         final String privateKey = mEdtWalletPrivateKey.getText().toString();
         final String password = mEdtWalletPwd.getText().toString();
-        walletblockchain.importWallet(privateKey, (int) mBlock.hid, 2, new WCallback() {
+        walletblockchain.importWallet(privateKey, 2, new WCallback() {
             @Override
             public void onGetWResult(int ret, GsonUtil extra) {
                 if (ret == 0) {
                     String address = extra.getString("address", "");
+                    int blockType = (int) mBlock.hid;
                     if (isWalletExsit(address)) {
                         if (flag == 1) {
                             //导入钱包
@@ -204,7 +210,7 @@ public class PKFragment extends BaseFragment implements View.OnClickListener {
                         }
 
                     }
-                    uploadWallet(mEdtWalletName.getText().toString(), extra.getInt("blockType", -1), FileUtil.getStringContent(password),
+                    uploadWallet(mEdtWalletName.getText().toString(), blockType, FileUtil.getStringContent(password),
                             privateKey, address);
                 } else {
                     ToastUtil.toast(getActivity(), getString(R.string.toast_import_wallet_failed));

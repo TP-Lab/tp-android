@@ -3,6 +3,9 @@ package com.tokenbank.base;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.android.jccdex.app.base.JCallback;
+import com.android.jccdex.app.jingtum.JingtumWallet;
+import com.android.jccdex.app.util.JCCJson;
 import com.tokenbank.config.Constant;
 import com.tokenbank.net.api.GetWalletTokenList;
 import com.tokenbank.net.api.jtrequest.JTTransactionDetailsRequest;
@@ -23,30 +26,37 @@ public class SWTWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void createWallet(final String walletName, final String walletPassword, int blockType, final WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-        GsonUtil json = new GsonUtil("{}");
-        json.putInt("blockType", blockType);
-        JSUtil.getInstance().callJS("createJtWallet", json, callback);
+    public void createWallet(final WCallback callback) {
+        JingtumWallet.getInstance().createWallet(JingtumWallet.SWTC_CHAIN, new JCallback() {
+            @Override
+            public void completion(JCCJson json) {
+                String address = json.getString("address");
+                String secret = json.getString("secret");
+                if (address != null && secret != null) {
+                    GsonUtil gsonUtil = new GsonUtil(json.toString());
+                    callback.onGetWResult(0, gsonUtil);
+                } else {
+                    callback.onGetWResult(-1, null);
+                }
+            }
+        });
     }
 
     @Override
-    public void importWallet(String privateKey, int blockType, int type, WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-        GsonUtil json = new GsonUtil("{}");
-        json.putInt("blockType", blockType);
-
-        if (type == 1) {
-            json.putString("words", privateKey);
-            JSUtil.getInstance().callJS("importWalletWithWords", json, callback);
-        } else if (type == 2) {
-            json.putString("privateKey", privateKey);
-            JSUtil.getInstance().callJS("retrieveWalletFromPk", json, callback);
-        }
+    public void importWallet(String privateKey, int type, final WCallback callback) {
+        JingtumWallet.getInstance().importSecret(privateKey, JingtumWallet.SWTC_CHAIN, new JCallback() {
+            @Override
+            public void completion(JCCJson json) {
+                String secret = json.getString("secret");
+                String address = json.getString("address");
+                if (address != null && secret != null) {
+                    GsonUtil gsonUtil = new GsonUtil(json.toString());
+                    callback.onGetWResult(0, gsonUtil);
+                } else {
+                    callback.onGetWResult(-1, null);
+                }
+            }
+        });
     }
 
     @Override
@@ -66,11 +76,21 @@ public class SWTWalletBlockchain implements BaseWalletUtil {
     }
 
     @Override
-    public void signedTransaction(GsonUtil data, WCallback callback) {
-        if (!checkInit(callback)) {
-            return;
-        }
-        JSUtil.getInstance().callJS("jtSingtx", data, callback);
+    public void signedTransaction(GsonUtil data, final WCallback callback) {
+
+        GsonUtil transaction = data.getObject("transaction");
+        String secret = data.getString("secret", "");
+        JingtumWallet.getInstance().sign(transaction.getObj(), secret, JingtumWallet.SWTC_CHAIN, new JCallback() {
+            @Override
+            public void completion(JCCJson json) {
+                String signature = json.getString("signature");
+                if (signature != null) {
+                    callback.onGetWResult(0, new GsonUtil(json.toString()));
+                } else {
+                    callback.onGetWResult(-1, null);
+                }
+            }
+        });
     }
 
     @Override
@@ -277,7 +297,7 @@ public class SWTWalletBlockchain implements BaseWalletUtil {
                     for (int i = 0; i < len; i++) {
                         GsonUtil data = new GsonUtil("{}");
                         data.putLong("blockchain_id", Long.parseLong("" + TBController.SWT_INDEX));
-                        data.putString("icon_url", "http://state.jingtum.com/favicon.ico");
+                        data.putString("icon_url", "https://state.jingtum.com/favicon.ico");
                         data.putString("bl_symbol", datas.getObject(i).getString("currency", ""));
                         data.putInt("decimal", 0);
                         data.putString("balance", datas.getObject(i).getString("value", "0"));
@@ -287,7 +307,7 @@ public class SWTWalletBlockchain implements BaseWalletUtil {
                 } else {
                     GsonUtil data = new GsonUtil("{}");
                     data.putLong("blockchain_id", Long.parseLong("" + TBController.SWT_INDEX));
-                    data.putString("icon_url", "http://state.jingtum.com/favicon.ico");
+                    data.putString("icon_url", "https://state.jingtum.com/favicon.ico");
                     data.putString("bl_symbol", "SWT");
                     data.putInt("decimal", 0);
                     data.putString("balance", "0");
@@ -309,9 +329,5 @@ public class SWTWalletBlockchain implements BaseWalletUtil {
     public GsonUtil loadTransferTokens(Context context) {
         String data = FileUtil.getConfigFile(context, "jingtumTokens.json");
         return new GsonUtil(data);
-    }
-
-    private boolean checkInit(WCallback callback) {
-        return JSUtil.getInstance().checkInit(callback);
     }
 }

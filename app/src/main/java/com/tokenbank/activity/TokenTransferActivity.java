@@ -11,16 +11,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.jccdex.app.base.JCallback;
+import com.android.jccdex.app.jingtum.JingtumWallet;
+import com.android.jccdex.app.util.JCCJson;
 import com.tokenbank.R;
 import com.tokenbank.base.BaseWalletUtil;
 import com.tokenbank.base.TBController;
 import com.tokenbank.base.WalletInfoManager;
 import com.tokenbank.base.WCallback;
+import com.tokenbank.config.Constant;
 import com.tokenbank.dialog.OrderDetailDialog;
 import com.tokenbank.dialog.PwdDialog;
 import com.tokenbank.net.api.jtrequest.JTBalanceRequest;
 import com.tokenbank.net.load.RequestPresenter;
 import com.tokenbank.utils.GsonUtil;
+import com.tokenbank.utils.TLog;
 import com.tokenbank.utils.ToastUtil;
 import com.tokenbank.utils.Util;
 import com.tokenbank.utils.ViewUtil;
@@ -102,25 +107,29 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
         mEdtWalletAddress = findViewById(R.id.edt_wallet_address);
 
         mEdtTransferNum = findViewById(R.id.edt_transfer_num);
+        TLog.e(TAG, "mBlockChain" + mBlockChain);
+        if (mBlockChain != TBController.EOS_INDEX) {
+            TLog.e(TAG, "mBlockChain" + mBlockChain);
+            mGas = mWalletUtil.getRecommendGas(mGas, defaultToken);
 
-        mGas = mWalletUtil.getRecommendGas(mGas, defaultToken);
-
-        mTvGas = findViewById(R.id.tv_transfer_gas);
-        mTvGas.setOnClickListener(this);
-        mWalletUtil.gasPrice(new WCallback() {
-            @Override
-            public void onGetWResult(int ret, GsonUtil extra) {
-                if (ret == 0) {
-                    mGasPrice = extra.getDouble("gasPrice", 0.0);
-                    mWalletUtil.calculateGasInToken(mGas, mGasPrice, defaultToken, new WCallback() {
-                        @Override
-                        public void onGetWResult(int ret, GsonUtil extra) {
-                            mTvGas.setText(extra.getString("gas", ""));
-                        }
-                    });
+            mTvGas = findViewById(R.id.tv_transfer_gas);
+            mTvGas.setOnClickListener(this);
+            mWalletUtil.gasPrice(new WCallback() {
+                @Override
+                public void onGetWResult(int ret, GsonUtil extra) {
+                    if (ret == 0) {
+                        mGasPrice = extra.getDouble("gasPrice", 0.0);
+                        mWalletUtil.calculateGasInToken(mGas, mGasPrice, defaultToken, new WCallback() {
+                            @Override
+                            public void onGetWResult(int ret, GsonUtil extra) {
+                                mTvGas.setText(extra.getString("gas", ""));
+                            }
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
+
         mWalletUtil.translateAddress(mOriginAddress, new WCallback() {
             @Override
             public void onGetWResult(int ret, GsonUtil extra) {
@@ -202,9 +211,72 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
 
     private void pwdRight() {
         updateBtnToTranferingState();
-        if (mBlockChain == TBController.SWT_INDEX) {
+        if (mBlockChain == TBController.ETH_INDEX) {
+            ethTokenTransfer();
+        } else if (mBlockChain == TBController.SWT_INDEX) {
             swtTokenTransfer();
+        } else if (mBlockChain == TBController.MOAC_INDEX) {
+            moacTokenTransfer();
         }
+    }
+
+    private void moacTokenTransfer() {
+        if (defaultToken) {
+            signedEthTransaction(mWalletData.wpk, "", "", mWalletData.waddress,
+                    mEdtWalletAddress.getText().toString(), Util.formatDouble(0, Util.tokenToWei(mBlockChain,
+                            Util.parseDouble(mEdtTransferNum.getText().toString()), mWalletUtil.getDefaultDecimal())),
+                    mGas, mGasPrice);
+        }
+    }
+
+    private void ethTokenTransfer() {
+        if (defaultToken) {
+            signedEthTransaction(mWalletData.wpk, "", "", mWalletData.waddress,
+                    mEdtWalletAddress.getText().toString(), Util.formatDouble(0, Util.tokenToWei(mBlockChain,
+                            Util.parseDouble(mEdtTransferNum.getText().toString()), mWalletUtil.getDefaultDecimal())),
+                    mGas, mGasPrice);
+        } else {
+            getContactAbiData(mContractAddress);
+        }
+    }
+
+    private void getContactAbiData(final String contanctAddress) {
+        if (TextUtils.isEmpty(contanctAddress)) {
+            return;
+        }
+
+        signedEthTransaction(mWalletData.wpk, Constant.ABI_DATA, contanctAddress, mWalletData.waddress,
+                mEdtWalletAddress.getText().toString(), Util.formatDouble(0, Util.tokenToWei(mBlockChain,
+                        Util.parseDouble(mEdtTransferNum.getText().toString()), mDecimal)),
+                mGas, mGasPrice);
+    }
+
+
+    private void signedEthTransaction(String privateKey, String abi, String contactAddress, String senderAddress, String receiverAddress,
+                                      double tokencount, double gas, double gasPrice) {
+        GsonUtil ethSigned = new GsonUtil("{}");
+        TLog.d("gaslimit:", gas + "");
+        TLog.d("gas:", gasPrice + "");
+        ethSigned.putString("privateKey", privateKey);
+        ethSigned.putString("abi", abi);
+        ethSigned.putString("contactAddress", contactAddress);
+        ethSigned.putString("senderAddress", senderAddress);
+        ethSigned.putString("receiverAddress", receiverAddress);
+        ethSigned.putDouble("tokencount", tokencount);
+        ethSigned.putDouble("gas", gas);
+        ethSigned.putDouble("gasPrice", gasPrice);
+        mWalletUtil.signedTransaction(ethSigned, new WCallback() {
+            @Override
+            public void onGetWResult(int ret, GsonUtil extra) {
+                if (ret == 0) {
+                    final String rawTransaction = extra.getString("rawTransaction", "");
+                    sendSignedTransaction(rawTransaction);
+                } else {
+                    resetTranferBtn();
+                    ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 6);
+                }
+            }
+        });
     }
 
     private void swtTokenTransfer() {
@@ -248,21 +320,33 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
 
     private void signedSwtTransaction(double fee, long sequence, String senderAddress, String receiverAddress,
                                       double value, String seed, String currency, String issuer) {
-        GsonUtil swtSigned = new GsonUtil("{}");
-        swtSigned.putDouble("fee", fee);
-        swtSigned.putDouble("value", value);
-        swtSigned.putLong("sequence", sequence);
-        swtSigned.putString("account", senderAddress);
-        swtSigned.putString("destination", receiverAddress);
-        swtSigned.putString("currency", currency);
-        swtSigned.putString("seed", seed);
-        swtSigned.putString("issuer", issuer);
-        mWalletUtil.signedTransaction(swtSigned, new WCallback() {
+        GsonUtil transaction = new GsonUtil("{}");
+        transaction.putInt("Flags", 0);
+        transaction.putString("Account", senderAddress);
+        transaction.putString("TransactionType", "Payment");
+        transaction.putDouble("Fee", fee);
+        transaction.putLong("Sequence", sequence);
+        transaction.putString("Destination", receiverAddress);
+        if (currency.toUpperCase() == "SWT") {
+            transaction.putDouble("Amount", value);
+        } else {
+            GsonUtil amount = new GsonUtil("{}");
+            amount.putDouble("value", value);
+            amount.putString("issuer", issuer);
+            amount.putString("currency", currency.toUpperCase());
+            transaction.put("Amount", amount);
+        }
+
+        GsonUtil data = new GsonUtil("{}");
+        data.put("transaction", transaction);
+        data.putString("secret", seed);
+
+        mWalletUtil.signedTransaction(data, new WCallback() {
             @Override
             public void onGetWResult(int ret, GsonUtil extra) {
                 if (ret == 0) {
-                    final String rawTransaction = extra.getObject("signedTransaction", "{}").getString("rawTransaction", "");
-                    sendSignedTransaction(rawTransaction);
+                    String signature = extra.getString("signature", "");
+                    sendSignedTransaction(signature);
                 } else {
                     resetTranferBtn();
                     ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_failed) + 6);
@@ -284,6 +368,10 @@ public class TokenTransferActivity extends BaseActivity implements View.OnClickL
                 if (ret == 0) {
                     resetTranferBtn();
                     ToastUtil.toast(TokenTransferActivity.this, getString(R.string.toast_transfer_success));
+                    if (mBlockChain == TBController.ETH_INDEX) {
+//                        new RequestPresenter().loadData(new TransactionRecordRequest());
+                    }
+
                     TokenTransferActivity.this.finish();
                 } else {
                     resetTranferBtn();

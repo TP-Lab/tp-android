@@ -2,6 +2,7 @@ package com.zxing.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
@@ -26,10 +27,13 @@ import com.tokenbank.R;
 import com.tokenbank.activity.BaseActivity;
 import com.tokenbank.utils.QRUtils;
 import com.tokenbank.view.TitleBar;
+import com.tokenbank.web.JsEvent;
 import com.zxing.camera.CameraManager;
 import com.zxing.decoding.CaptureActivityHandler;
 import com.zxing.decoding.InactivityTimer;
 import com.zxing.view.ViewfinderView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -55,6 +59,7 @@ public class CaptureActivity extends BaseActivity implements Callback {
     private static final int PARSE_BARCODE_FAIL = 303;
     private ProgressDialog mProgress;
     private String photo_path;
+    private String mCallBackId;
 
     public static void navToActivity(Activity context, int requestCode) {
         Intent intent = new Intent(context, CaptureActivity.class);
@@ -74,6 +79,10 @@ public class CaptureActivity extends BaseActivity implements Callback {
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
 
+        if (getIntent() != null) {
+            mCallBackId = getIntent().getStringExtra("callBackId");
+        }
+
         TitleBar mTitleBar = findViewById(R.id.title_bar);
         mTitleBar.setLeftDrawable(R.drawable.ic_back);
         mTitleBar.setTitle(getString(R.string.titleBar_scan));
@@ -92,6 +101,14 @@ public class CaptureActivity extends BaseActivity implements Callback {
             mProgress.dismiss();
             switch (msg.what) {
                 case PARSE_BARCODE_SUC:
+                    if (!TextUtils.isEmpty(mCallBackId)) {
+                        JsEvent jsEvent = new JsEvent();
+                        jsEvent.setMsg((String) msg.obj);
+                        jsEvent.setCallBackId(mCallBackId);
+                        EventBus.getDefault().post(jsEvent);
+                        finish();
+                        return;
+                    }
                     onResultHandler((String) msg.obj);
                     break;
                 case PARSE_BARCODE_FAIL:
@@ -105,6 +122,12 @@ public class CaptureActivity extends BaseActivity implements Callback {
 
     };
 
+    public static void startCaptureActivity(Context context, String callBackId) {
+        Intent intent = new Intent(context, CaptureActivity.class);
+        intent.putExtra("callBackId", callBackId);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -198,6 +221,14 @@ public class CaptureActivity extends BaseActivity implements Callback {
     private void onResultHandler(String resultString) {
         if (TextUtils.isEmpty(resultString)) {
             Toast.makeText(CaptureActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!TextUtils.isEmpty(mCallBackId)) {
+            JsEvent jsEvent = new JsEvent();
+            jsEvent.setMsg(resultString);
+            jsEvent.setCallBackId(mCallBackId);
+            EventBus.getDefault().post(jsEvent);
+            finish();
             return;
         }
         Intent resultIntent = new Intent();
